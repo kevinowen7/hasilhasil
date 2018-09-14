@@ -54,11 +54,11 @@ def makeWebhookResult(req):
         if operasi == "-":
             hasil = bilangan1-bilangan2
         return {
-            "speech": "hasil:"+str(hasil),
-            "displayText": "hasil:"+str(hasil),
+            "speech": "hasil: "+str(hasil),
+            "displayText": "hasil: "+str(hasil),
             #"data": {},
             #"contextOut": [],
-            "source": "hasil:"+str(hasil)
+            "source": "hasil: "+str(hasil)
         }
                     
     
