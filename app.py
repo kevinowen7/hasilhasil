@@ -42,8 +42,8 @@ def makeWebhookResult(req):
             "source": hasil
         }
     if req.get("result").get("action") == "penjumlahan":
-        bilangan1 = req.get("result").get("parameters").get("number")
-        bilangan2 = req.get("result").get("parameters").get("number1")
+        bilangan1 = int(req.get("result").get("parameters").get("number"))
+        bilangan2 = int(req.get("result").get("parameters").get("number1"))
         operasi = req.get("result").get("parameters").get("operasi")
         if operasi == "+":
             hasil = bilangan1+bilangan2
@@ -52,7 +52,7 @@ def makeWebhookResult(req):
         if operasi == "/":
             hasil = bilangan1/bilangan2
         if operasi == "-":
-            hasil = bilangan1+bilangan2
+            hasil = bilangan1-bilangan2
         return {
             "speech": hasil,
             "displayText": hasil,
