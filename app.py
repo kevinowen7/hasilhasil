@@ -41,6 +41,25 @@ def makeWebhookResult(req):
             #"contextOut": [],
             "source": hasil
         }
+    if req.get("result").get("action") == "penjumlahan":
+        bilangan1 = req.get("result").get("parameter").get("number")
+        bilangan2 = req.get("result").get("parameter").get("number1")
+        operasi = req.get("result").get("parameter").get("operasi")
+        if operasi == "+":
+            hasil = bilangan1+bilangan2
+        if operasi == "*":
+            hasil = bilangan1*bilangan2
+        if operasi == "/":
+            hasil = bilangan1/bilangan2
+        if operasi == "-":
+            hasil = bilangan1+bilangan2
+        return {
+            "speech": hasil,
+            "displayText": hasil,
+            #"data": {},
+            #"contextOut": [],
+            "source": hasil
+        }
                     
     
     
