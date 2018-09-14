@@ -41,7 +41,7 @@ def makeWebhookResult(req):
             #"contextOut": [],
             "source": hasil
         }
-    if req.get("result").get("action") == "penjumlahan":
+     if req.get("result").get("action") == "penjumlahan":
         bilangan1 = int(req.get("result").get("parameters").get("number"))
         bilangan2 = int(req.get("result").get("parameters").get("number1"))
         operasi = req.get("result").get("parameters").get("operasi")
