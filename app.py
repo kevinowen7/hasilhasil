@@ -16,7 +16,6 @@ from flask import request
 from flask import make_response
 
 # Flask app should start in global layout
-driver = webdriver.Chrome('./chromedriver.exe')
 app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
@@ -38,6 +37,7 @@ def webhook():
 
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
+        driver = webdriver.Chrome('./chromedriver.exe')
         driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
         #driver.find_element_by_link_text("Absensi Kuliah").click();
         #driver.find_element_by_id("txtUsername").send_keys("1")
