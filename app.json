@@ -3,5 +3,20 @@
   "description": "API.AI",
   "repository": "https://github.com/snorlak1999/11",
   "logo": "http://xvir.github.io/img/apiai.png",
-  "keywords": ["api.ai", "natural language"]
+  "keywords": ["api.ai", "natural language"],
+  {
+  "environments": {
+    "test": {
+      "buildpacks": [
+        { "url": "https://github.com/heroku/heroku-buildpack-ruby" },
+        { "url": "https://github.com/heroku/heroku-buildpack-chromedriver" },
+        { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" }
+      ],
+      "addons":[
+         "heroku-postgresql"
+      ]
+    }
+  }
+}
+
 }
