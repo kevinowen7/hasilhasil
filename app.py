@@ -21,6 +21,7 @@ app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
 
+driver = webdriver.Chrome('./chromedriver.exe')
 
 def webhook():
     req = request.get_json(silent=True, force=True)
@@ -38,14 +39,6 @@ def webhook():
 
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
-        return {
-            "speech": "hasil",
-            "displayText": "hasil",
-            #"data": {},
-            #"contextOut": [],
-            "source": "hasil"
-        }
-        driver = webdriver.Chrome('./chromedriver.exe')
         driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
         #driver.find_element_by_link_text("Absensi Kuliah").click();
         #driver.find_element_by_id("txtUsername").send_keys("1")
