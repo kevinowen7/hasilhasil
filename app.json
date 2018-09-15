@@ -7,14 +7,11 @@
   "environments": {
     "test": {
       "buildpacks": [
-        { "url": "https://github.com/heroku/heroku-buildpack-ruby" },
-        { "url": "https://github.com/heroku/heroku-buildpack-chromedriver" },
+        { "url": "heroku/nodejs" },
         { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" }
-      ],
-      "addons":[
-         "heroku-postgresql"
       ]
     }
   }
+
 
 }
