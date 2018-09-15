@@ -16,12 +16,11 @@ from flask import request
 from flask import make_response
 
 # Flask app should start in global layout
-
+driver = webdriver.Chrome('./chromedriver.exe')
 app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
 
-driver = webdriver.Chrome('./chromedriver.exe')
 
 def webhook():
     req = request.get_json(silent=True, force=True)
