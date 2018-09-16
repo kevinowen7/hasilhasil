@@ -42,7 +42,7 @@ def makeWebhookResult(req):
         chrome_option.binary_location = "/app/.apt/usr/bin/google-chrome"
         chrome_option.add_argument('--disable-gpu')
         chrome_option.add_argument('--no-sandbox')
-        driver = webdriver.Chrome(executable_path="/app/.chromedriver/bin/chromedriver", chrome_options=chrome_option)
+        driver = webdriver.Chrome(executable_path="/app/.apt/opt/google/chrome/chrome", chrome_options=chrome_option)
         return {
             "speech": "hasi",
             "displayText": "hasi",
