@@ -43,13 +43,6 @@ def makeWebhookResult(req):
         chrome_options.add_argument('--no-sandbox')
         driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
         
-        return {
-            "speech": hasil,
-            "displayText": hasil,
-            #"data": {},
-            #"contextOut": [],
-            "source": hasil
-        }
         driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
         #driver.find_element_by_link_text("Absensi Kuliah").click();
         #driver.find_element_by_id("txtUsername").send_keys("1")
