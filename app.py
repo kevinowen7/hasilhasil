@@ -9,7 +9,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 from bs4 import BeautifulSoup
 
 from flask import Flask
@@ -38,11 +38,10 @@ def webhook():
 
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
-        chrome_option = Options()
-        chrome_option.binary_location = "/app/.apt/usr/bin/google-chrome"
-        chrome_option.add_argument('--disable-gpu')
-        chrome_option.add_argument('--no-sandbox')
-        driver = webdriver.Chrome(executable_path="/app/.apt/opt/google/chrome/chrome", chrome_options=chrome_option)
+        chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+        opts = ChromeOptions()
+        opts.binary_location = chrome_bin
+        driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
         return {
             "speech": "hasi",
             "displayText": "hasi",
