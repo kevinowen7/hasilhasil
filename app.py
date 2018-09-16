@@ -45,7 +45,7 @@ def makeWebhookResult(req):
         options.add_argument("--no-sandbox")
         options.add_argument('headless')
         options.add_argument('window-size=1200x600')
-        driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+        driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=options)
         return {
             "speech": "hasi",
             "displayText": "hasi",
