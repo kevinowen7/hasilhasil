@@ -38,11 +38,10 @@ def webhook():
 
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
-        options = Options()
-        options.set_headless(headless=True)
-        options.add_argument("--headless") # Runs Chrome in headless mode.
-        options.add_argument('--no-sandbox') # Bypass OS security model
-        options.add_argument('--disable-gpu')
+        chrome_bin = os.environ.get('/my-app/.apt/usr/bin/google-chrome', None)
+        opts = Options()
+        opts.binary_location = '/app/.apt/usr/bin/google-chrome-stable'
+        browser = webdriver.Chrome(executable_path="/my-app/.chromedriver/bin/chromedriver", chrome_options=opts) 
         return {
             "speech": "hasi",
             "displayText": "hasi",
@@ -50,8 +49,6 @@ def makeWebhookResult(req):
             #"contextOut": [],
             "source": "hasi"
         }
-        driver = webdriver.Chrome(options=options, executable_path='./chromedriver.exe')
-       
         driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
         #driver.find_element_by_link_text("Absensi Kuliah").click();
         #driver.find_element_by_id("txtUsername").send_keys("1")
