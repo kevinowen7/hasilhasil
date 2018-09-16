@@ -37,9 +37,8 @@ def webhook():
 
 
 def makeWebhookResult(req):  
-     if req.get("result").get("action") == "cek":
-        chrome_options = Options()
-        chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_SHIM')'
+    if req.get("result").get("action") == "cek":
+    
         return {
             "speech": "hasi",
             "displayText": "hasi",
@@ -47,7 +46,6 @@ def makeWebhookResult(req):
             #"contextOut": [],
             "source": "hasi"
         }
-        driver = webdriver.Chrome(chrome_options=chrome_options)
         driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
         #driver.find_element_by_link_text("Absensi Kuliah").click();
         #driver.find_element_by_id("txtUsername").send_keys("1")
