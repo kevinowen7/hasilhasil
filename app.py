@@ -38,6 +38,9 @@ def webhook():
 
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
+        chrome_options = Options()
+        chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_SHIM')
+        driver = webdriver.Chrome(chrome_options=chrome_options)
         return {
             "speech": "hasi",
             "displayText": "hasi",
