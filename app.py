@@ -38,14 +38,12 @@ def webhook():
 
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
-        chrome_bin = os.environ.get('/app/.apt/usr/bin/google-chrome', "chromedriver")
-        options = webdriver.ChromeOptions()
-        options.binary_location = chrome_bin
-        options.add_argument("--disable-gpu")
-        options.add_argument("--no-sandbox")
-        options.add_argument('headless')
-        options.add_argument('window-size=1200x600')
-        driver = webdriver.Chrome(executable_path="/tmp/build_6a11b808f2136101d0c8cde47ad4b150/.chromedriver/bin/chromedriver", chrome_options=options)
+        chrome_exec_shim = "/app/.apt/opt/google/chrome/chrome"
+        opts = webdriver.ChromeOptions()
+        opts.binary_location = chrome_exec_shim
+        opts.addArguments("--no-sandbox");
+        opts.addArguments("--disable-gpu");
+        driver = webdriver.Chrome(executable_path=chrome_exec_shim, chrome_options=opts)
         return {
             "speech": "hasi",
             "displayText": "hasi",
