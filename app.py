@@ -38,7 +38,7 @@ def webhook():
 
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
-        chrome_exec_shim = "/app/.apt/opt/google/chrome/chrome"
+        chrome_exec_shim = "/app/.apt/usr/bin/google-chrome"
         opts = webdriver.ChromeOptions()
         opts.binary_location = chrome_exec_shim
         opts.addArguments("--no-sandbox");
