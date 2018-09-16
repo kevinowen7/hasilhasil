@@ -45,6 +45,7 @@ def makeWebhookResult(req):
         options.add_argument("--no-sandbox")
         options.add_argument('headless')
         options.add_argument('window-size=1200x600')
+        driver = webdriver.Chrome(executable_path="/app/.chromedriver/bin/chromedriver", chrome_options=options)
         return {
             "speech": "hasi",
             "displayText": "hasi",
@@ -52,8 +53,6 @@ def makeWebhookResult(req):
             #"contextOut": [],
             "source": "hasi"
         }
-        driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
-      
         driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
         #driver.find_element_by_link_text("Absensi Kuliah").click();
         #driver.find_element_by_id("txtUsername").send_keys("1")
