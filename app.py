@@ -39,8 +39,9 @@ def webhook():
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
         chrome_options = Options()
-        chrome_options.add_argument("--disable-extensions")
-        driver = webdriver.Chrome(chrome_options=chrome_options)
+        chrome_options.binary_location = GOOGLE_CHROME_BIN
+        chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--no-sandbox')
         return {
             "speech": "hasil",
             "displayText": "hasil",
@@ -48,6 +49,7 @@ def makeWebhookResult(req):
             #"contextOut": [],
             "source": "hasil"
         }
+        driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
         driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
         #driver.find_element_by_link_text("Absensi Kuliah").click();
         #driver.find_element_by_id("txtUsername").send_keys("1")
