@@ -9,6 +9,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 
 from flask import Flask
@@ -38,13 +39,6 @@ def webhook():
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
         chrome_options = Options()
-        return {
-            "speech": "a",
-            "displayText": "a",
-            #"data": {},
-            #"contextOut": [],
-            "source": "a"
-        }
         chrome_options.binary_location = GOOGLE_CHROME_BIN
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
