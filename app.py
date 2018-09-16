@@ -47,16 +47,7 @@ def makeWebhookResult(req):
         options.add_argument("--disable-extensions")
         chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
         options.binary_location=chrome_bin
-        try:
-            driver = webdriver.Chrome(chrome_options=options)
-        except Exception, e:
-            return {
-                "speech": e,
-                "displayText": e,
-                #"data": {},
-                #"contextOut": [],
-                "source": e
-            }
+        driver = webdriver.Chrome(chrome_options=options)
         return {
             "speech": "a",
             "displayText": "a",
