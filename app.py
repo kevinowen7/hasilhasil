@@ -38,11 +38,11 @@ def webhook():
 
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
-        chrome_options = Options()
-        chrome_options.binary_location = "/app/.apt/usr/bin/google-chrome"
-        chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--no-sandbox')
-        driver = webdriver.Chrome(executable_path="/app/.chromedriver/bin/chromedriver", chrome_options=chrome_options)
+        chrome_option = Options()
+        chrome_option.binary_location = "/app/.apt/usr/bin/google-chrome"
+        chrome_option.add_argument('--disable-gpu')
+        chrome_option.add_argument('--no-sandbox')
+        driver = webdriver.Chrome(executable_path="/app/.chromedriver/bin/chromedriver", chrome_options=chrome_option)
         return {
             "speech": "hasi",
             "displayText": "hasi",
