@@ -7,9 +7,15 @@
   "environments": {
     "test": {
       "buildpacks": [
-        { "url": "heroku/nodejs" },
-        { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" },
-        { "url": "https://github.com/heroku/heroku-buildpack-chromedriver" }
+        {
+          "url": "https://github.com/piotras/heroku-buildpack-gettext.git"
+        },
+        {
+          "url": "https://github.com/kevinsawicki/heroku-buildpack-xvfb-google-chrome.git"
+        },
+        {
+          "url": "heroku/python"
+        }
       ]
     }
   }
