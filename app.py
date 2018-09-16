@@ -41,7 +41,7 @@ def makeWebhookResult(req):
         chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
         opts = ChromeOptions()
         opts.binary_location = chrome_bin
-        self.selenium = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
+        driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
         return {
             "speech": "hasi",
             "displayText": "hasi",
