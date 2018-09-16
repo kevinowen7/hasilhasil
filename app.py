@@ -38,13 +38,12 @@ def webhook():
 
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
-        chrome_options = Options()
-        chrome_options.binary_location = "/app/.apt/usr/bin/google-chrome"
-        chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--headless')
-        chrome_options.set_headless(headless=True)
-        driver = webdriver.Chrome(executable_path="/app/.apt/usr/bin/google-chrome", chrome_options=chrome_options)
+        options = Options()
+        options.set_headless(headless=True)
+        options.add_argument("--headless") # Runs Chrome in headless mode.
+        options.add_argument('--no-sandbox') # Bypass OS security model
+        options.add_argument('--disable-gpu')
+        driver = webdriver.Chrome(options=options, executable_path='./chromedriver.exe')
         return {
             "speech": "hasi",
             "displayText": "hasi",
