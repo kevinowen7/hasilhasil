@@ -38,10 +38,7 @@ def webhook():
 
 def makeWebhookResult(req):  
     if req.get("result").get("action") == "cek":
-        chrome_options = Options()
-        chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--no-sandbox')
-        driver = webdriver.Chrome(executable_path="./chromedriver.exe", chrome_options=chrome_options)
+        driver = webdriver.Chrome()
         return {
             "speech": "hasi",
             "displayText": "hasi",
