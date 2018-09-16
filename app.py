@@ -39,7 +39,7 @@ def webhook():
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
         chrome_options = Options()
-        chrome_options.binary_location = GOOGLE_CHROME_BIN
+        chrome_options.binary_location = "/app/.apt/usr/bin/google-chrome"
         return {
             "speech": "hasil",
             "displayText": "hasil",
