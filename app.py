@@ -47,21 +47,16 @@ def makeWebhookResult(req):
         options.add_argument("--disable-extensions")
         chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
         options.binary_location=chrome_bin
-        return {
-            "speech": chrome_bin,
-            "displayText": chrome_bin,
-            #"data": {},
-            #"contextOut": [],
-            "source": chrome_bin
-        }
-        driver = webdriver.Chrome(chrome_options=options)
-        return {
-            "speech": "hasi",
-            "displayText": "hasi",
-            #"data": {},
-            #"contextOut": [],
-            "source": "hasi"
-        }
+        try:
+            driver = webdriver.Chrome(chrome_options=options)
+        except Exception, e:
+            return {
+                "speech": e,
+                "displayText": e,
+                #"data": {},
+                #"contextOut": [],
+                "source": e
+            }
         driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
         #driver.find_element_by_link_text("Absensi Kuliah").click();
         #driver.find_element_by_id("txtUsername").send_keys("1")
