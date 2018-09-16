@@ -39,9 +39,8 @@ def webhook():
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
         chrome_options = Options()
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--disable-extensions')
-        chrome = webdriver.Chrome(chrome_options=chrome_options)
+        chrome_options.add_argument("--disable-extensions")
+        driver = webdriver.Chrome(chrome_options=chrome_options)
         return {
             "speech": "hasil",
             "displayText": "hasil",
