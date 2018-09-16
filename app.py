@@ -39,6 +39,13 @@ def webhook():
 def makeWebhookResult(req):  
      if req.get("result").get("action") == "cek":
         chrome_options = Options()
+        return {
+            "speech": "a",
+            "displayText": "a",
+            #"data": {},
+            #"contextOut": [],
+            "source": "a"
+        }
         chrome_options.binary_location = GOOGLE_CHROME_BIN
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
