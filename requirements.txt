@@ -1,6 +1,6 @@
 Flask==0.10.1
 beautifulsoup4==4.4.0
 bs4
-selenium
+APScheduler==3.0.0
+selenium==3.8.1
 requests
-chromedriver_installer
