@@ -45,7 +45,7 @@ def makeWebhookResult(req):
         options.add_argument("--remote-debugging-port=9222")
         chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
         options.binary_location=chrome_bin
-        driver = webdriver.Chrome(executable_path="chromedriver",chrome_options=options)
+        driver = webdriver.Chrome(chrome_options=options)
         return {
             "speech": "a",
             "displayText": "a",
