@@ -39,14 +39,6 @@ def webhook():
 def makeWebhookResult(req):  
     if req.get("result").get("action") == "cek":
         driver = webdriver.PhantomJS()
-        return {
-            "speech": "a",
-            "displayText": "a",
-            #"data": {},
-            #"contextOut": [],
-            "source": "a"
-        }
-        
         driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
         #driver.find_element_by_link_text("Absensi Kuliah").click();
         #driver.find_element_by_id("txtUsername").send_keys("1")
