@@ -45,16 +45,14 @@ def makeWebhookResult(req):
         options.add_argument("--remote-debugging-port=9222")
         chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
         options.binary_location=chrome_bin
-        try:
-            driver = webdriver.Chrome(chrome_options=options)
-        expect:      
-            return {
-                "speech": "a",
-                "displayText": "a",
-                #"data": {},
-                #"contextOut": [],
-                "source": "a"
-            }
+        driver = webdriver.Chrome(chrome_options=options)   
+        return {
+            "speech": "a",
+            "displayText": "a",
+            #"data": {},
+            #"contextOut": [],
+            "source": "a"
+        }
         
         driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
         #driver.find_element_by_link_text("Absensi Kuliah").click();
