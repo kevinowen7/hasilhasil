@@ -38,14 +38,7 @@ def webhook():
 
 def makeWebhookResult(req):  
     if req.get("result").get("action") == "cek":
-        options = Options()
-        options.add_argument("--headless") # Runs Chrome in headless mode.
-        options.add_argument('--no-sandbox') # Bypass OS security model
-        options.add_argument('--disable-gpu')  # applicable to windows os only
-        options.add_argument("--remote-debugging-port=9222")
-        chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
-        options.binary_location=chrome_bin
-        driver = webdriver.Chrome(chrome_options=options)   
+        driver = webdriver.PhantomJS()
         return {
             "speech": "a",
             "displayText": "a",
