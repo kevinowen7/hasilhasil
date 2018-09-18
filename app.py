@@ -46,7 +46,13 @@ def makeWebhookResult(req):
         driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
         #driver.find_element_by_link_text("Absensi Kuliah").click();
         #driver.find_element_by_id("txtUsername").send_keys("1")
-   
+        return {
+            "speech": "tgl",
+            "displayText": "tgl",
+            #"data": {},
+            #"contextOut": [],
+            "source": "tgl"
+        }
         result0 = req.get("result")
         result1 = result0.get("resolvedQuery")
         result1 = result1.split("/")
@@ -55,13 +61,6 @@ def makeWebhookResult(req):
         thn = result1[2].split(" ")[0]
         lantai = result1[2].split(" ")[1]
         
-        return {
-            "speech": tgl,
-            "displayText": tgl,
-            #"data": {},
-            #"contextOut": [],
-            "source": tgl
-        }
         select = Select(driver.find_element_by_name("tgl"))
         select.select_by_value(tgl)
         select = Select(driver.find_element_by_name("bln"))
