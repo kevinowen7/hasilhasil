@@ -45,9 +45,6 @@ def makeWebhookResult(req):
         chrome_options.add_argument('--headless')
         chrome_options.Proxy = null;
         driver = webdriver.Chrome(executable_path="/app/.chromedriver/bin/chromedriver", chrome_options=chrome_options)
-        driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
-        #driver.find_element_by_link_text("Absensi Kuliah").click();
-        #driver.find_element_by_id("txtUsername").send_keys("1")
         return {
             "speech": "tgl",
             "displayText": "tgl",
@@ -55,6 +52,10 @@ def makeWebhookResult(req):
             #"contextOut": [],
             "source": "tgl"
         }
+        driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
+        #driver.find_element_by_link_text("Absensi Kuliah").click();
+        #driver.find_element_by_id("txtUsername").send_keys("1")
+        
         result0 = req.get("result")
         result1 = result0.get("resolvedQuery")
         result1 = result1.split("/")
