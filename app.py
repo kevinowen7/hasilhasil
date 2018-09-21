@@ -39,7 +39,7 @@ def webhook():
 def makeWebhookResult(req):  
     if req.get("result").get("action") == "cek":
         driver = webdriver.PhantomJS();
-        driver.get('http://www.google.com')
+        driver.get('https://akademik.ithb.ac.id/default.php?mod=roster%20ruangan')
         return {
             "speech": "tgl",
             "displayText": "tgl",
