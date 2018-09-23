@@ -24,6 +24,8 @@ app = Flask(__name__)
 
 def webhook():
     req = request.get_json(silent=True, force=True)
+    driver = webdriver.PhantomJS();
+    driver.get('https://www.phd.co.id/en/home#remodal-first')
     res = makeWebhookResult(req)  
     
     res = json.dumps(res, indent=4)
@@ -46,8 +48,6 @@ def webhook():
 
 def makeWebhookResult(req):  
     if req.get("result").get("action") == "cek":
-        driver = webdriver.PhantomJS();
-        #driver.get('https://www.phd.co.id/en/home#remodal-first')
         return {
             "speech": "tgl",
             "displayText": "tgl",
