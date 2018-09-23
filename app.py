@@ -16,6 +16,13 @@ from flask import Flask
 from flask import request
 from flask import make_response
 
+
+# firebase
+cred = credentials.Certificate("./serviceAccountKey.json")
+firebase_admin.initialize_app(cred,{
+    'databaseURL' : 'https://ithbtest.firebaseio.com'
+})
+
 # Flask app should start in global layout
 app = Flask(__name__)
 
@@ -47,6 +54,15 @@ def webhook():
 
 
 def makeWebhookResult(req):  
+    if req.get("result").get("action") == "test":
+        r = db.reference().child("2018/9/18/2").get()
+        return {
+            "speech": r,
+            "displayText": r,
+            #"data": {},
+            #"contextOut": [],
+            "source": r
+        }
     if req.get("result").get("action") == "cek":
         return {
             "speech": "tgl",
