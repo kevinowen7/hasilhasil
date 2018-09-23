@@ -36,8 +36,6 @@ app = Flask(__name__)
 
 def webhook():
     req = request.get_json(silent=True, force=True)
-    driver = webdriver.PhantomJS();
-    driver.get('https://www.phd.co.id/en/home#remodal-first')
     res = makeWebhookResult(req)  
     
     res = json.dumps(res, indent=4)
@@ -76,6 +74,8 @@ def makeWebhookResult(req):
             #"contextOut": [],
             "source": "tgl"
         }
+        driver = webdriver.PhantomJS();
+        driver.get('https://www.phd.co.id/en/home#remodal-first')
         #driver.find_element_by_link_text("Absensi Kuliah").click();
         #driver.find_element_by_id("txtUsername").send_keys("1")
         
