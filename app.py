@@ -19,15 +19,23 @@ from flask import make_response
 # Flask app should start in global layout
 app = Flask(__name__)
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook1', methods=['POST'])
 
 
-def webhook():
+def webhook1():
     req = request.get_json(silent=True, force=True)
     res = makeWebhookResult(req)  
     
     res = json.dumps(res, indent=4)
     print(res)
+    res2 = {
+            "speech": "tgl2",
+            "displayText": "tgl2",
+            #"data": {},
+            #"contextOut": [],
+            "source": "tgl2"
+        }
+    
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     
@@ -39,7 +47,7 @@ def webhook():
 def makeWebhookResult(req):  
     if req.get("result").get("action") == "cek":
         driver = webdriver.PhantomJS();
-        driver.get('https://www.phd.co.id/en/home#remodal-first')
+        #driver.get('https://www.phd.co.id/en/home#remodal-first')
         return {
             "speech": "tgl",
             "displayText": "tgl",
