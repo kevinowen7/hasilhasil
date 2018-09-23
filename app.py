@@ -58,7 +58,7 @@ def webhook():
 
 def makeWebhookResult(req):  
     if req.get("result").get("action") == "test":
-        r = db.reference().child("2018/9/18").get()
+        r = db.reference().child("2018/9/18/2").get()
         return {
             "speech": r,
             "displayText": r,
