@@ -12,6 +12,11 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+from firebase_admin import auth
+
 from flask import Flask
 from flask import request
 from flask import make_response
