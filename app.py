@@ -60,12 +60,12 @@ def makeWebhookResult(req):
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
-        
+        d = result0.get("parameters")
         database = db.reference()
         thn = int(result.split("/")[2].split(" ")[0])
         bln = int(result.split("/")[1])
         tgl = int(result.split("/")[0])
-        lt = int(result.split("/")[2].split(" ")[1])
+        lt = d.get("lantai")
         x=1
         hasillist=[]
         hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)+"/lantai:"+str(lt)).get()
@@ -91,10 +91,11 @@ def makeWebhookResult(req):
     if req.get("result").get("action") == "dosen":
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
+        d = result0.get("parameters")
         thn = int(result.split("/")[2].split(" ")[0])
         bln = int(result.split("/")[1])
         tgl = int(result.split("/")[0])
-        dosen = result.split("/")[2].split(" ")[1]
+        dosen = d.get("any")
         
         database = db.reference()
         hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
@@ -125,10 +126,11 @@ def makeWebhookResult(req):
     if req.get("result").get("action") == "ruang":
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
+        d = result0.get("parameters")
         thn = int(result.split("/")[2].split(" ")[0])
         bln = int(result.split("/")[1])
         tgl = int(result.split("/")[0])
-        ruang = result.split("/")[2].split(" ")[1]
+        ruang = d.get("any")
         
         database = db.reference()
         hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
