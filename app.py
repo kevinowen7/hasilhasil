@@ -61,12 +61,7 @@ def makeWebhookResult(req):
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
         
-        thn = int(result.split("/")[2].split(" ")[0])
-        bln = int(result.split("/")[1])
-        tgl = int(result.split("/")[0])
-        lt = int(result.split("/")[2].split(" ")[1])
         database = db.reference()
-        result = "17/9/2018 5"
         thn = int(result.split("/")[2].split(" ")[0])
         bln = int(result.split("/")[1])
         tgl = int(result.split("/")[0])
@@ -93,7 +88,75 @@ def makeWebhookResult(req):
             #"contextOut": [],
             "source": r
         }
-
+    if req.get("result").get("action") == "dosen":
+        result0 = req.get("result")
+        result = result0.get("resolvedQuery")
+        thn = int(result.split("/")[2].split(" ")[0])
+        bln = int(result.split("/")[1])
+        tgl = int(result.split("/")[0])
+        dosen = result.split("/")[2].split(" ")[1]
+        
+        database = db.reference()
+        hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
+        lt=1
+        hasillist=[]
+        while(lt<len(hasil)+1):
+            x=1
+            while(x<len(hasil["lantai:"+str(lt)])):
+                if(dosen.lower() in hasil["lantai:"+str(lt)][x]["Nama Dosen"].lower()) or (dosen.lower() in hasil["lantai:"+str(lt)][x]["Mata Kuliah"].lower()):
+                    if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
+                        hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
+                    else:
+                        hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+                print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
+                x=x+1
+            lt=lt+1
+        r=""
+        for i in hasillist:
+            r=r+i
+        return {
+            "speech": r,
+            "displayText": r,
+            #"data": {},
+            #"contextOut": [],
+            "source": r
+        }
+    
+    if req.get("result").get("action") == "ruang":
+        result0 = req.get("result")
+        result = result0.get("resolvedQuery")
+        thn = int(result.split("/")[2].split(" ")[0])
+        bln = int(result.split("/")[1])
+        tgl = int(result.split("/")[0])
+        ruang = result.split("/")[2].split(" ")[1]
+        
+        database = db.reference()
+        hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
+        lt=1
+        hasillist=[]
+        while(lt<len(hasil)+1):
+            x=1
+            while(x<len(hasil["lantai:"+str(lt)])):
+                if(ruang.lower() in hasil["lantai:"+str(lt)][x]["Ruang"].lower()):
+                    if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
+                        hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
+                    else:
+                        hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+                print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
+                x=x+1
+            lt=lt+1
+        r=""
+        for i in hasillist:
+            r=r+i
+        return {
+            "speech": r,
+            "displayText": r,
+            #"data": {},
+            #"contextOut": [],
+            "source": r
+        }
+        
+        
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 4040))
 
