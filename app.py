@@ -58,7 +58,23 @@ def webhook():
 
 def makeWebhookResult(req):  
     if req.get("result").get("action") == "test":
-        r = db.reference().child("2018/9/18/2").get()
+        result0 = req.get("result")
+        result1 = result0.get("resolvedQuery")
+        thn = int(result.split("/")[3].split(" ")[0])
+        bln = int(result.split("/")[2])
+        hari = int(result.split("/")[1])
+        lt = int(result.split("/")[3].split(" ")[1])
+        database = db.reference()
+        x=1
+        hasillist=[]
+        hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)+"/lantai:"+str(lt)).get()
+        while(x<len(hasil)):
+            print(hasil[x])
+            hasillist.append("Jam: "+hasil[x]["Jam"]+"\n"+"Mata Kuliah: "+hasil[x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil[x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil[x]["Ruang"]+"\n"+"\n"+"\n")
+            x=x+1
+        r=""
+        for i in hasillist:
+            r=r+i
         return {
             "speech": r,
             "displayText": r,
