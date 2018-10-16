@@ -60,6 +60,13 @@ def makeWebhookResult(req):
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
+        return {
+            "speech": "r",
+            "displayText": "r",
+            #"data": {},
+            #"contextOut": [],
+            "source": "r"
+        }
         thn = int(result.split("/")[3].split(" ")[0])
         bln = int(result.split("/")[2])
         hari = int(result.split("/")[1])
