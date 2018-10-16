@@ -80,11 +80,11 @@ def makeWebhookResult(req):
         print(len(hasillist))
         if len(hasillist)==0:
             return {
-                "speech": "lantai "+lt+" tidak ada jadwal hari ini",
-                "displayText": "lantai "+lt+" tidak ada jadwal hari ini",
+                "speech": "lantai "+str(lt)+" tidak ada jadwal hari ini",
+                "displayText": "lantai "+str(lt)+" tidak ada jadwal hari ini",
                 #"data": {},
                 #"contextOut": [],
-                "source": "lantai "+lt+" tidak ada jadwal hari ini"
+                "source": "lantai "+str(lt)+" tidak ada jadwal hari ini"
             }
         r=""
         for i in hasillist:
@@ -122,11 +122,11 @@ def makeWebhookResult(req):
             lt=lt+1
         if len(hasillist)==0:
             return {
-                "speech": dosen+"tidak ada jadwal hari ini",
-                "displayText": dosen+"tidak ada jadwal hari ini",
+                "speech": dosen+" tidak ada jadwal hari ini",
+                "displayText": dosen+" tidak ada jadwal hari ini",
                 #"data": {},
                 #"contextOut": [],
-                "source": dosen+"tidak ada jadwal hari ini"
+                "source": dosen+" tidak ada jadwal hari ini"
             }
         r=""
         for i in hasillist:
