@@ -69,6 +69,14 @@ def makeWebhookResult(req):
         x=1
         hasillist=[]
         hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)+"/lantai:"+str(lt)).get()
+        if hasil==None:
+            return {
+                "speech": "lantai "+str(lt)+" tidak ada jadwal hari ini",
+                "displayText": "lantai "+str(lt)+" tidak ada jadwal hari ini",
+                #"data": {},
+                #"contextOut": [],
+                "source": "lantai "+str(lt)+" tidak ada jadwal hari ini"
+            }
         while(x<len(hasil)):
             print(hasil[x])
             if hasil[x]["Nama Dosen"]==" ":
@@ -107,6 +115,14 @@ def makeWebhookResult(req):
         
         database = db.reference()
         hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
+        if hasil==None:
+            return {
+                "speech": dosen+" tidak ada jadwal hari ini",
+                "displayText": dosen+" tidak ada jadwal hari ini",
+                #"data": {},
+                #"contextOut": [],
+                "source": dosen+" tidak ada jadwal hari ini"
+            }
         lt=1
         hasillist=[]
         while(lt<len(hasil)+1):
@@ -150,6 +166,15 @@ def makeWebhookResult(req):
         
         database = db.reference()
         hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
+        if hasil==None:
+            return {
+                "speech": "Ruangan "+ruang+" tidak ada jadwal hari ini",
+                "displayText": "Ruangan "+ruang+" tidak ada jadwal hari ini",
+                #"data": {},
+                #"contextOut": [],
+                "source": "Ruangan "+ruang+" tidak ada jadwal hari ini"
+            }
+        
         lt=1
         hasillist=[]
         while(lt<len(hasil)+1):
