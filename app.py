@@ -59,7 +59,7 @@ def webhook():
 def makeWebhookResult(req):  
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
-        result1 = result0.get("resolvedQuery")
+        result = result0.get("resolvedQuery")
         thn = int(result.split("/")[3].split(" ")[0])
         bln = int(result.split("/")[2])
         hari = int(result.split("/")[1])
