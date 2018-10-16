@@ -127,15 +127,18 @@ def makeWebhookResult(req):
         hasillist=[]
         while(lt<len(hasil)+1):
             x=1
-            while(x<len(hasil["lantai:"+str(lt)])):
-                if(dosen.lower() in hasil["lantai:"+str(lt)][x]["Nama Dosen"].lower()) or (dosen.lower() in hasil["lantai:"+str(lt)][x]["Mata Kuliah"].lower()):
-                    if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
-                        hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
-                    else:
-                        hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
-                print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
-                x=x+1
-            lt=lt+1
+            try:
+                while(x<len(hasil["lantai:"+str(lt)])):
+                    if(dosen.lower() in hasil["lantai:"+str(lt)][x]["Nama Dosen"].lower()) or (dosen.lower() in hasil["lantai:"+str(lt)][x]["Mata Kuliah"].lower()):
+                        if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
+                            hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
+                        else:
+                            hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+                    print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
+                    x=x+1
+                lt=lt+1
+            except Exception as res:
+                lt=lt+1
         if len(hasillist)==0:
             return {
                 "speech": dosen+" tidak ada jadwal hari ini",
@@ -179,15 +182,18 @@ def makeWebhookResult(req):
         hasillist=[]
         while(lt<len(hasil)+1):
             x=1
-            while(x<len(hasil["lantai:"+str(lt)])):
-                if(ruang.lower() in hasil["lantai:"+str(lt)][x]["Ruang"].lower()):
-                    if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
-                        hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
-                    else:
-                        hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
-                print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
-                x=x+1
-            lt=lt+1
+            try:
+                while(x<len(hasil["lantai:"+str(lt)])):
+                    if(ruang.lower() in hasil["lantai:"+str(lt)][x]["Ruang"].lower()):
+                        if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
+                            hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
+                        else:
+                            hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+                    print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
+                    x=x+1
+                lt=lt+1
+            except Exception as res:
+                lt=lt+1
         
         if len(hasillist)==0:
             return {
