@@ -118,7 +118,8 @@ def makeWebhookResult(req):
                     "contents": [
                       {
                         "type": "text",
-                        "text": r
+                        "text": r,
+                        "wrap": true
                       }
                     ]
                   }
