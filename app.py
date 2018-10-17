@@ -98,8 +98,7 @@ def makeWebhookResult(req):
         for i in hasillist:
             r=r+i
             
-        return{
-            "speech": "",
+        return{"speech": "",
            "messages": [
             {
               "type": 0,
@@ -109,6 +108,9 @@ def makeWebhookResult(req):
           "type": 4,
           "payload": {
              "line": {
+                "type": "flex",
+                "altText": "this is a flex message",
+                "contents": {
                  "type": "bubble",
                   "body": {
                     "type": "box",
@@ -122,6 +124,7 @@ def makeWebhookResult(req):
                   }
                  }
              }
+          }
           }
             ]
         }
