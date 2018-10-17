@@ -97,13 +97,35 @@ def makeWebhookResult(req):
         r=""
         for i in hasillist:
             r=r+i
-        return {
-            "speech": r,
-            "displayText": r,
-            #"data": {},
-            #"contextOut": [],
-            "source": r
+            
+        return{
+            "speech": "",
+           "messages": [
+            {
+              "type": 0,
+              "speech": ""
+            },
+            {
+          "type": 4,
+          "payload": {
+             "line": {
+                 "type": "bubble",
+                  "body": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": r
+                      }
+                    ]
+                  }
+                 }
+             }
+          }
+            ]
         }
+        
     if req.get("result").get("action") == "dosen":
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
