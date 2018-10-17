@@ -119,7 +119,7 @@ def makeWebhookResult(req):
                       {
                         "type": "text",
                         "text": r,
-                        "wrap": true
+                        "wrap": True
                       }
                     ]
                   }
