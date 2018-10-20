@@ -57,7 +57,14 @@ def webhook():
 
 
 def makeWebhookResult(req):  
-
+    d = req.get("originalRequest").get("source")
+    return {
+        "speech": str(d),
+        "displayText": str(d),
+        #"data": {},
+        #"contextOut": [],
+        "source": str(d)
+    }
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
