@@ -66,13 +66,51 @@ def makeWebhookResult(req):
     #push user id to firebase
     userid = req.get("originalRequest").get("data").get("source").get("userId")
     profile = line_bot_api.get_profile(userid)
-    database = db.reference()
-    database1 = database.child("user")
-    database1.update({
+    user = db.reference()
+    userp = user.child("user")
+    userp.update({
         userid : {
             "name" : profile.display_name
+        }
     })
-                                                                       
+         
+        
+    if req.get("result").get("action") == "set":
+        matkul = userp.child(userid).child("matkul").get()
+        if matkul == None:
+            matkul = ""
+        result0 = req.get("result")
+        result = result0.get("resolvedQuery")
+        #validasi
+        result1=result.split("")
+
+        if ((len(result1) != 6) or (result[2] != "-")):
+            return  {
+                "speech": "Maaf kak mungkin kode kuliah yang anda masukan salah :((",
+                "displayText": "Maaf kak mungkin kode kuliah yang anda masukan salah :((",
+                #"data": {},
+                #"contextOut": [],
+                "source": "Maaf kak mungkin kode kuliah yang anda masukan salah :(("
+            }
+        else:
+            matkul=matkul+result+"\n"
+            #push to firebase
+            userp.update({
+                userid : {
+                    "name" : profile.display_name,
+                    "matkul" : matkul
+                }
+            })
+            
+        return {
+            "speech": "Sukses menambahkan "+result,
+            "displayText": "Sukses menambahkan "+result,
+            #"data": {},
+            #"contextOut": [],
+            "source": "Sukses menambahkan "+result
+        }
+            
+            
                                                                        
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
