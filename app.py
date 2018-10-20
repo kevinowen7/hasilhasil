@@ -82,9 +82,9 @@ def makeWebhookResult(req):
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
         #validasi
-        result1=result.split("")
+        result1=list(result)
 
-        if ((len(result1) != 6) or (result[2] != "-")):
+        if ((len(result1) != 6) or (result1[2] != "-")):
             return  {
                 "speech": "Maaf kak mungkin kode kuliah yang anda masukan salah :((",
                 "displayText": "Maaf kak mungkin kode kuliah yang anda masukan salah :((",
