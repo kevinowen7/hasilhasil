@@ -35,7 +35,7 @@ app = Flask(__name__)
 
 
 def webhook():
-    req = request.get_json(silent=True, force=True)
+    req = request.get_json()
     res = makeWebhookResult(req)  
     
     res = json.dumps(res, indent=4)
@@ -49,15 +49,14 @@ def webhook():
 
 
 def makeWebhookResult(req):  
-    d = req.get("originalRequest")
-    y = json.dumps(d)
-    y = json.loads(y)
+    d = req.get("originalRequest").get("source")
+
     return {
-        "speech": y["source"],
-        "displayText": y["source"],
+        "speech": str(d),
+        "displayText": str(d),
         #"data": {},
         #"contextOut": [],
-        "source": y["source"]
+        "source": str(d)
     }
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
