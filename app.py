@@ -21,6 +21,15 @@ from flask import Flask
 from flask import request
 from flask import make_response
 
+from linebot import (
+    LineBotApi, WebhookHandler
+)
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
+)
 
 # firebase
 cred = credentials.Certificate("./serviceAccountKey.json")
@@ -49,17 +58,22 @@ def webhook():
 
 
 def makeWebhookResult(req):  
-    w = req.get("originalRequest")
+    user_id = req.get("originalRequest").get("data").get("source").get("userid)
+    profile = line_bot_api.get_profile(user_id)
     database = db.reference()
-    database1 = database.child("ggg")
-    database1.update(w)
+    database1 = database.child("user")
+    database1.update({
+        user_id : profile.display_name 
+    })
+                                                                       
     return {
-        "speech": w,
-        "displayText": w,
+        "speech": profile.display_name,
+        "displayText": profile.display_name,
         #"data": {},
         #"contextOut": [],
-        "source": w
+        "source": profile.display_name
     }
+                                                                       
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
