@@ -49,7 +49,7 @@ def webhook():
 
 
 def makeWebhookResult(req):  
-    d = req.get("result").get("action")
+    d = req.get("originalRequest").get("source")
 
     return {
         "speech": str(d),
