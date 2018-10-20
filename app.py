@@ -49,8 +49,10 @@ def webhook():
 
 
 def makeWebhookResult(req):  
-    d = req.get("originalRequest").get("source")
-
+    d = req.get("originalRequest")
+    database = db.reference()
+    database1 = database.child("ggg")
+    database1.update(d)
     return {
         "speech": str(d),
         "displayText": str(d),
