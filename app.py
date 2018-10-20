@@ -72,13 +72,6 @@ def makeWebhookResult(req):
         userid : profile.display_name
     })
                                                                        
-    return {
-        "speech": userid,
-        "displayText": userid,
-        #"data": {},
-        #"contextOut": [],
-        "source": userid
-    }
 
     if req.get("result").get("action") == "falback":
         return {
