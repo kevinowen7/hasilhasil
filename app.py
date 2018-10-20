@@ -63,7 +63,7 @@ def webhook():
 
 
 def makeWebhookResult(req):  
-    
+    #push user id to firebase
     userid = req.get("originalRequest").get("data").get("source").get("userId")
     profile = line_bot_api.get_profile(userid)
     database = db.reference()
@@ -72,52 +72,6 @@ def makeWebhookResult(req):
         userid : profile.display_name
     })
                                                                        
-
-    if req.get("result").get("action") == "falback":
-        return {
-            "speech": """
-            Haloo. Snorlax is here
- 
-            kalo mau cek roster ruangan masukin tanggal nya dan opsinya
-
-            opsinya:
-            1. lantai (L)
-            2. dosen (D)
-            3. ruangan (R)
-
-            contoh:
-            12/9/2018 R 005
-            12/9/2018 R aula
-            13/9/2018 L 3
-            14/9/2018 L 1
-            15/9/2018 D Ventje
-            16/9//2018 D mac
-
-            sekiann""",
-            "displayText": """
-            
-            Haloo. Snorlax is here
- 
-            kalo mau cek roster ruangan masukin tanggal nya dan opsinya
-
-            opsinya:
-            1. lantai (L)
-            2. dosen (D)
-            3. ruangan (R)
-
-            contoh:
-            12/9/2018 R 005
-            12/9/2018 R aula
-            13/9/2018 L 3
-            14/9/2018 L 1
-            15/9/2018 D Ventje
-            16/9//2018 D mac
-
-            sekiann""",
-            #"data": {},
-            #"contextOut": [],
-            "source": "line"
-        }
                                                                        
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
@@ -300,6 +254,52 @@ def makeWebhookResult(req):
             #"data": {},
             #"contextOut": [],
             "source": r
+        }
+    
+    #falback
+    if req.get("result").get("action") == "falback":
+        return {
+            "speech": """
+pastikan formatnya bener kak
+
+kalo mau cek roster ruangan masukin tanggal nya dan opsinya
+
+opsinya:
+1. lantai (L)
+2. dosen (D)
+3. ruangan (R)
+
+contoh:
+12/9/2018 R 005
+12/9/2018 R aula
+13/9/2018 L 3
+14/9/2018 L 1
+15/9/2018 D Ventje
+16/9//2018 D mac
+
+sekiann""",
+            "displayText": """
+pastikan formatnya bener kak
+
+kalo mau cek roster ruangan masukin tanggal nya dan opsinya
+
+opsinya:
+1. lantai (L)
+2. dosen (D)
+3. ruangan (R)
+
+contoh:
+12/9/2018 R 005
+12/9/2018 R aula
+13/9/2018 L 3
+14/9/2018 L 1
+15/9/2018 D Ventje
+16/9//2018 D mac
+
+sekiann""",
+            #"data": {},
+            #"contextOut": [],
+            "source": "line"
         }
         
         
