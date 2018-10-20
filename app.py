@@ -58,11 +58,11 @@ def webhook():
 
 def makeWebhookResult(req):  
     return {
-        "speech": "lantai",
-        "displayText": "lantai",
+        "speech": req,
+        "displayText": req,
         #"data": {},
         #"contextOut": [],
-        "source": "lantai"
+        "source": req
     }
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
