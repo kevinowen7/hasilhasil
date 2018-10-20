@@ -57,7 +57,7 @@ def webhook():
 
 
 def makeWebhookResult(req):  
-    d = req["originalRequest"]["source"]
+    d = req.get("originalRequest").get("source").get()
     return {
         "speech": str(d),
         "displayText": str(d),
