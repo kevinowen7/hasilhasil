@@ -57,10 +57,7 @@ def webhook():
 
 
 def makeWebhookResult(req):  
-    w = req.get("originalRequest").get("source")
-    
-    
-    
+
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
