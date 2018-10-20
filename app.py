@@ -57,7 +57,7 @@ def webhook():
 
 
 def makeWebhookResult(req):  
-    w = req.get("originalRequest")
+    w = req.get("originalRequest").get("source")
     database = db.reference()
     database1 = database.child("ggg")
     database1.update(w)
