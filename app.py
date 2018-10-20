@@ -39,14 +39,6 @@ def webhook():
     res = makeWebhookResult(req)  
     
     res = json.dumps(res, indent=4)
-    print(res)
-    res2 = {
-            "speech": "tgl2",
-            "displayText": "tgl2",
-            #"data": {},
-            #"contextOut": [],
-            "source": "tgl2"
-        }
     
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
@@ -58,12 +50,14 @@ def webhook():
 
 def makeWebhookResult(req):  
     d = req.get("originalRequest")
+    y = json.dumps(d)
+    y = json.loads(y)
     return {
-        "speech": str(d),
-        "displayText": str(d),
+        "speech": y["source"],
+        "displayText": y["source"],
         #"data": {},
         #"contextOut": [],
-        "source": str(d)
+        "source": y["source"]
     }
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
