@@ -59,11 +59,11 @@ def webhook():
 def makeWebhookResult(req):  
     
     return {
-        "speech": req.get("result").get("originalRequest").get("source"),
-        "displayText": req.get("result").get("originalRequest").get("source"),
+        "speech": req.get("originalRequest").get("source"),
+        "displayText": req.get("originalRequest").get("source"),
         #"data": {},
         #"contextOut": [],
-        "source": req.get("result").get("originalRequest").get("source")
+        "source": req.get("originalRequest").get("source")
     }
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
