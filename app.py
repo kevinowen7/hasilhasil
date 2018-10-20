@@ -49,17 +49,7 @@ def webhook():
 
 
 def makeWebhookResult(req):  
-    d = req.get("result").get("action")
-    database = db.reference()
-    database1 = database.child("ggg")
-    database1.update({"a": d})
-    return {
-        "speech": str(d),
-        "displayText": str(d),
-        #"data": {},
-        #"contextOut": [],
-        "source": str(d)
-    }
+    
     if req.get("result").get("action") == "test":
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
