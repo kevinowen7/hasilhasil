@@ -73,7 +73,7 @@ def makeWebhookResult(req):
     })
          
         
-    if req.get("result").get("action") == "set":
+    if req.get("result").get("action") == "add":
         matkul = userp.child("matkul").get()
         if matkul == None:
             matkul = ""
