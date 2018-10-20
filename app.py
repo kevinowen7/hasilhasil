@@ -94,10 +94,8 @@ def makeWebhookResult(req):
             matkul=matkul+result+"\n"
             #push to firebase
             userp.update({
-                userid : {
-                    "name" : profile.display_name,
-                    "matkul" : matkul
-                }
+                "name" : profile.display_name,
+                "matkul" : matkul
             })
             
         return {
