@@ -62,12 +62,12 @@ def webhook():
 
 
 def makeWebhookResult(req):  
-    user_id = req.get("originalRequest").get("data").get("source").get("userid)
-    profile = line_bot_api.get_profile(user_id)
+    userid = req.get("originalRequest").get("data").get("source").get("userid)
+    profile = line_bot_api.get_profile(userid)
     database = db.reference()
     database1 = database.child("user")
     database1.update({
-        user_id : profile.display_name 
+        userid : profile.display_name 
     })
                                                                        
     return {
