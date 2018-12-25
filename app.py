@@ -72,7 +72,18 @@ def makeWebhookResult(req):
         "name" : profile.display_name
     })
          
-        
+    #untuk input tanggal
+    if req.get("result").get("action") == "inputTanggal":
+        result = result0.get("resolvedQuery")
+        return  {
+            "speech": result.split("-H")[1],
+            "displayText": result.split("-H")[1],
+            #"data": {},
+            #"contextOut": [],
+            "source": result.split("-H")[1]
+        }
+    
+    
     if req.get("result").get("action") == "add":
         matkul = userp.child("matkul").get()
         if matkul == None:
