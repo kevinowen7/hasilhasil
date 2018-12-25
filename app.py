@@ -74,7 +74,7 @@ def makeWebhookResult(req):
          
     #untuk input tanggal
     if req.get("result").get("action") == "inputTanggal":
-        result = result0.get("resolvedQuery")
+        result = req.get("result").get("resolvedQuery")
         return  {
             "speech": result.split("-H")[1],
             "displayText": result.split("-H")[1],
