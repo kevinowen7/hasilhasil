@@ -663,34 +663,6 @@ def makeWebhookResult(req):
                                     "align": "center",
                                     "weight": "bold",
                                     "wrap": true
-                                  },
-                                  {
-                                    "type": "image",
-                                    "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_metode_pencarian.png?alt=media&_ignore=",
-                                    "margin": "none",
-                                    "align": "center",
-                                    "gravity": "bottom",
-                                    "size": "xxl",
-                                    "aspectRatio": "2:1",
-                                    "backgroundColor": "#8CE4EE",
-                                    "action": {
-                                      "type": "message",
-                                      "label": "pilih metode pencari",
-                                      "text": "pilih metode pencarian"
-                                    }
-                                  },
-                                  {
-                                    "type": "image",
-                                    "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fcari.png?alt=media&_ignore=",
-                                    "margin": "xxl",
-                                    "align": "end",
-                                    "size": "lg",
-                                    "aspectRatio": "16:9",
-                                    "action": {
-                                      "type": "message",
-                                      "label": "cari",
-                                      "text": "cari"
-                                    }
                                   }
                                 ]
                               },
