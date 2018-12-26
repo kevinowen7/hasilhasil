@@ -599,35 +599,93 @@ def makeWebhookResult(req):
                 #validasi tanggal
                 if int(hari)<=31:
                     return {
-                        "speech": "",
-                        "messages": [
-                          {
-                            "type": 4,
-                            "payload": {
+                      "speech": "",
+                      "messages": [
+                        {
+                          "type": 4,
+                          "payload": {
                               "line": {
                                 "type": "flex",
                                 "altText": "Flex Message",
                                 "contents": {
                                   "type": "bubble",
                                   "direction": "ltr",
+                                  "hero": {
+                                    "type": "image",
+                                    "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Froster_judul.png?alt=media&_ignore=",
+                                    "align": "center",
+                                    "size": "5xl",
+                                    "aspectRatio": "2:1"
+                                  },
                                   "body": {
                                     "type": "box",
                                     "layout": "vertical",
                                     "spacing": "md",
                                     "contents": [
                                       {
-                                        "type": "text",
-                                        "text": "aaaa"
+                                        "type": "separator",
+                                        "margin": "none",
+                                        "color": "#994848"
+                                      },
+                                      {
+                                        "type": "image",
+                                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_tanggal.png?alt=media&_ignore=",
+                                        "margin": "none",
+                                        "align": "center",
+                                        "gravity": "top",
+                                        "size": "xxl",
+                                        "aspectRatio": "2:1",
+                                        "action": {
+                                          "type": "message",
+                                          "label": "pilih tanggal",
+                                          "text": "pilih tanggal"
+                                        }
+                                      },
+                                      {
+                                        "type": "image",
+                                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_metode_pencarian.png?alt=media&_ignore=",
+                                        "margin": "none",
+                                        "align": "center",
+                                        "gravity": "bottom",
+                                        "size": "xxl",
+                                        "aspectRatio": "2:1",
+                                        "backgroundColor": "#8CE4EE",
+                                        "action": {
+                                          "type": "message",
+                                          "label": "pilih metode pencari",
+                                          "text": "pilih metode pencarian"
+                                        }
+                                      },
+                                      {
+                                        "type": "image",
+                                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fcari.png?alt=media&_ignore=",
+                                        "margin": "xxl",
+                                        "align": "end",
+                                        "size": "lg",
+                                        "aspectRatio": "16:9",
+                                        "action": {
+                                          "type": "message",
+                                          "label": "cari",
+                                          "text": "cari"
+                                        }
                                       }
                                     ]
+                                  },
+                                  "styles": {
+                                    "hero": {
+                                      "backgroundColor": "#8CE4EE"
+                                    },
+                                    "body": {
+                                      "backgroundColor": "#8CE4EE"
+                                    }
                                   }
                                 }
                               }
                             }
-                          }
-                        ]
-                       }
-                
+                            
+                        }
+                      ]
+                    }
                 else:
                     return  {
                         "speech": "Maaf kak format tanggal yang di input salah",
