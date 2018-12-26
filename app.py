@@ -599,111 +599,146 @@ def makeWebhookResult(req):
                 #validasi tanggal
                 if int(hari)<=31:
                     return {
-                      "speech": "",
-                      "messages": [
-                        {
-                          "type": 4,
-                          "payload": {
-                            "line": {
-                              "type": "flex",
-                              "altText": "Flex Message",
-                              "contents": {
-                                "type": "bubble",
-                                "direction": "ltr",
-                                "hero": {
-                                  "type": "image",
-                                  "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Froster_judul.png?alt=media&_ignore=",
-                                  "align": "center",
-                                  "size": "5xl",
-                                  "aspectRatio": "2:1"
-                                },
-                                "body": {
-                                  "type": "box",
-                                  "layout": "vertical",
-                                  "spacing": "md",
-                                  "contents": [
+                        "speech": "",
+                        "messages": [
+                          {
+                            "type": 4,
+                            "payload": {
+                              "line": {
+                                  "type": "imagemap",
+                                  "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_tanggal%2Fpilih_bulan.jpg?alt=media&_ignore=",
+                                  "altText": "Pilih Bulan",
+                                  "baseSize": {
+                                    "width": 1040,
+                                    "height": 1040
+                                  },
+                                  "actions": [
                                     {
-                                      "type": "separator",
-                                      "margin": "none",
-                                      "color": "#994848"
+                                      "type": "message",
+                                      "area": {
+                                        "x": 15,
+                                        "y": 188,
+                                        "width": 326,
+                                        "height": 130
+                                      },
+                                      "text": "-H "+hari+"/01/"+tahun
                                     },
                                     {
-                                      "type": "text",
-                                      "text": "Text",
-                                      "margin": "lg",
-                                      "size": "lg",
-                                      "align": "center",
-                                      "gravity": "bottom",
-                                      "weight": "bold",
-                                      "wrap": true
+                                      "type": "message",
+                                      "area": {
+                                        "x": 361,
+                                        "y": 187,
+                                        "width": 318,
+                                        "height": 132
+                                      },
+                                      "text": "-H "+hari+"/02/"+tahun
                                     },
                                     {
-                                      "type": "image",
-                                      "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_tanggal.png?alt=media&_ignore=",
-                                      "margin": "none",
-                                      "align": "center",
-                                      "gravity": "top",
-                                      "size": "xxl",
-                                      "aspectRatio": "2:1",
-                                      "action": {
-                                        "type": "message",
-                                        "label": "pilih tanggal",
-                                        "text": "pilih tanggal"
-                                      }
+                                      "type": "message",
+                                      "area": {
+                                        "x": 704,
+                                        "y": 187,
+                                        "width": 317,
+                                        "height": 129
+                                      },
+                                      "text": "-H "+hari+"/03/"+tahun
                                     },
                                     {
-                                      "type": "text",
-                                      "text": "Text",
-                                      "margin": "xl",
-                                      "size": "lg",
-                                      "align": "center",
-                                      "weight": "bold",
-                                      "wrap": true
+                                      "type": "message",
+                                      "area": {
+                                        "x": 17,
+                                        "y": 365,
+                                        "width": 316,
+                                        "height": 130
+                                      },
+                                      "text": "-H "+hari+"/04/"+tahun
                                     },
                                     {
-                                      "type": "image",
-                                      "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_metode_pencarian.png?alt=media&_ignore=",
-                                      "margin": "none",
-                                      "align": "center",
-                                      "gravity": "bottom",
-                                      "size": "xxl",
-                                      "aspectRatio": "2:1",
-                                      "backgroundColor": "#8CE4EE",
-                                      "action": {
-                                        "type": "message",
-                                        "label": "pilih metode pencari",
-                                        "text": "pilih metode pencarian"
-                                      }
+                                      "type": "message",
+                                      "area": {
+                                        "x": 360,
+                                        "y": 368,
+                                        "width": 320,
+                                        "height": 123
+                                      },
+                                      "text": "-H "+hari+"/05/"+tahun
                                     },
                                     {
-                                      "type": "image",
-                                      "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fcari.png?alt=media&_ignore=",
-                                      "margin": "xxl",
-                                      "align": "end",
-                                      "size": "lg",
-                                      "aspectRatio": "16:9",
-                                      "action": {
-                                        "type": "message",
-                                        "label": "cari",
-                                        "text": "cari"
-                                      }
+                                      "type": "message",
+                                      "area": {
+                                        "x": 704,
+                                        "y": 366,
+                                        "width": 319,
+                                        "height": 127
+                                      },
+                                      "text": "-H "+hari+"/06/"+tahun
+                                    },
+                                    {
+                                      "type": "message",
+                                      "area": {
+                                        "x": 19,
+                                        "y": 544,
+                                        "width": 319,
+                                        "height": 133
+                                      },
+                                      "text": "-H "+hari+"/07/"+tahun
+                                    },
+                                    {
+                                      "type": "message",
+                                      "area": {
+                                        "x": 361,
+                                        "y": 547,
+                                        "width": 318,
+                                        "height": 127
+                                      },
+                                      "text": "-H "+hari+"/08/"+tahun
+                                    },
+                                    {
+                                      "type": "message",
+                                      "area": {
+                                        "x": 702,
+                                        "y": 549,
+                                        "width": 321,
+                                        "height": 128
+                                      },
+                                      "text": "-H "+hari+"/09/"+tahun
+                                    },
+                                    {
+                                      "type": "message",
+                                      "area": {
+                                        "x": 25,
+                                        "y": 726,
+                                        "width": 314,
+                                        "height": 127
+                                      },
+                                      "text": "-H "+hari+"/10/"+tahun
+                                    },
+                                    {
+                                      "type": "message",
+                                      "area": {
+                                        "x": 363,
+                                        "y": 724,
+                                        "width": 317,
+                                        "height": 127
+                                      },
+                                      "text": "-H "+hari+"/11/"+tahun
+                                    },
+                                    {
+                                      "type": "message",
+                                      "area": {
+                                        "x": 707,
+                                        "y": 723,
+                                        "width": 314,
+                                        "height": 128
+                                      },
+                                      "text": "-H "+hari+"/12/"+tahun
                                     }
                                   ]
-                                },
-                                "styles": {
-                                  "hero": {
-                                    "backgroundColor": "#8CE4EE"
-                                  },
-                                  "body": {
-                                    "backgroundColor": "#8CE4EE"
-                                  }
                                 }
-                              }
                             }
                           }
-                        }
-                      ]
-                    }
+                        ]
+                       }
                 
                 else:
                     return  {
