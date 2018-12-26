@@ -431,13 +431,13 @@ def makeWebhookResult(req):
         result = req.get("result").get("resolvedQuery")
         
         # jika diminta roster besok
-        if result.split(" ")[1].lower()=="besok":
+        if result.split("-H ")[1].lower()=="hari ini":
             dateNow = str(datetime.datetime.now()+ timedelta(days=1,hours=5,seconds=60)).split(" ")[0]
             tahun = dateNow.split("-")[0]
             bulan = dateNow.split("-")[1]
             hari = dateNow.split("-")[2]
         # jika diminta roster hari ini
-        elif result.split(" ")[1].lower()+result.split(" ")[2].lower()=="hari"+"ini":
+        elif result.split("-H ")[1].lower()=="hari ini":
             dateNow = str(datetime.datetime.now()+ timedelta(hours=5,seconds=60)).split(" ")[0]
             tahun = dateNow.split("-")[0]
             bulan = dateNow.split("-")[1]
