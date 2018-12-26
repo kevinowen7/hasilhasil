@@ -634,7 +634,7 @@ def makeWebhookResult(req):
                                       },
                                       {
                                         "type": "text",
-                                        "text": "tanggal : "+str(hari)+"/"+str(bulan)+"/"+str(tahun),
+                                        "text": "Tanggal : "+str(hari)+"/"+str(bulan)+"/"+str(tahun),
                                         "margin": "lg",
                                         "size": "lg",
                                         "align": "center",
