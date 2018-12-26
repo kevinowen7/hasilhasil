@@ -429,7 +429,7 @@ def makeWebhookResult(req):
     #untuk menu cari roster
     if req.get("result").get("action") == "menuCariRoster":
         result = req.get("result").get("resolvedQuery")
-        if result.lower()=="cari":
+        if result.lower()=="cari roster":
             return "hasil"
         else:
             date = userp.child("searchDateR").get()
@@ -519,7 +519,7 @@ def makeWebhookResult(req):
                                 "action": {
                                   "type": "message",
                                   "label": "cari",
-                                  "text": "cari"
+                                  "text": "cari roster"
                                 }
                               }
                             ]
@@ -818,7 +818,7 @@ def makeWebhookResult(req):
                                         "action": {
                                           "type": "message",
                                           "label": "cari",
-                                          "text": "cari"
+                                          "text": "cari roster"
                                         }
                                       }
                                     ]
