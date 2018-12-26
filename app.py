@@ -470,6 +470,7 @@ def makeWebhookResult(req):
                                 "align": "center",
                                 "gravity": "bottom",
                                 "weight": "bold",
+                                "color": "#191970"
                               },
                               {
                                 "type": "image",
@@ -493,6 +494,7 @@ def makeWebhookResult(req):
                                 "align": "center",
                                 "gravity": "bottom",
                                 "weight": "bold",
+                                "color": "#191970"
                               },
                               {
                                 "type": "image",
@@ -832,6 +834,7 @@ def makeWebhookResult(req):
                                         "align": "center",
                                         "gravity": "bottom",
                                         "weight": "bold",
+                                        "color": "#191970"
                                       },
                                       {
                                         "type": "image",
@@ -855,6 +858,7 @@ def makeWebhookResult(req):
                                         "align": "center",
                                         "gravity": "bottom",
                                         "weight": "bold",
+                                        "color": "#191970"
                                       },
                                       {
                                         "type": "image",
