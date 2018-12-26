@@ -597,7 +597,11 @@ def makeWebhookResult(req):
         if ((hari!="-") and (bulan !="-") and (tahun !="-")):
             try:
                 #validasi tanggal
-                if ((int(hari)<=31) and (int(hari)>=1) and (int(bulan)>=1) and (int(bulan)<=12)):
+                if int(hari)<=31:
+                    userp.update({
+                        "name" : profile.display_name,
+                        "dateRost" : hari+"/"+bulan+"/"+tahun
+                    })
                     return  {
                         "speech": "",
                         "messages": [
