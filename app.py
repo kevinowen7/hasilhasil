@@ -598,10 +598,6 @@ def makeWebhookResult(req):
             try:
                 #validasi tanggal
                 if int(hari)<=31:
-                    userp.update({
-                        "name" : profile.display_name,
-                        "searchDateR" : str(hari)+"/"+str(bulan)+"/"+str(tahun)
-                    })
                     return {
                     "speech": "",
                     "messages": [
