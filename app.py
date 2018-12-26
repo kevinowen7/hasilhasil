@@ -607,7 +607,7 @@ def makeWebhookResult(req):
                     "messages": [
                       {
                         "type": 4,
-                        "payload": {
+                        "payload":{
                           "line": {
                             "type": "flex",
                             "altText": "Flex Message",
@@ -633,7 +633,7 @@ def makeWebhookResult(req):
                                   },
                                   {
                                     "type": "text",
-                                    "text": "Text",
+                                    "text": "aaaa",
                                     "margin": "lg",
                                     "size": "lg",
                                     "align": "center",
@@ -708,6 +708,8 @@ def makeWebhookResult(req):
                       }
                     ]
                    }
+                          
+                    
                 
                 else:
                     return  {
