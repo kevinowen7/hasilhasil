@@ -430,15 +430,15 @@ def makeWebhookResult(req):
     if req.get("result").get("action") == "inputTanggal":
         result = req.get("result").get("resolvedQuery")
         
-        # jika diminta roster hari ini
-        if result.split(" ")[1].lower()+result.split(" ")[2].lower()=="hari"+"ini":
+        # jika diminta roster besok
+        if result.split(" ")[1].lower()=="besok":
             dateNow = str(datetime.datetime.now()+ timedelta(days=1,hours=5,seconds=60)).split(" ")[0]
             tahun = dateNow.split("-")[0]
             bulan = dateNow.split("-")[1]
             hari = dateNow.split("-")[2]
-        # jika diminta roster besok
-        elif result.split(" ")[1].lower()=="besok":
-            dateNow = str(datetime.datetime.now()+ timedelta(days=1,hours=5,seconds=60)).split(" ")[0]
+        # jika diminta roster hari ini
+        elif result.split(" ")[1].lower()+result.split(" ")[2].lower()=="hari"+"ini":
+            dateNow = str(datetime.datetime.now()+ timedelta(hours=5,seconds=60)).split(" ")[0]
             tahun = dateNow.split("-")[0]
             bulan = dateNow.split("-")[1]
             hari = dateNow.split("-")[2]
