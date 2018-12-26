@@ -436,6 +436,7 @@ def makeWebhookResult(req):
             #jika datenya blom ada
             if date==None:
                 date="-"
+            #from cari
             return {
               "speech": "",
               "messages": [
@@ -570,6 +571,7 @@ def makeWebhookResult(req):
             
             #menampilkan flex message untuk pilih tahun
             if tahun =="-":
+                #from -H -/-/-
                 return {
                 "speech": "",
                 "messages": [
@@ -593,7 +595,7 @@ def makeWebhookResult(req):
                               "width": 461,
                               "height": 214
                             },
-                            "text": "-H -/-/2018"
+                            "text": "-H "+hari+"/"+bulan+"/2018"
                           },
                           {
                             "type": "message",
@@ -603,7 +605,7 @@ def makeWebhookResult(req):
                               "width": 459,
                               "height": 206
                             },
-                            "text": "-H -/-/2019"
+                            "text": "-H "+hari+"/"+bulan+"/2019"
                           },
                           {
                             "type": "message",
