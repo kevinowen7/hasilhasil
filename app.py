@@ -526,10 +526,10 @@ def makeWebhookResult(req):
                           },
                           "styles": {
                             "hero": {
-                              "backgroundColor": "#8CE4EE"
+                              "backgroundColor": "#a1e6e4"
                             },
                             "body": {
-                              "backgroundColor": "#8CE4EE"
+                              "backgroundColor": "#a1e6e4"
                             }
                           }
                         }
@@ -574,7 +574,7 @@ def makeWebhookResult(req):
                       "line": {
                         "type": "imagemap",
                         "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_tanggal%2Fpilih_tahun.png?alt=media&_ignore=",
-                        "altText": "This is an imagemap",
+                        "altText": "Cari Roster",
                         "baseSize": {
                           "width": 1040,
                           "height": 1040
@@ -888,10 +888,10 @@ def makeWebhookResult(req):
                                   },
                                   "styles": {
                                     "hero": {
-                                      "backgroundColor": "#8CE4EE"
+                                      "backgroundColor": "#a1e6e4"
                                     },
                                     "body": {
-                                      "backgroundColor": "#8CE4EE"
+                                      "backgroundColor": "#a1e6e4"
                                     }
                                   }
                                 }
