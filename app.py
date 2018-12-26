@@ -556,6 +556,13 @@ def makeWebhookResult(req):
             tahun = dateNow.split("-")[0]
             bulan = dateNow.split("-")[1]
             hari = dateNow.split("-")[2]
+            return {
+                "speech": datetime.datetime.now()+ timedelta(hours=5,seconds=60),
+                "displayText": datetime.datetime.now()+ timedelta(hours=5,seconds=60),
+                #"data": {},
+                #"contextOut": [],
+                "source": datetime.datetime.now()+ timedelta(hours=5,seconds=60)
+            }
         # jika diminta flex untuk input tanggal
         else:
             date = result.split(" ")[1].split("/")
