@@ -432,7 +432,7 @@ def makeWebhookResult(req):
         
         # jika diminta roster hari ini
         if result.split(" ")[1].lower()+result.split(" ")[2].lower()=="hari"+"ini":
-            dateNow = str(datetime.datetime.now()+ timedelta(days=1))
+            dateNow = str(datetime.datetime.now()+ timedelta(hours=5,seconds=60))
             return  {
                     "speech": dateNow,
                     "displayText": dateNow,
