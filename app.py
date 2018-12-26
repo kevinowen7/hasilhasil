@@ -602,13 +602,112 @@ def makeWebhookResult(req):
                         "name" : profile.display_name,
                         "searchDateR" : str(hari)+"/"+str(bulan)+"/"+str(tahun)
                     })
-                    return  {
-                        "speech": "Maaf ka",
-                        "displayText": "Maaf ka",
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": "Maaf ka"
-                    }
+                    return {
+                    "speech": "",
+                    "messages": [
+                      {
+                        "type": 4,
+                        "payload": {
+                          "line": {
+                            "type": "flex",
+                            "altText": "Flex Message",
+                            "contents": {
+                              "type": "bubble",
+                              "direction": "ltr",
+                              "hero": {
+                                "type": "image",
+                                "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Froster_judul.png?alt=media&_ignore=",
+                                "align": "center",
+                                "size": "5xl",
+                                "aspectRatio": "2:1"
+                              },
+                              "body": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "spacing": "md",
+                                "contents": [
+                                  {
+                                    "type": "separator",
+                                    "margin": "none",
+                                    "color": "#994848"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "text": "Text",
+                                    "margin": "lg",
+                                    "size": "lg",
+                                    "align": "center",
+                                    "gravity": "bottom",
+                                    "weight": "bold",
+                                    "wrap": true
+                                  },
+                                  {
+                                    "type": "image",
+                                    "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_tanggal.png?alt=media&_ignore=",
+                                    "margin": "none",
+                                    "align": "center",
+                                    "gravity": "top",
+                                    "size": "xxl",
+                                    "aspectRatio": "2:1",
+                                    "action": {
+                                      "type": "message",
+                                      "label": "pilih tanggal",
+                                      "text": "pilih tanggal"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "text": "Text",
+                                    "margin": "xl",
+                                    "size": "lg",
+                                    "align": "center",
+                                    "weight": "bold",
+                                    "wrap": true
+                                  },
+                                  {
+                                    "type": "image",
+                                    "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_metode_pencarian.png?alt=media&_ignore=",
+                                    "margin": "none",
+                                    "align": "center",
+                                    "gravity": "bottom",
+                                    "size": "xxl",
+                                    "aspectRatio": "2:1",
+                                    "backgroundColor": "#8CE4EE",
+                                    "action": {
+                                      "type": "message",
+                                      "label": "pilih metode pencari",
+                                      "text": "pilih metode pencarian"
+                                    }
+                                  },
+                                  {
+                                    "type": "image",
+                                    "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fcari.png?alt=media&_ignore=",
+                                    "margin": "xxl",
+                                    "align": "end",
+                                    "size": "lg",
+                                    "aspectRatio": "16:9",
+                                    "action": {
+                                      "type": "message",
+                                      "label": "cari",
+                                      "text": "cari"
+                                    }
+                                  }
+                                ]
+                              },
+                              "styles": {
+                                "hero": {
+                                  "backgroundColor": "#8CE4EE"
+                                },
+                                "body": {
+                                  "backgroundColor": "#8CE4EE"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                   }
                 
                 else:
                     return  {
