@@ -546,24 +546,16 @@ def makeWebhookResult(req):
         
         # jika diminta roster besok
         if result.split("-H ")[1].lower()=="besok":
-            dateNow = str(datetime.datetime.now()+ timedelta(days=1,hours=5,seconds=60)).split(" ")[0]
+            dateNow = str(datetime.datetime.now()+ timedelta(days=1,hours=7,seconds=60)).split(" ")[0]
             tahun = dateNow.split("-")[0]
             bulan = dateNow.split("-")[1]
             hari = dateNow.split("-")[2]
         # jika diminta roster hari ini
         elif result.split("-H ")[1].lower()=="hari ini":
-            dateNow = str(datetime.datetime.now()+ timedelta(hours=5,seconds=60)).split(" ")[0]
+            dateNow = str(datetime.datetime.now()+ timedelta(hours=7,seconds=60)).split(" ")[0]
             tahun = dateNow.split("-")[0]
             bulan = dateNow.split("-")[1]
             hari = dateNow.split("-")[2]
-            x = str(datetime.datetime.now()+ timedelta(hours=5,seconds=60))
-            return {
-                "speech": x,
-                "displayText": x,
-                #"data": {},
-                #"contextOut": [],
-                "source": x
-            }
         # jika diminta flex untuk input tanggal
         else:
             date = result.split(" ")[1].split("/")
