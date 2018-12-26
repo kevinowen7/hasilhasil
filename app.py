@@ -718,11 +718,11 @@ def makeWebhookResult(req):
                     }
             except Exception as res:
                     return  {
-                        "speech": "Maaf kak format tanggal yang di input salah",
-                        "displayText": "Maaf kak format tanggal yang di input salah",
+                        "speech": "Maaf kak format tanggal yang di input salah :(",
+                        "displayText": "Maaf kak format tanggal yang di input salah :(",
                         #"data": {},
                         #"contextOut": [],
-                        "source": "Maaf kak format tanggal yang di input salah"
+                        "source": "Maaf kak format tanggal yang di input salah :("
                     }        
             
     
