@@ -617,28 +617,13 @@ def makeWebhookResult(req):
                                     "contents": [
                                       {
                                         "type": "text",
-                                        "text": "aaaa",
-                                        "margin": "lg",
-                                        "size": "lg",
-                                        "align": "center",
-                                        "gravity": "bottom",
-                                        "weight": "bold",
-                                        "wrap": true
+                                        "text": "aaaa"
                                       }
                                     ]
-                                  },
-                                  "styles": {
-                                    "hero": {
-                                      "backgroundColor": "#8CE4EE"
-                                    },
-                                    "body": {
-                                      "backgroundColor": "#8CE4EE"
-                                    }
                                   }
                                 }
                               }
                             }
-                            
                           }
                         ]
                        }
