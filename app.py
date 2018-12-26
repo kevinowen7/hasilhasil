@@ -598,11 +598,14 @@ def makeWebhookResult(req):
             try:
                 #validasi tanggal
                 if int(hari)<=31:
-                    userp.update({
-                        "name" : profile.display_name,
-                        "dateRost" : hari+"/"+bulan+"/"+tahun
-                    })
                     
+                    return  {
+                        "speech": "Maaf kak format tanggal yang di input salahaaaa",
+                        "displayText": "Maaf kak format tanggal yang di input salahaaa",
+                        #"data": {},
+                        #"contextOut": [],
+                        "source": "Maaf kak format tanggal yang di input salahaaa"
+                    }
                 else:
                     return  {
                         "speech": "Maaf kak format tanggal yang di input salah",
