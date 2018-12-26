@@ -596,8 +596,13 @@ def makeWebhookResult(req):
         #menambahakan data tanggal ke firebase
         if ((hari!="-") and (bulan !="-") and (tahun !="-")):
             try:
+                #push to firebase
+                userp.update({
+                    "name" : profile.display_name,
+                    "searchDateR" : str(hari)+"/"+str(bulan)+"/"+str(tahun)
+                })
                 #validasi tanggal
-                if int(hari)<=31:
+                if ((int(hari)<=31) and (int(hari)>=1) and (int(bulan)>=1) and (int(bulan)<=12)):
                     return {
                       "speech": "",
                       "messages": [
@@ -629,7 +634,7 @@ def makeWebhookResult(req):
                                       },
                                       {
                                         "type": "text",
-                                        "text": "aaaa",
+                                        "text": "tanggal : "+str(hari)+"/"+str(bulan)+"/"+str(tahun),
                                         "margin": "lg",
                                         "size": "lg",
                                         "align": "center",
