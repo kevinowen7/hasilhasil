@@ -5,6 +5,7 @@ import json
 import os
 import requests
 import datetime
+from datetime import timedelta
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -431,7 +432,7 @@ def makeWebhookResult(req):
         
         # jika diminta roster hari ini
         if result.split(" ")[1].lower()+result.split(" ")[2].lower()=="hari"+"ini":
-            dateNow = str(datetime.datetime.now())
+            dateNow = str(datetime.datetime.now()+ timedelta(days=1))
             return  {
                     "speech": dateNow,
                     "displayText": dateNow,
