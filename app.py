@@ -433,6 +433,9 @@ def makeWebhookResult(req):
             return "hasil"
         else:
             date = userp.child("searchDateR").get()
+            #jika datenya blom ada
+            if date==None:
+                date="-"
             return {
               "speech": "",
               "messages": [
