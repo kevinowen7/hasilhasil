@@ -628,6 +628,15 @@ def makeWebhookResult(req):
                                         "color": "#994848"
                                       },
                                       {
+                                        "type": "text",
+                                        "text": "aaaa",
+                                        "margin": "lg",
+                                        "size": "lg",
+                                        "align": "center",
+                                        "gravity": "bottom",
+                                        "weight": "bold",
+                                      },
+                                      {
                                         "type": "image",
                                         "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_tanggal.png?alt=media&_ignore=",
                                         "margin": "none",
@@ -640,6 +649,15 @@ def makeWebhookResult(req):
                                           "label": "pilih tanggal",
                                           "text": "pilih tanggal"
                                         }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "text": "aaaa",
+                                        "margin": "lg",
+                                        "size": "lg",
+                                        "align": "center",
+                                        "gravity": "bottom",
+                                        "weight": "bold",
                                       },
                                       {
                                         "type": "image",
