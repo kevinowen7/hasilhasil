@@ -562,7 +562,70 @@ def makeWebhookResult(req):
             tahun = date[2]
             bulan = date[1]
             hari = date[0]
-
+            
+            #menampilkan flex message untuk pilih tahun
+            if tahun =="-":
+                return {
+                "speech": "",
+                "messages": [
+                  {
+                    "type": 4,
+                    "payload": {
+                      "line": {
+                        "type": "imagemap",
+                        "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_tanggal%2Fpilih_tahun.png?alt=media&_ignore=",
+                        "altText": "This is an imagemap",
+                        "baseSize": {
+                          "width": 1040,
+                          "height": 1040
+                        },
+                        "actions": [
+                          {
+                            "type": "message",
+                            "area": {
+                              "x": 290,
+                              "y": 159,
+                              "width": 461,
+                              "height": 214
+                            },
+                            "text": "-H -/-/2018"
+                          },
+                          {
+                            "type": "message",
+                            "area": {
+                              "x": 292,
+                              "y": 427,
+                              "width": 459,
+                              "height": 206
+                            },
+                            "text": "-H -/-/2019"
+                          },
+                          {
+                            "type": "message",
+                            "area": {
+                              "x": 292,
+                              "y": 679,
+                              "width": 459,
+                              "height": 116
+                            },
+                            "text": "-H hari ini"
+                          },
+                          {
+                            "type": "message",
+                            "area": {
+                              "x": 290,
+                              "y": 812,
+                              "width": 461,
+                              "height": 100
+                            },
+                            "text": "-H besok"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+               }
             #menampilkan flex message untuk pilih bulan
             if bulan =="-":
                 return {
