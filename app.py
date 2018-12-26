@@ -430,7 +430,7 @@ def makeWebhookResult(req):
         result = req.get("result").get("resolvedQuery")
         
         # jika diminta roster hari ini
-        if result.split(" ")[1]=="hari ini":
+        if result.split(" ")[1].lower()+result.split(" ")[2].lower()=="hari"+"ini":
             dateNow = str(datetime.datetime.now())
             return  {
                     "speech": dateNow,
