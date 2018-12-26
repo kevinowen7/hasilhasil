@@ -429,7 +429,7 @@ def makeWebhookResult(req):
         date = result.split(" ")[1].split("/")
         tahun = date[2]
         bulan = date[1]
-        tanggal = date[0]
+        hari = date[0]
         
      
         
@@ -458,7 +458,7 @@ def makeWebhookResult(req):
                             "width": 326,
                             "height": 130
                           },
-                          "text": "-H "+tanggal+"/01/"+tahun
+                          "text": "-H "+hari+"/01/"+tahun
                         },
                         {
                           "type": "message",
@@ -468,7 +468,7 @@ def makeWebhookResult(req):
                             "width": 318,
                             "height": 132
                           },
-                          "text": "-H "+tanggal+"/02/"+tahun
+                          "text": "-H "+hari+"/02/"+tahun
                         },
                         {
                           "type": "message",
@@ -478,7 +478,7 @@ def makeWebhookResult(req):
                             "width": 317,
                             "height": 129
                           },
-                          "text": "-H "+tanggal+"/03/"+tahun
+                          "text": "-H "+hari+"/03/"+tahun
                         },
                         {
                           "type": "message",
@@ -488,7 +488,7 @@ def makeWebhookResult(req):
                             "width": 316,
                             "height": 130
                           },
-                          "text": "-H "+tanggal+"/04/"+tahun
+                          "text": "-H "+hari+"/04/"+tahun
                         },
                         {
                           "type": "message",
@@ -498,7 +498,7 @@ def makeWebhookResult(req):
                             "width": 320,
                             "height": 123
                           },
-                          "text": "-H "+tanggal+"/05/"+tahun
+                          "text": "-H "+hari+"/05/"+tahun
                         },
                         {
                           "type": "message",
@@ -508,7 +508,7 @@ def makeWebhookResult(req):
                             "width": 319,
                             "height": 127
                           },
-                          "text": "-H "+tanggal+"/06/"+tahun
+                          "text": "-H "+hari+"/06/"+tahun
                         },
                         {
                           "type": "message",
@@ -518,7 +518,7 @@ def makeWebhookResult(req):
                             "width": 319,
                             "height": 133
                           },
-                          "text": "-H "+tanggal+"/07/"+tahun
+                          "text": "-H "+hari+"/07/"+tahun
                         },
                         {
                           "type": "message",
@@ -528,7 +528,7 @@ def makeWebhookResult(req):
                             "width": 318,
                             "height": 127
                           },
-                          "text": "-H "+tanggal+"/08/"+tahun
+                          "text": "-H "+hari+"/08/"+tahun
                         },
                         {
                           "type": "message",
@@ -538,7 +538,7 @@ def makeWebhookResult(req):
                             "width": 321,
                             "height": 128
                           },
-                          "text": "-H "+tanggal+"/09/"+tahun
+                          "text": "-H "+hari+"/09/"+tahun
                         },
                         {
                           "type": "message",
@@ -548,7 +548,7 @@ def makeWebhookResult(req):
                             "width": 314,
                             "height": 127
                           },
-                          "text": "-H "+tanggal+"/10/"+tahun
+                          "text": "-H "+hari+"/10/"+tahun
                         },
                         {
                           "type": "message",
@@ -558,7 +558,7 @@ def makeWebhookResult(req):
                             "width": 317,
                             "height": 127
                           },
-                          "text": "-H "+tanggal+"/11/"+tahun
+                          "text": "-H "+hari+"/11/"+tahun
                         },
                         {
                           "type": "message",
@@ -568,7 +568,7 @@ def makeWebhookResult(req):
                             "width": 314,
                             "height": 128
                           },
-                          "text": "-H "+tanggal+"/12/"+tahun
+                          "text": "-H "+hari+"/12/"+tahun
                         }
                       ]
                     }
