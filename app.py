@@ -530,33 +530,161 @@ def flexMessageHasil(r):
         "speech": "",
        "messages": [
         {
-          "type": 0,
-          "speech": ""
-        },
-        {
-      "type": 4,
-      "payload": {
-         "line": {
-            "type": "flex",
-            "altText": "Hasil Pencarian Rster Ruangan",
-            "contents": {
-             "type": "bubble",
-              "body": {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": r,
-                    "wrap": True
+          "type": 4,
+          "payload": {
+             "line": {
+                "type": "flex",
+                "altText": "Hasil Pencarian Rster Ruangan",
+                "contents": {
+                 "type": "bubble",
+                  "body": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": r,
+                        "wrap": True
+                      }
+                    ]
                   }
-                ]
-              }
+                 }
              }
+          }
+       }
+     ]
+    }
+
+def flexMessageHasilCari(r,date,metode):
+    return {
+        "speech": "",
+       "messages": [
+        {
+          "type": 4,
+          "payload": {
+             "line": {
+                "type": "flex",
+                "altText": "Hasil Pencarian Rster Ruangan",
+                "contents": {
+                 "type": "bubble",
+                  "body": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": r,
+                        "wrap": True
+                      }
+                    ]
+                  }
+                 }
+             }
+          }
+       },
+       {
+          "type": 4,
+          "payload": {
+              "line": {
+                "type": "flex",
+                "altText": "Cari Roster Ruangan",
+                "contents": {
+                  "type": "bubble",
+                  "direction": "ltr",
+                  "hero": {
+                    "type": "image",
+                    "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Froster_judul.png?alt=media&_ignore=",
+                    "align": "center",
+                    "size": "5xl",
+                    "aspectRatio": "2:1"
+                  },
+                  "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "spacing": "md",
+                    "contents": [
+                      {
+                        "type": "separator",
+                        "margin": "none",
+                        "color": "#994848"
+                      },
+                      {
+                        "type": "text",
+                        "text": date,
+                        "margin": "lg",
+                        "size": "lg",
+                        "align": "center",
+                        "gravity": "bottom",
+                        "weight": "bold",
+                        "color": "#191970"
+                      },
+                      {
+                        "type": "image",
+                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_tanggal.png?alt=media&_ignore=",
+                        "margin": "none",
+                        "align": "center",
+                        "gravity": "top",
+                        "size": "xxl",
+                        "aspectRatio": "2:1",
+                        "action": {
+                          "type": "message",
+                          "label": "pilih tanggal",
+                          "text": "pilih tanggal"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "text": metode,
+                        "margin": "lg",
+                        "size": "lg",
+                        "align": "center",
+                        "gravity": "bottom",
+                        "weight": "bold",
+                        "color": "#191970"
+                      },
+                      {
+                        "type": "image",
+                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_metode_pencarian.png?alt=media&_ignore=",
+                        "margin": "none",
+                        "align": "center",
+                        "gravity": "bottom",
+                        "size": "xxl",
+                        "aspectRatio": "2:1",
+                        "backgroundColor": "#8CE4EE",
+                        "action": {
+                          "type": "message",
+                          "label": "pilih metode pencari",
+                          "text": "pilih metode pencarian"
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fcari.png?alt=media&_ignore=",
+                        "margin": "xxl",
+                        "align": "end",
+                        "size": "lg",
+                        "aspectRatio": "16:9",
+                        "action": {
+                          "type": "message",
+                          "label": "cari",
+                          "text": "cari roster"
+                        }
+                      }
+                    ]
+                  },
+                  "styles": {
+                    "hero": {
+                      "backgroundColor": "#a1e6e4"
+                    },
+                    "body": {
+                      "backgroundColor": "#a1e6e4"
+                    }
+                  }
+                }
+              }
+            }
          }
-      }
-      }
-        ]
+      ]
     }
 
 def makeWebhookResult(req):  
@@ -573,9 +701,20 @@ def makeWebhookResult(req):
     if req.get("result").get("action") == "menuCariRoster":
         result = req.get("result").get("resolvedQuery")
         if result.lower()=="cari roster":
-            metodeList = userp.child("searchD").get().split(" : ")
-            metodeK = metodeList[0]
+            metode = userp.child("searchD").get()
+            date = userp.child("searchDateR").get()
             
+            #jika belum memilih tanggal dan metode pencarian
+            if (date==None and metode==None):
+                return flexMessageHasilCari("Tolong Masukan Tanggalnya kak","Tanggal : -","Metode : -")
+            elif (date==None):
+                return flexMessageHasilCari("Tolong Masukan Tanggalnya kak","Tanggal : -",metode)
+            elif (metode==None):
+                return flexMessageHasilCari("Tolong Masukan Tanggalnya kak",date,"Metode : -")
+            
+            #proses
+            metodeList = metode.split(" : ")
+            metodeK = metodeList[0]
             #jika dicari berdasarkan ruangan
             if metodeK == "Ruangan":
                 ruang = userp.child("searchD").get().split("Ruangan : ")[1]
