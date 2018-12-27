@@ -568,278 +568,299 @@ def makeWebhookResult(req):
         return hasil
         
     #untuk input metode ruangan
-    if req.get("result").get("action") == "inputRuangan":
-        result = req.get("result").get("resolvedQuery").split(" ")[1]
-        lantai = result.split("/")[0]
-        ruang = reuslt.split("/")[1]
+    if req.get("result").get("action") == "inputRuangan": 
+        try:
+            result = req.get("result").get("resolvedQuery").split(" ")[1]
+            lantai = result.split("/")[0]
+            ruang = reuslt.split("/")[1]
+
+            if ruang=="-":  
+                #validasi lantai
+                if ((int(lantai)<=5) and (int(lantai)>=1):  
+                    database = db.reference()
+                    hasil = database.child("dataJSON/lantai"+lantai).get()
+                    return hasil
+                else:
+                    return {
+                        "speech": "Maaf kak , masukan lantai antara 1 sampai 5",
+                        "displayText": "Maaf kak , masukan lantai antara 1 sampai 5",
+                        #"data": {},
+                        #"contextOut": [],
+                        "source": "Maaf kak , masukan lantai antara 1 sampai 5"
+                    }
+            else:
+                #push to firebase
+                userp.update({
+                    "name" : profile.display_name,
+                    "searchD" : "Ruangan : "+ruang
+                })
+                date = userp.child("searchDateR").get()
+                #jika datenya blom ada
+                if date==None:
+                    date="-"
+                hasil = flexMessageCari(date,"Ruangan : "+ruang)
+                return hasil
+         except Exception as res:
+                return {
+                        "speech": "Maaf kak format input ruangan salah :(",
+                        "displayText": "Maaf kak format input ruangan salah :(",
+                        #"data": {},
+                        #"contextOut": [],
+                        "source": "Maaf kak format input ruangan salah :("
+                    }
         
-        if ruang=="-":  
-            database = db.reference()
-            hasil = database.child("dataJSON/lantai"+lantai).get()
-            return hasil
-        else:
-            #push to firebase
-            userp.update({
-                "name" : profile.display_name,
-                "searchD" : "Ruangan : "+ruang
-            })
-            date = userp.child("searchDateR").get()
-            #jika datenya blom ada
-            if date==None:
-                date="-"
-            hasil = flexMessageCari(date,"Ruangan : "+ruang)
-            return hasil
             
     
     #untuk input tanggal
     if req.get("result").get("action") == "inputTanggal":
-        result = req.get("result").get("resolvedQuery")
-        
-        # jika diminta roster besok
-        if result.split("-H ")[1].lower()=="besok":
-            dateNow = str(datetime.datetime.now()+ timedelta(days=1,hours=7,seconds=60)).split(" ")[0]
-            tahun = dateNow.split("-")[0]
-            bulan = dateNow.split("-")[1]
-            hari = dateNow.split("-")[2]
-        # jika diminta roster hari ini
-        elif result.split("-H ")[1].lower()=="hari ini":
-            dateNow = str(datetime.datetime.now()+ timedelta(hours=7,seconds=60)).split(" ")[0]
-            tahun = dateNow.split("-")[0]
-            bulan = dateNow.split("-")[1]
-            hari = dateNow.split("-")[2]
-        # jika diminta flex untuk input tanggal
-        else:
-            date = result.split(" ")[1].split("/")
-            tahun = date[2]
-            bulan = date[1]
-            hari = date[0]
-            
-            #menampilkan flex message untuk pilih tahun
-            if tahun =="-":
-                #from -H -/-/-
-                return {
-                "speech": "",
-                "messages": [
-                  {
-                    "type": 4,
-                    "payload": {
-                      "line": {
-                        "type": "imagemap",
-                        "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_tanggal%2Fpilih_tahun.png?alt=media&_ignore=",
-                        "altText": "Pilih Tahun",
-                        "baseSize": {
-                          "width": 1040,
-                          "height": 1040
-                        },
-                        "actions": [
-                          {
-                            "type": "message",
-                            "area": {
-                              "x": 290,
-                              "y": 159,
-                              "width": 461,
-                              "height": 214
+           
+        try:
+            result = req.get("result").get("resolvedQuery")
+
+            # jika diminta roster besok
+            if result.split("-H ")[1].lower()=="besok":
+                dateNow = str(datetime.datetime.now()+ timedelta(days=1,hours=7,seconds=60)).split(" ")[0]
+                tahun = dateNow.split("-")[0]
+                bulan = dateNow.split("-")[1]
+                hari = dateNow.split("-")[2]
+            # jika diminta roster hari ini
+            elif result.split("-H ")[1].lower()=="hari ini":
+                dateNow = str(datetime.datetime.now()+ timedelta(hours=7,seconds=60)).split(" ")[0]
+                tahun = dateNow.split("-")[0]
+                bulan = dateNow.split("-")[1]
+                hari = dateNow.split("-")[2]
+            # jika diminta flex untuk input tanggal
+            else:
+                date = result.split(" ")[1].split("/")
+                tahun = date[2]
+                bulan = date[1]
+                hari = date[0]
+
+                #menampilkan flex message untuk pilih tahun
+                if tahun =="-":
+                    #from -H -/-/-
+                    return {
+                    "speech": "",
+                    "messages": [
+                      {
+                        "type": 4,
+                        "payload": {
+                          "line": {
+                            "type": "imagemap",
+                            "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_tanggal%2Fpilih_tahun.png?alt=media&_ignore=",
+                            "altText": "Pilih Tahun",
+                            "baseSize": {
+                              "width": 1040,
+                              "height": 1040
                             },
-                            "text": "-H "+hari+"/"+bulan+"/2018"
-                          },
-                          {
-                            "type": "message",
-                            "area": {
-                              "x": 292,
-                              "y": 427,
-                              "width": 459,
-                              "height": 206
-                            },
-                            "text": "-H "+hari+"/"+bulan+"/2019"
-                          },
-                          {
-                            "type": "message",
-                            "area": {
-                              "x": 292,
-                              "y": 679,
-                              "width": 459,
-                              "height": 116
-                            },
-                            "text": "-H hari ini"
-                          },
-                          {
-                            "type": "message",
-                            "area": {
-                              "x": 290,
-                              "y": 812,
-                              "width": 461,
-                              "height": 100
-                            },
-                            "text": "-H besok"
+                            "actions": [
+                              {
+                                "type": "message",
+                                "area": {
+                                  "x": 290,
+                                  "y": 159,
+                                  "width": 461,
+                                  "height": 214
+                                },
+                                "text": "-H "+hari+"/"+bulan+"/2018"
+                              },
+                              {
+                                "type": "message",
+                                "area": {
+                                  "x": 292,
+                                  "y": 427,
+                                  "width": 459,
+                                  "height": 206
+                                },
+                                "text": "-H "+hari+"/"+bulan+"/2019"
+                              },
+                              {
+                                "type": "message",
+                                "area": {
+                                  "x": 292,
+                                  "y": 679,
+                                  "width": 459,
+                                  "height": 116
+                                },
+                                "text": "-H hari ini"
+                              },
+                              {
+                                "type": "message",
+                                "area": {
+                                  "x": 290,
+                                  "y": 812,
+                                  "width": 461,
+                                  "height": 100
+                                },
+                                "text": "-H besok"
+                              }
+                            ]
                           }
-                        ]
-                      }
-                    }
-                  }
-                ]
-               }
-            #menampilkan flex message untuk pilih bulan
-            if bulan =="-":
-                return {
-                "speech": "",
-                "messages": [
-                  {
-                    "type": 4,
-                    "payload": {
-                      "line": {
-                          "type": "imagemap",
-                          "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_tanggal%2Fpilih_bulan.jpg?alt=media&_ignore=",
-                          "altText": "Pilih Bulan",
-                          "baseSize": {
-                            "width": 1040,
-                            "height": 1040
-                          },
-                          "actions": [
-                            {
-                              "type": "message",
-                              "area": {
-                                "x": 15,
-                                "y": 188,
-                                "width": 326,
-                                "height": 130
-                              },
-                              "text": "-H "+hari+"/01/"+tahun
-                            },
-                            {
-                              "type": "message",
-                              "area": {
-                                "x": 361,
-                                "y": 187,
-                                "width": 318,
-                                "height": 132
-                              },
-                              "text": "-H "+hari+"/02/"+tahun
-                            },
-                            {
-                              "type": "message",
-                              "area": {
-                                "x": 704,
-                                "y": 187,
-                                "width": 317,
-                                "height": 129
-                              },
-                              "text": "-H "+hari+"/03/"+tahun
-                            },
-                            {
-                              "type": "message",
-                              "area": {
-                                "x": 17,
-                                "y": 365,
-                                "width": 316,
-                                "height": 130
-                              },
-                              "text": "-H "+hari+"/04/"+tahun
-                            },
-                            {
-                              "type": "message",
-                              "area": {
-                                "x": 360,
-                                "y": 368,
-                                "width": 320,
-                                "height": 123
-                              },
-                              "text": "-H "+hari+"/05/"+tahun
-                            },
-                            {
-                              "type": "message",
-                              "area": {
-                                "x": 704,
-                                "y": 366,
-                                "width": 319,
-                                "height": 127
-                              },
-                              "text": "-H "+hari+"/06/"+tahun
-                            },
-                            {
-                              "type": "message",
-                              "area": {
-                                "x": 19,
-                                "y": 544,
-                                "width": 319,
-                                "height": 133
-                              },
-                              "text": "-H "+hari+"/07/"+tahun
-                            },
-                            {
-                              "type": "message",
-                              "area": {
-                                "x": 361,
-                                "y": 547,
-                                "width": 318,
-                                "height": 127
-                              },
-                              "text": "-H "+hari+"/08/"+tahun
-                            },
-                            {
-                              "type": "message",
-                              "area": {
-                                "x": 702,
-                                "y": 549,
-                                "width": 321,
-                                "height": 128
-                              },
-                              "text": "-H "+hari+"/09/"+tahun
-                            },
-                            {
-                              "type": "message",
-                              "area": {
-                                "x": 25,
-                                "y": 726,
-                                "width": 314,
-                                "height": 127
-                              },
-                              "text": "-H "+hari+"/10/"+tahun
-                            },
-                            {
-                              "type": "message",
-                              "area": {
-                                "x": 363,
-                                "y": 724,
-                                "width": 317,
-                                "height": 127
-                              },
-                              "text": "-H "+hari+"/11/"+tahun
-                            },
-                            {
-                              "type": "message",
-                              "area": {
-                                "x": 707,
-                                "y": 723,
-                                "width": 314,
-                                "height": 128
-                              },
-                              "text": "-H "+hari+"/12/"+tahun
-                            }
-                          ]
                         }
-                    }
-                  }
-                ]
-               }
+                      }
+                    ]
+                   }
+                #menampilkan flex message untuk pilih bulan
+                if bulan =="-":
+                    return {
+                    "speech": "",
+                    "messages": [
+                      {
+                        "type": 4,
+                        "payload": {
+                          "line": {
+                              "type": "imagemap",
+                              "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_tanggal%2Fpilih_bulan.jpg?alt=media&_ignore=",
+                              "altText": "Pilih Bulan",
+                              "baseSize": {
+                                "width": 1040,
+                                "height": 1040
+                              },
+                              "actions": [
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 15,
+                                    "y": 188,
+                                    "width": 326,
+                                    "height": 130
+                                  },
+                                  "text": "-H "+hari+"/01/"+tahun
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 361,
+                                    "y": 187,
+                                    "width": 318,
+                                    "height": 132
+                                  },
+                                  "text": "-H "+hari+"/02/"+tahun
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 704,
+                                    "y": 187,
+                                    "width": 317,
+                                    "height": 129
+                                  },
+                                  "text": "-H "+hari+"/03/"+tahun
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 17,
+                                    "y": 365,
+                                    "width": 316,
+                                    "height": 130
+                                  },
+                                  "text": "-H "+hari+"/04/"+tahun
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 360,
+                                    "y": 368,
+                                    "width": 320,
+                                    "height": 123
+                                  },
+                                  "text": "-H "+hari+"/05/"+tahun
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 704,
+                                    "y": 366,
+                                    "width": 319,
+                                    "height": 127
+                                  },
+                                  "text": "-H "+hari+"/06/"+tahun
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 19,
+                                    "y": 544,
+                                    "width": 319,
+                                    "height": 133
+                                  },
+                                  "text": "-H "+hari+"/07/"+tahun
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 361,
+                                    "y": 547,
+                                    "width": 318,
+                                    "height": 127
+                                  },
+                                  "text": "-H "+hari+"/08/"+tahun
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 702,
+                                    "y": 549,
+                                    "width": 321,
+                                    "height": 128
+                                  },
+                                  "text": "-H "+hari+"/09/"+tahun
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 25,
+                                    "y": 726,
+                                    "width": 314,
+                                    "height": 127
+                                  },
+                                  "text": "-H "+hari+"/10/"+tahun
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 363,
+                                    "y": 724,
+                                    "width": 317,
+                                    "height": 127
+                                  },
+                                  "text": "-H "+hari+"/11/"+tahun
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 707,
+                                    "y": 723,
+                                    "width": 314,
+                                    "height": 128
+                                  },
+                                  "text": "-H "+hari+"/12/"+tahun
+                                }
+                              ]
+                            }
+                        }
+                      }
+                    ]
+                   }
 
-            #menampilkan flex message untuk pilih hari
-            if hari=="-":
-                if (int(bulan)<=12 and int(bulan)>=1):
-                    hasil = flexMessageHari(bulan,tahun)
-                    return hasil
-                else:
-                    return  {
-                        "speech": "Maaf kak, format bulan yang anda masukan tidak ada",
-                        "displayText": "Maaf kak, format bulan yang anda masukan tidak ada",
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": "Maaf kak, format bulan yang anda masukan tidak ada"
-                    }
+                #menampilkan flex message untuk pilih hari
+                if hari=="-":
+                    if (int(bulan)<=12 and int(bulan)>=1):
+                        hasil = flexMessageHari(bulan,tahun)
+                        return hasil
+                    else:
+                        return  {
+                            "speech": "Maaf kak, format bulan yang anda masukan tidak ada",
+                            "displayText": "Maaf kak, format bulan yang anda masukan tidak ada",
+                            #"data": {},
+                            #"contextOut": [],
+                            "source": "Maaf kak, format bulan yang anda masukan tidak ada"
+                        }
 
 
-        #menambahakan data tanggal ke firebase
-        if ((hari!="-") and (bulan !="-") and (tahun !="-")):
-            try:
+            #menambahakan data tanggal ke firebase
+            if ((hari!="-") and (bulan !="-") and (tahun !="-")):
                 #push to firebase
                 userp.update({
                     "name" : profile.display_name,
@@ -862,14 +883,15 @@ def makeWebhookResult(req):
                         #"contextOut": [],
                         "source": "Maaf kak format tanggal yang di input salah"
                     }
-            except Exception as res:
-                    return  {
-                        "speech": "Maaf kak format tanggal yang di input salah :("+res,
-                        "displayText": "Maaf kak format tanggal yang di input salah :("+res,
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": "Maaf kak format tanggal yang di input salah :("+res
-                    }        
+                    
+        except Exception as res:
+            return  {
+                "speech": "Maaf kak format tanggal yang di input salah :(",
+                "displayText": "Maaf kak format tanggal yang di input salah :(",
+                #"data": {},
+                #"contextOut": [],
+                "source": "Maaf kak format tanggal yang di input salah :("
+            }        
             
     
     if req.get("result").get("action") == "add":
