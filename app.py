@@ -564,7 +564,7 @@ def makeWebhookResult(req):
         #jika datenya blom ada
         if date==None:
             date="-"
-        hasil = flexMessageCari(date,result)
+        hasil = flexMessageCari(date,"Dosen : "+result)
         return hasil
         
     
