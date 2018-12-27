@@ -487,7 +487,7 @@ def flexMessageCari(date,metode):
                         "gravity": "bottom",
                         "size": "xxl",
                         "aspectRatio": "2:1",
-                        "backgroundColor": "#8CE4EE",
+                        "backgroundColor": "#A1E5E4",
                         "action": {
                           "type": "message",
                           "label": "pilih metode pencari",
@@ -511,10 +511,10 @@ def flexMessageCari(date,metode):
                   },
                   "styles": {
                     "hero": {
-                      "backgroundColor": "#a1e6e4"
+                      "backgroundColor": "#A1E5E4"
                     },
                     "body": {
-                      "backgroundColor": "#a1e6e4"
+                      "backgroundColor": "#A1E5E4"
                     }
                   }
                 }
