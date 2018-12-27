@@ -544,16 +544,9 @@ def makeWebhookResult(req):
             metodeK = metodeList[0]
             #jika di cari berdasarkan lantai
             if metodeK=="Lantai":
-                return {
-                        "speech": "a",
-                        "displayText": "a",
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": "a"
-                    }
                 lt = userp.child("searchD").get().split("Lantai : ")[1]
                 date = userp.child("searchDateR").get()
-                d = result0.get("parameters")
+                
                 database = db.reference()
                 thn = int(date.split("/")[2])
                 bln = int(date.split("/")[1])
