@@ -542,6 +542,117 @@ def makeWebhookResult(req):
         if result.lower()=="cari roster":
             metodeList = userp.child("searchD").get().split(" : ")
             metodeK = metodeList[0]
+            
+            #jika dicari berdasarkan ruangan
+            if metodeK == "Ruangan":
+                dosen = userp.child("searchD").get().split("Ruangan : ")[1]
+                date = userp.child("searchDateR").get()
+                
+                thn = int(date.split("/")[2])
+                bln = int(date.split("/")[1])
+                tgl = int(date.split("/")[0])
+
+                database = db.reference()
+                hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
+                if hasil==None:
+                    return {
+                        "speech": "Ruangan "+ruang+" tidak ada jadwal hari ini",
+                        "displayText": "Ruangan "+ruang+" tidak ada jadwal hari ini",
+                        #"data": {},
+                        #"contextOut": [],
+                        "source": "Ruangan "+ruang+" tidak ada jadwal hari ini"
+                    }
+
+                lt=1
+                hasillist=[]
+                while(lt<len(hasil)+1):
+                    x=1
+                    try:
+                        while(x<len(hasil["lantai:"+str(lt)])):
+                            if(ruang.lower() in hasil["lantai:"+str(lt)][x]["Ruang"].lower()):
+                                if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
+                                    hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
+                                else:
+                                    hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+                            print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
+                            x=x+1
+                        lt=lt+1
+                    except Exception as res:
+                        lt=lt+1
+
+                if len(hasillist)==0:
+                    return {
+                        "speech": "Ruangan "+ruang+" tidak ada jadwal hari ini",
+                        "displayText": "Ruangan "+ruang+" tidak ada jadwal hari ini",
+                        #"data": {},
+                        #"contextOut": [],
+                        "source": "Ruangan "+ruang+" tidak ada jadwal hari ini"
+                    }
+                r=""
+                for i in hasillist:
+                    r=r+i
+                return {
+                    "speech": r,
+                    "displayText": r,
+                    #"data": {},
+                    #"contextOut": [],
+                    "source": r
+                }
+            
+            #jika dicari berdarkan nama dosen
+            if metodeK == "dosen":
+                dosen = userp.child("searchD").get().split("Dosen : ")[1]
+                date = userp.child("searchDateR").get()
+                
+                thn = int(date.split("/")[2])
+                bln = int(date.split("/")[1])
+                tgl = int(date.split("/")[0])
+
+                database = db.reference()
+                hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
+                if hasil==None:
+                    return {
+                        "speech": dosen+" tidak ada jadwal hari ini",
+                        "displayText": dosen+" tidak ada jadwal hari ini",
+                        #"data": {},
+                        #"contextOut": [],
+                        "source": dosen+" tidak ada jadwal hari ini"
+                    }
+                lt=1
+                hasillist=[]
+                while(lt<len(hasil)+1):
+                    x=1
+                    try:
+                        while(x<len(hasil["lantai:"+str(lt)])):
+                            if(dosen.lower() in hasil["lantai:"+str(lt)][x]["Nama Dosen"].lower()) or (dosen.lower() in hasil["lantai:"+str(lt)][x]["Mata Kuliah"].lower()):
+                                if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
+                                    hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
+                                else:
+                                    hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+                            print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
+                            x=x+1
+                        lt=lt+1
+                    except Exception as res:
+                        lt=lt+1
+                if len(hasillist)==0:
+                    return {
+                        "speech": dosen+" tidak ada jadwal hari ini",
+                        "displayText": dosen+" tidak ada jadwal hari ini",
+                        #"data": {},
+                        #"contextOut": [],
+                        "source": dosen+" tidak ada jadwal hari ini"
+                    }
+                r=""
+                for i in hasillist:
+                    r=r+i
+                return {
+                    "speech": r,
+                    "displayText": r,
+                    #"data": {},
+                    #"contextOut": [],
+                    "source": r
+                }
+            
             #jika di cari berdasarkan lantai
             if metodeK=="Lantai":
                 lt = userp.child("searchD").get().split("Lantai : ")[1]
@@ -1181,117 +1292,6 @@ def makeWebhookResult(req):
             "source": "Sukses menambahkan "+result
         }
             
-            
-        
-    if req.get("result").get("action") == "dosen":
-        result0 = req.get("result")
-        result = result0.get("resolvedQuery")
-        d = result0.get("parameters")
-        thn = int(result.split("/")[2].split(" ")[0])
-        bln = int(result.split("/")[1])
-        tgl = int(result.split("/")[0])
-        dosen = d.get("any")
-        
-        database = db.reference()
-        hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
-        if hasil==None:
-            return {
-                "speech": dosen+" tidak ada jadwal hari ini",
-                "displayText": dosen+" tidak ada jadwal hari ini",
-                #"data": {},
-                #"contextOut": [],
-                "source": dosen+" tidak ada jadwal hari ini"
-            }
-        lt=1
-        hasillist=[]
-        while(lt<len(hasil)+1):
-            x=1
-            try:
-                while(x<len(hasil["lantai:"+str(lt)])):
-                    if(dosen.lower() in hasil["lantai:"+str(lt)][x]["Nama Dosen"].lower()) or (dosen.lower() in hasil["lantai:"+str(lt)][x]["Mata Kuliah"].lower()):
-                        if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
-                            hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
-                        else:
-                            hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
-                    print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
-                    x=x+1
-                lt=lt+1
-            except Exception as res:
-                lt=lt+1
-        if len(hasillist)==0:
-            return {
-                "speech": dosen+" tidak ada jadwal hari ini",
-                "displayText": dosen+" tidak ada jadwal hari ini",
-                #"data": {},
-                #"contextOut": [],
-                "source": dosen+" tidak ada jadwal hari ini"
-            }
-        r=""
-        for i in hasillist:
-            r=r+i
-        return {
-            "speech": r,
-            "displayText": r,
-            #"data": {},
-            #"contextOut": [],
-            "source": r
-        }
-    
-    if req.get("result").get("action") == "ruang":
-        result0 = req.get("result")
-        result = result0.get("resolvedQuery")
-        d = result0.get("parameters")
-        thn = int(result.split("/")[2].split(" ")[0])
-        bln = int(result.split("/")[1])
-        tgl = int(result.split("/")[0])
-        ruang = d.get("any")
-        
-        database = db.reference()
-        hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
-        if hasil==None:
-            return {
-                "speech": "Ruangan "+ruang+" tidak ada jadwal hari ini",
-                "displayText": "Ruangan "+ruang+" tidak ada jadwal hari ini",
-                #"data": {},
-                #"contextOut": [],
-                "source": "Ruangan "+ruang+" tidak ada jadwal hari ini"
-            }
-        
-        lt=1
-        hasillist=[]
-        while(lt<len(hasil)+1):
-            x=1
-            try:
-                while(x<len(hasil["lantai:"+str(lt)])):
-                    if(ruang.lower() in hasil["lantai:"+str(lt)][x]["Ruang"].lower()):
-                        if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
-                            hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
-                        else:
-                            hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
-                    print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
-                    x=x+1
-                lt=lt+1
-            except Exception as res:
-                lt=lt+1
-        
-        if len(hasillist)==0:
-            return {
-                "speech": "Ruangan "+ruang+" tidak ada jadwal hari ini",
-                "displayText": "Ruangan "+ruang+" tidak ada jadwal hari ini",
-                #"data": {},
-                #"contextOut": [],
-                "source": "Ruangan "+ruang+" tidak ada jadwal hari ini"
-            }
-        r=""
-        for i in hasillist:
-            r=r+i
-        return {
-            "speech": r,
-            "displayText": r,
-            #"data": {},
-            #"contextOut": [],
-            "source": r
-        }
     
     #falback
     if req.get("result").get("action") == "falback":
