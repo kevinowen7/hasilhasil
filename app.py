@@ -717,8 +717,7 @@ def makeWebhookResult(req):
             metodeK = metodeList[0]
             #jika dicari berdasarkan ruangan
             if metodeK == "Ruangan":
-                ruang = userp.child("searchD").get().split("Ruangan : ")[1]
-                date = userp.child("searchDateR").get()
+                ruang = metode.split("Ruangan : ")[1]
                 
                 thn = int(date.split("/")[2])
                 bln = int(date.split("/")[1])
@@ -768,8 +767,7 @@ def makeWebhookResult(req):
             
             #jika dicari berdarkan nama dosen
             if metodeK == "Dosen":
-                dosen = userp.child("searchD").get().split("Dosen : ")[1]
-                date = userp.child("searchDateR").get()
+                dosen = metode.split("Dosen : ")[1]
                 
                 thn = int(date.split("/")[2])
                 bln = int(date.split("/")[1])
@@ -817,8 +815,7 @@ def makeWebhookResult(req):
             
             #jika di cari berdasarkan lantai
             if metodeK=="Lantai":
-                lt = userp.child("searchD").get().split("Lantai : ")[1]
-                date = userp.child("searchDateR").get()
+                lt = metode.split("Lantai : ")[1]
                 
                 database = db.reference()
                 thn = int(date.split("/")[2])
