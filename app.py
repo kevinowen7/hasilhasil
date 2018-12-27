@@ -525,6 +525,39 @@ def flexMessageCari(date,metode):
       ]
     }
 
+def flexMessageHasil(r):
+    return {
+        "speech": "",
+       "messages": [
+        {
+          "type": 0,
+          "speech": ""
+        },
+        {
+      "type": 4,
+      "payload": {
+         "line": {
+            "type": "flex",
+            "altText": "Hasil Pencarian Rster Ruangan",
+            "contents": {
+             "type": "bubble",
+              "body": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": r,
+                    "wrap": True
+                  }
+                ]
+              }
+             }
+         }
+      }
+      }
+        ]
+    }
 
 def makeWebhookResult(req):  
     #push user id to firebase
@@ -545,7 +578,7 @@ def makeWebhookResult(req):
             
             #jika dicari berdasarkan ruangan
             if metodeK == "Ruangan":
-                dosen = userp.child("searchD").get().split("Ruangan : ")[1]
+                ruang = userp.child("searchD").get().split("Ruangan : ")[1]
                 date = userp.child("searchDateR").get()
                 
                 thn = int(date.split("/")[2])
@@ -591,40 +624,11 @@ def makeWebhookResult(req):
                 r=""
                 for i in hasillist:
                     r=r+i
-                return{"speech": "",
-                   "messages": [
-                    {
-                      "type": 0,
-                      "speech": ""
-                    },
-                    {
-                  "type": 4,
-                  "payload": {
-                     "line": {
-                        "type": "flex",
-                        "altText": "this is a flex message",
-                        "contents": {
-                         "type": "bubble",
-                          "body": {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "contents": [
-                              {
-                                "type": "text",
-                                "text": r,
-                                "wrap": True
-                              }
-                            ]
-                          }
-                         }
-                     }
-                  }
-                  }
-                    ]
-                }
+                #output    
+                return flexMessageHasil(r)
             
             #jika dicari berdarkan nama dosen
-            if metodeK == "dosen":
+            if metodeK == "Dosen":
                 dosen = userp.child("searchD").get().split("Dosen : ")[1]
                 date = userp.child("searchDateR").get()
                 
@@ -669,37 +673,8 @@ def makeWebhookResult(req):
                 r=""
                 for i in hasillist:
                     r=r+i
-                return{"speech": "",
-                   "messages": [
-                    {
-                      "type": 0,
-                      "speech": ""
-                    },
-                    {
-                  "type": 4,
-                  "payload": {
-                     "line": {
-                        "type": "flex",
-                        "altText": "this is a flex message",
-                        "contents": {
-                         "type": "bubble",
-                          "body": {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "contents": [
-                              {
-                                "type": "text",
-                                "text": r,
-                                "wrap": True
-                              }
-                            ]
-                          }
-                         }
-                     }
-                  }
-                  }
-                    ]
-                }
+                #output    
+                return flexMessageHasil(r)
             
             #jika di cari berdasarkan lantai
             if metodeK=="Lantai":
@@ -742,38 +717,8 @@ def makeWebhookResult(req):
                 r=""
                 for i in hasillist:
                     r=r+i
-
-                return{"speech": "",
-                   "messages": [
-                    {
-                      "type": 0,
-                      "speech": ""
-                    },
-                    {
-                  "type": 4,
-                  "payload": {
-                     "line": {
-                        "type": "flex",
-                        "altText": "this is a flex message",
-                        "contents": {
-                         "type": "bubble",
-                          "body": {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "contents": [
-                              {
-                                "type": "text",
-                                "text": r,
-                                "wrap": True
-                              }
-                            ]
-                          }
-                         }
-                     }
-                  }
-                  }
-                    ]
-                }
+                #output    
+                return flexMessageHasil(r)
         else:
             date = userp.child("searchDateR").get()
             metode = userp.child("searchD").get()
