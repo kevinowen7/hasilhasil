@@ -573,7 +573,13 @@ def makeWebhookResult(req):
             result = req.get("result").get("resolvedQuery").split(" ")[1]
             lantai = result.split("/")[0]
             ruang = reuslt.split("/")[1]
-
+            return {
+                    "speech": " 5",
+                    "displayText": "5",
+                    #"data": {},
+                    #"contextOut": [],
+                    "source": "5"
+                }
             if ruang=="-":  
                 #validasi lantai
                 if ((int(lantai)<=5) and (int(lantai)>=1)):  
