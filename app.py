@@ -569,45 +569,36 @@ def makeWebhookResult(req):
         
     #untuk input metode ruangan
     if req.get("result").get("action") == "inputRuangan": 
-        try:
-            result = req.get("result").get("resolvedQuery").split(" ")[1]
-            lantai = result.split("/")[0]
-            ruang = reuslt.split("/")[1]
+        result = req.get("result").get("resolvedQuery").split(" ")[1]
+        lantai = result.split("/")[0]
+        ruang = reuslt.split("/")[1]
 
-            if ruang=="-":  
-                #validasi lantai
-                if ((int(lantai)<=5) and (int(lantai)>=1)):  
-                    database = db.reference()
-                    hasil = database.child("dataJSON/lantai"+lantai).get()
-                    return hasil
-                else:
-                    return {
-                        "speech": "Maaf kak , masukan lantai antara 1 sampai 5",
-                        "displayText": "Maaf kak , masukan lantai antara 1 sampai 5",
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": "Maaf kak , masukan lantai antara 1 sampai 5"
-                    }
-            else:
-                #push to firebase
-                userp.update({
-                    "name" : profile.display_name,
-                    "searchD" : "Ruangan : "+ruang
-                })
-                date = userp.child("searchDateR").get()
-                #jika datenya blom ada
-                if date==None:
-                    date="-"
-                hasil = flexMessageCari(date,"Ruangan : "+ruang)
+        if ruang=="-":  
+            #validasi lantai
+            if ((int(lantai)<=5) and (int(lantai)>=1)):  
+                database = db.reference()
+                hasil = database.child("dataJSON/lantai"+lantai).get()
                 return hasil
-         except Exception as res:
+            else:
                 return {
-                        "speech": "Maaf kak format input ruangan salah :(",
-                        "displayText": "Maaf kak format input ruangan salah :(",
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": "Maaf kak format input ruangan salah :("
-                    }
+                    "speech": "Maaf kak , masukan lantai antara 1 sampai 5",
+                    "displayText": "Maaf kak , masukan lantai antara 1 sampai 5",
+                    #"data": {},
+                    #"contextOut": [],
+                    "source": "Maaf kak , masukan lantai antara 1 sampai 5"
+                }
+        else:
+            #push to firebase
+            userp.update({
+                "name" : profile.display_name,
+                "searchD" : "Ruangan : "+ruang
+            })
+            date = userp.child("searchDateR").get()
+            #jika datenya blom ada
+            if date==None:
+                date="-"
+            hasil = flexMessageCari(date,"Ruangan : "+ruang)
+            return hasil
         
             
     
