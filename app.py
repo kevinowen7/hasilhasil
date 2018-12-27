@@ -414,6 +414,116 @@ def flexMessageHari(bulan,tahun):
         ]
     }
 
+def flexMessageCari(date,metode):
+    #from cari
+    return {
+      "speech": "",
+      "messages": [
+        {
+          "type": 4,
+          "payload": {
+              "line": {
+                "type": "flex",
+                "altText": "Cari Roster Ruangan",
+                "contents": {
+                  "type": "bubble",
+                  "direction": "ltr",
+                  "hero": {
+                    "type": "image",
+                    "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Froster_judul.png?alt=media&_ignore=",
+                    "align": "center",
+                    "size": "5xl",
+                    "aspectRatio": "2:1"
+                  },
+                  "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "spacing": "md",
+                    "contents": [
+                      {
+                        "type": "separator",
+                        "margin": "none",
+                        "color": "#994848"
+                      },
+                      {
+                        "type": "text",
+                        "text": "Tanggal : "+date,
+                        "margin": "lg",
+                        "size": "lg",
+                        "align": "center",
+                        "gravity": "bottom",
+                        "weight": "bold",
+                        "color": "#191970"
+                      },
+                      {
+                        "type": "image",
+                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_tanggal.png?alt=media&_ignore=",
+                        "margin": "none",
+                        "align": "center",
+                        "gravity": "top",
+                        "size": "xxl",
+                        "aspectRatio": "2:1",
+                        "action": {
+                          "type": "message",
+                          "label": "pilih tanggal",
+                          "text": "pilih tanggal"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "text": metode,
+                        "margin": "lg",
+                        "size": "lg",
+                        "align": "center",
+                        "gravity": "bottom",
+                        "weight": "bold",
+                        "color": "#191970"
+                      },
+                      {
+                        "type": "image",
+                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_metode_pencarian.png?alt=media&_ignore=",
+                        "margin": "none",
+                        "align": "center",
+                        "gravity": "bottom",
+                        "size": "xxl",
+                        "aspectRatio": "2:1",
+                        "backgroundColor": "#8CE4EE",
+                        "action": {
+                          "type": "message",
+                          "label": "pilih metode pencari",
+                          "text": "pilih metode pencarian"
+                        }
+                      },
+                      {
+                        "type": "image",
+                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fcari.png?alt=media&_ignore=",
+                        "margin": "xxl",
+                        "align": "end",
+                        "size": "lg",
+                        "aspectRatio": "16:9",
+                        "action": {
+                          "type": "message",
+                          "label": "cari",
+                          "text": "cari roster"
+                        }
+                      }
+                    ]
+                  },
+                  "styles": {
+                    "hero": {
+                      "backgroundColor": "#a1e6e4"
+                    },
+                    "body": {
+                      "backgroundColor": "#a1e6e4"
+                    }
+                  }
+                }
+              }
+            }
+
+        }
+      ]
+    }
 
 
 def makeWebhookResult(req):  
@@ -433,118 +543,30 @@ def makeWebhookResult(req):
             return "hasil"
         else:
             date = userp.child("searchDateR").get()
+            metode = userp.child("searchD").get()
             #jika datenya blom ada
             if date==None:
                 date="-"
-            #from cari
-            return {
-              "speech": "",
-              "messages": [
-                {
-                  "type": 4,
-                  "payload": {
-                      "line": {
-                        "type": "flex",
-                        "altText": "Cari Roster Ruangan",
-                        "contents": {
-                          "type": "bubble",
-                          "direction": "ltr",
-                          "hero": {
-                            "type": "image",
-                            "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Froster_judul.png?alt=media&_ignore=",
-                            "align": "center",
-                            "size": "5xl",
-                            "aspectRatio": "2:1"
-                          },
-                          "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "spacing": "md",
-                            "contents": [
-                              {
-                                "type": "separator",
-                                "margin": "none",
-                                "color": "#994848"
-                              },
-                              {
-                                "type": "text",
-                                "text": "Tanggal : "+date,
-                                "margin": "lg",
-                                "size": "lg",
-                                "align": "center",
-                                "gravity": "bottom",
-                                "weight": "bold",
-                                "color": "#191970"
-                              },
-                              {
-                                "type": "image",
-                                "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_tanggal.png?alt=media&_ignore=",
-                                "margin": "none",
-                                "align": "center",
-                                "gravity": "top",
-                                "size": "xxl",
-                                "aspectRatio": "2:1",
-                                "action": {
-                                  "type": "message",
-                                  "label": "pilih tanggal",
-                                  "text": "pilih tanggal"
-                                }
-                              },
-                              {
-                                "type": "text",
-                                "text": "aaaa",
-                                "margin": "lg",
-                                "size": "lg",
-                                "align": "center",
-                                "gravity": "bottom",
-                                "weight": "bold",
-                                "color": "#191970"
-                              },
-                              {
-                                "type": "image",
-                                "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_metode_pencarian.png?alt=media&_ignore=",
-                                "margin": "none",
-                                "align": "center",
-                                "gravity": "bottom",
-                                "size": "xxl",
-                                "aspectRatio": "2:1",
-                                "backgroundColor": "#8CE4EE",
-                                "action": {
-                                  "type": "message",
-                                  "label": "pilih metode pencari",
-                                  "text": "pilih metode pencarian"
-                                }
-                              },
-                              {
-                                "type": "image",
-                                "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fcari.png?alt=media&_ignore=",
-                                "margin": "xxl",
-                                "align": "end",
-                                "size": "lg",
-                                "aspectRatio": "16:9",
-                                "action": {
-                                  "type": "message",
-                                  "label": "cari",
-                                  "text": "cari roster"
-                                }
-                              }
-                            ]
-                          },
-                          "styles": {
-                            "hero": {
-                              "backgroundColor": "#a1e6e4"
-                            },
-                            "body": {
-                              "backgroundColor": "#a1e6e4"
-                            }
-                          }
-                        }
-                      }
-                    }
-
-                }
-              ]
-            }
+            if metode==None:
+                metode="Metode : -"
+            hasil = flexMessageCari(date,metode)
+            return hasil
+        
+    #untuk input metode dosen
+    if req.get("result").get("action") == "inputDosen":
+        result = req.get("result").get("resolvedQuery")
+        #push to firebase
+        userp.update({
+            "name" : profile.display_name,
+            "searchD" : "Dosen : "+result
+        })
+        date = userp.child("searchDateR").get()
+        #jika datenya blom ada
+        if date==None:
+            date="-"
+        hasil = flexMessageCari(date,result)
+        return hasil
+        
     
     #untuk input tanggal
     if req.get("result").get("action") == "inputTanggal":
@@ -802,114 +824,13 @@ def makeWebhookResult(req):
                 })
                 #validasi tanggal
                 if ((int(hari)<=31) and (int(hari)>=1) and (int(bulan)>=1) and (int(bulan)<=12)):
-                    return {
-                      "speech": "",
-                      "messages": [
-                        {
-                          "type": 4,
-                          "payload": {
-                              "line": {
-                                "type": "flex",
-                                "altText": "Cari Roster Ruangan",
-                                "contents": {
-                                  "type": "bubble",
-                                  "direction": "ltr",
-                                  "hero": {
-                                    "type": "image",
-                                    "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Froster_judul.png?alt=media&_ignore=",
-                                    "align": "center",
-                                    "size": "5xl",
-                                    "aspectRatio": "2:1"
-                                  },
-                                  "body": {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "spacing": "md",
-                                    "contents": [
-                                      {
-                                        "type": "separator",
-                                        "margin": "none",
-                                        "color": "#994848"
-                                      },
-                                      {
-                                        "type": "text",
-                                        "text": "Tanggal : "+str(hari)+"/"+str(bulan)+"/"+str(tahun),
-                                        "margin": "lg",
-                                        "size": "lg",
-                                        "align": "center",
-                                        "gravity": "bottom",
-                                        "weight": "bold",
-                                        "color": "#191970"
-                                      },
-                                      {
-                                        "type": "image",
-                                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_tanggal.png?alt=media&_ignore=",
-                                        "margin": "none",
-                                        "align": "center",
-                                        "gravity": "top",
-                                        "size": "xxl",
-                                        "aspectRatio": "2:1",
-                                        "action": {
-                                          "type": "message",
-                                          "label": "pilih tanggal",
-                                          "text": "pilih tanggal"
-                                        }
-                                      },
-                                      {
-                                        "type": "text",
-                                        "text": "aaaa",
-                                        "margin": "lg",
-                                        "size": "lg",
-                                        "align": "center",
-                                        "gravity": "bottom",
-                                        "weight": "bold",
-                                        "color": "#191970"
-                                      },
-                                      {
-                                        "type": "image",
-                                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_metode_pencarian.png?alt=media&_ignore=",
-                                        "margin": "none",
-                                        "align": "center",
-                                        "gravity": "bottom",
-                                        "size": "xxl",
-                                        "aspectRatio": "2:1",
-                                        "backgroundColor": "#8CE4EE",
-                                        "action": {
-                                          "type": "message",
-                                          "label": "pilih metode pencari",
-                                          "text": "pilih metode pencarian"
-                                        }
-                                      },
-                                      {
-                                        "type": "image",
-                                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fcari.png?alt=media&_ignore=",
-                                        "margin": "xxl",
-                                        "align": "end",
-                                        "size": "lg",
-                                        "aspectRatio": "16:9",
-                                        "action": {
-                                          "type": "message",
-                                          "label": "cari",
-                                          "text": "cari roster"
-                                        }
-                                      }
-                                    ]
-                                  },
-                                  "styles": {
-                                    "hero": {
-                                      "backgroundColor": "#a1e6e4"
-                                    },
-                                    "body": {
-                                      "backgroundColor": "#a1e6e4"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-
-                        }
-                      ]
-                    }
+                    date = str(hari)+"/"+str(bulan)+"/"+str(tahun)
+                    metode = userp.child("searchD").get()
+                    #jika metode blom ada
+                    if metode==None:
+                        metode="Metode : -"
+                    hasil = flexMessageCari(date,metode)
+                    return hasil
                 else:
                     return  {
                         "speech": "Maaf kak format tanggal yang di input salah",
