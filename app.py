@@ -570,16 +570,11 @@ def makeWebhookResult(req):
     #untuk input metode ruangan
     if req.get("result").get("action") == "inputRuangan": 
         try:
-            result = req.get("result").get("resolvedQuery").split(" ")[1]
-            lantai = result.split("/")[0]
-            ruang = reuslt.split("/")[1]
-            return {
-                    "speech": " 5",
-                    "displayText": "5",
-                    #"data": {},
-                    #"contextOut": [],
-                    "source": "5"
-                }
+            result = req.get("result").get("resolvedQuery")
+            result1 = result.split(" ")[1]
+            lantai = result1.split("/")[0]
+            ruang = reuslt1.split("/")[1]
+            #jika belum memilih ruangan
             if ruang=="-":  
                 #validasi lantai
                 if ((int(lantai)<=5) and (int(lantai)>=1)):  
