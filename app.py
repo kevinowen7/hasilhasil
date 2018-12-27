@@ -559,29 +559,6 @@ def flexMessageHasilCari(r,date,metode):
     return {
         "speech": "",
        "messages": [
-        {
-          "type": 4,
-          "payload": {
-             "line": {
-                "type": "flex",
-                "altText": "Hasil Pencarian Rster Ruangan",
-                "contents": {
-                 "type": "bubble",
-                  "body": {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": r,
-                        "wrap": True
-                      }
-                    ]
-                  }
-                 }
-             }
-          }
-       },
        {
           "type": 4,
           "payload": {
@@ -683,7 +660,30 @@ def flexMessageHasilCari(r,date,metode):
                 }
               }
             }
-         }
+         },
+         {
+          "type": 4,
+          "payload": {
+             "line": {
+                "type": "flex",
+                "altText": "Hasil Pencarian Rster Ruangan",
+                "contents": {
+                 "type": "bubble",
+                  "body": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": r,
+                        "wrap": True
+                      }
+                    ]
+                  }
+                 }
+             }
+          }
+       }
       ]
     }
 
@@ -706,9 +706,9 @@ def makeWebhookResult(req):
             
             #jika belum memilih tanggal dan metode pencarian
             if (date==None and metode==None):
-                return flexMessageHasilCari("Tolong Masukan Tanggalnya kak","Tanggal : -","Metode : -")
+                return flexMessageHasilCari("Tolong Masukan Tanggal dan Metodenya kak","Tanggal : -","Metode : -")
             elif (date==None):
-                return flexMessageHasilCari("Tolong Masukan Tanggalnya kak","Tanggal : -",metode)
+                return flexMessageHasilCari("Tolong Masukan Metodenya kak","Tanggal : -",metode)
             elif (metode==None):
                 return flexMessageHasilCari("Tolong Masukan Tanggalnya kak",date,"Metode : -")
             
