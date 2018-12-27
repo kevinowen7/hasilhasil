@@ -573,6 +573,80 @@ def makeWebhookResult(req):
             result = req.get("result").get("resolvedQuery").split("-SETR ")[1]
             lantai = result.split("/")[0]
             ruang = result.split("/")[1]
+            #jika belum memilih lantai
+            if lantai=="-":
+                #return flex message pilih lantai
+                return 	{
+                  "speech": "",
+                  "messages": [
+                    {
+                      "type": 4,
+                      "payload": {
+                            "line" : {
+                              "type": "imagemap",
+                              "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_lantai%2FPilih%20Lantai.png?alt=media&_ignore=",
+                              "altText": "Pilih Lantai",
+                              "baseSize": {
+                                "width": 1040,
+                                "height": 1040
+                              },
+                              "actions": [
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 2,
+                                    "y": 219,
+                                    "width": 1031,
+                                    "height": 166
+                                  },
+                                  "text": "-SETR 1/-"
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 0,
+                                    "y": 390,
+                                    "width": 1040,
+                                    "height": 160
+                                  },
+                                  "text": "-SETR 2/-"
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 2,
+                                    "y": 550,
+                                    "width": 1038,
+                                    "height": 163
+                                  },
+                                  "text": "-SETR 3/-"
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 0,
+                                    "y": 714,
+                                    "width": 1035,
+                                    "height": 160
+                                  },
+                                  "text": "-SETR 4/-"
+                                },
+                                {
+                                  "type": "message",
+                                  "area": {
+                                    "x": 0,
+                                    "y": 874,
+                                    "width": 1040,
+                                    "height": 166
+                                  },
+                                  "text": "-SETR 5/-"
+                                }
+                              ]
+                            }
+                        }
+                    }
+                ]
+            }	
             #jika belum memilih ruangan
             if ruang=="-":  
                 #validasi lantai
