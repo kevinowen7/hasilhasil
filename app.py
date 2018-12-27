@@ -540,7 +540,81 @@ def makeWebhookResult(req):
     if req.get("result").get("action") == "menuCariRoster":
         result = req.get("result").get("resolvedQuery")
         if result.lower()=="cari roster":
-            return "hasil"
+            metodeList = userp.child("searchD").get().split(" : ")
+            metodeK = metodeList[0]
+            #jika di cari berdasarkan lantai
+            if metodeK=="Lantai":
+                lt = userp.child("searchD").get().split("Lantai : ")[1]
+                date = userp.child("searchDateR").get()
+                d = result0.get("parameters")
+                database = db.reference()
+                thn = int(date.split("/")[2])
+                bln = int(date.split("/")[1])
+                tgl = int(date.split("/")[0])
+
+                x=1
+                hasillist=[]
+                hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)+"/lantai:"+str(lt)).get()
+                if hasil==None:
+                    return {
+                        "speech": "lantai "+str(lt)+" tidak ada jadwal hari ini",
+                        "displayText": "lantai "+str(lt)+" tidak ada jadwal hari ini",
+                        #"data": {},
+                        #"contextOut": [],
+                        "source": "lantai "+str(lt)+" tidak ada jadwal hari ini"
+                    }
+                while(x<len(hasil)):
+                    print(hasil[x])
+                    if hasil[x]["Nama Dosen"]==" ":
+                        hasillist.append("Jam: "+hasil[x]["Jam"]+"\n"+"Mata Kuliah: "+hasil[x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil[x]["Ruang"]+"\n"+"\n"+"\n")
+                    else:
+                        hasillist.append("Jam: "+hasil[x]["Jam"]+"\n"+"Mata Kuliah: "+hasil[x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil[x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil[x]["Ruang"]+"\n"+"\n"+"\n")
+
+                    x=x+1
+                print(len(hasillist))
+                if len(hasillist)==0:
+                    return {
+                        "speech": "lantai "+str(lt)+" tidak ada jadwal hari ini",
+                        "displayText": "lantai "+str(lt)+" tidak ada jadwal hari ini",
+                        #"data": {},
+                        #"contextOut": [],
+                        "source": "lantai "+str(lt)+" tidak ada jadwal hari ini"
+                    }
+                r=""
+                for i in hasillist:
+                    r=r+i
+
+                return{"speech": "",
+                   "messages": [
+                    {
+                      "type": 0,
+                      "speech": ""
+                    },
+                    {
+                  "type": 4,
+                  "payload": {
+                     "line": {
+                        "type": "flex",
+                        "altText": "this is a flex message",
+                        "contents": {
+                         "type": "bubble",
+                          "body": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                              {
+                                "type": "text",
+                                "text": r,
+                                "wrap": True
+                              }
+                            ]
+                          }
+                         }
+                     }
+                  }
+                  }
+                    ]
+                }
         else:
             date = userp.child("searchDateR").get()
             metode = userp.child("searchD").get()
@@ -1108,79 +1182,6 @@ def makeWebhookResult(req):
         }
             
             
-                                                                       
-    if req.get("result").get("action") == "test":
-        result0 = req.get("result")
-        result = result0.get("resolvedQuery")
-        d = result0.get("parameters")
-        database = db.reference()
-        thn = int(result.split("/")[2].split(" ")[0])
-        bln = int(result.split("/")[1])
-        tgl = int(result.split("/")[0])
-        lt = d.get("lantai")
-        x=1
-        hasillist=[]
-        hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)+"/lantai:"+str(lt)).get()
-        if hasil==None:
-            return {
-                "speech": "lantai "+str(lt)+" tidak ada jadwal hari ini",
-                "displayText": "lantai "+str(lt)+" tidak ada jadwal hari ini",
-                #"data": {},
-                #"contextOut": [],
-                "source": "lantai "+str(lt)+" tidak ada jadwal hari ini"
-            }
-        while(x<len(hasil)):
-            print(hasil[x])
-            if hasil[x]["Nama Dosen"]==" ":
-                hasillist.append("Jam: "+hasil[x]["Jam"]+"\n"+"Mata Kuliah: "+hasil[x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil[x]["Ruang"]+"\n"+"\n"+"\n")
-            else:
-                hasillist.append("Jam: "+hasil[x]["Jam"]+"\n"+"Mata Kuliah: "+hasil[x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil[x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil[x]["Ruang"]+"\n"+"\n"+"\n")
-
-            x=x+1
-        print(len(hasillist))
-        if len(hasillist)==0:
-            return {
-                "speech": "lantai "+str(lt)+" tidak ada jadwal hari ini",
-                "displayText": "lantai "+str(lt)+" tidak ada jadwal hari ini",
-                #"data": {},
-                #"contextOut": [],
-                "source": "lantai "+str(lt)+" tidak ada jadwal hari ini"
-            }
-        r=""
-        for i in hasillist:
-            r=r+i
-            
-        return{"speech": "",
-           "messages": [
-            {
-              "type": 0,
-              "speech": ""
-            },
-            {
-          "type": 4,
-          "payload": {
-             "line": {
-                "type": "flex",
-                "altText": "this is a flex message",
-                "contents": {
-                 "type": "bubble",
-                  "body": {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": r,
-                        "wrap": True
-                      }
-                    ]
-                  }
-                 }
-             }
-          }
-          }
-            ]
-        }
         
     if req.get("result").get("action") == "dosen":
         result0 = req.get("result")
