@@ -569,11 +569,27 @@ def makeWebhookResult(req):
         
     #untuk input metode ruangan
     if req.get("result").get("action") == "inputRuangan":
-        result = req.get("result").get("resolvedQuery")
-        database = db.reference()
-        hasil = database.child("dataJSON/lantai1").get()
-        return hasil
+        result = req.get("result").get("resolvedQuery").split(" ")[1]
+        lantai = result.split("/")[0]
+        ruang = reuslt.split("/")[1]
         
+        if ruang=="-":  
+            database = db.reference()
+            hasil = database.child("dataJSON/lantai"+lantai).get()
+            return hasil
+        else:
+            #push to firebase
+            userp.update({
+                "name" : profile.display_name,
+                "searchD" : "Ruangan : "+ruang
+            })
+            date = userp.child("searchDateR").get()
+            #jika datenya blom ada
+            if date==None:
+                date="-"
+            hasil = flexMessageCari(date,"Ruangan : "+ruang)
+            return hasil
+            
     
     #untuk input tanggal
     if req.get("result").get("action") == "inputTanggal":
