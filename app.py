@@ -591,12 +591,36 @@ def makeWebhookResult(req):
                 r=""
                 for i in hasillist:
                     r=r+i
-                return {
-                    "speech": r,
-                    "displayText": r,
-                    #"data": {},
-                    #"contextOut": [],
-                    "source": r
+                return{"speech": "",
+                   "messages": [
+                    {
+                      "type": 0,
+                      "speech": ""
+                    },
+                    {
+                  "type": 4,
+                  "payload": {
+                     "line": {
+                        "type": "flex",
+                        "altText": "this is a flex message",
+                        "contents": {
+                         "type": "bubble",
+                          "body": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                              {
+                                "type": "text",
+                                "text": r,
+                                "wrap": True
+                              }
+                            ]
+                          }
+                         }
+                     }
+                  }
+                  }
+                    ]
                 }
             
             #jika dicari berdarkan nama dosen
@@ -645,12 +669,36 @@ def makeWebhookResult(req):
                 r=""
                 for i in hasillist:
                     r=r+i
-                return {
-                    "speech": r,
-                    "displayText": r,
-                    #"data": {},
-                    #"contextOut": [],
-                    "source": r
+                return{"speech": "",
+                   "messages": [
+                    {
+                      "type": 0,
+                      "speech": ""
+                    },
+                    {
+                  "type": 4,
+                  "payload": {
+                     "line": {
+                        "type": "flex",
+                        "altText": "this is a flex message",
+                        "contents": {
+                         "type": "bubble",
+                          "body": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                              {
+                                "type": "text",
+                                "text": r,
+                                "wrap": True
+                              }
+                            ]
+                          }
+                         }
+                     }
+                  }
+                  }
+                    ]
                 }
             
             #jika di cari berdasarkan lantai
