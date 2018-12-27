@@ -576,7 +576,7 @@ def makeWebhookResult(req):
 
             if ruang=="-":  
                 #validasi lantai
-                if ((int(lantai)<=5) and (int(lantai)>=1):  
+                if ((int(lantai)<=5) and (int(lantai)>=1)):  
                     database = db.reference()
                     hasil = database.child("dataJSON/lantai"+lantai).get()
                     return hasil
@@ -615,7 +615,6 @@ def makeWebhookResult(req):
     if req.get("result").get("action") == "inputTanggal": 
         try:
             result = req.get("result").get("resolvedQuery")
-
             # jika diminta roster besok
             if result.split("-H ")[1].lower()=="besok":
                 dateNow = str(datetime.datetime.now()+ timedelta(days=1,hours=7,seconds=60)).split(" ")[0]
