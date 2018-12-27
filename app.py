@@ -708,9 +708,9 @@ def makeWebhookResult(req):
             if (date==None and metode==None):
                 return flexMessageHasilCari("Tolong Masukan Tanggal dan Metodenya kak","Tanggal : -","Metode : -")
             elif (date==None):
-                return flexMessageHasilCari("Tolong Masukan Metodenya kak","Tanggal : -",metode)
+                return flexMessageHasilCari("Tolong Masukan Tanggalnya kak","Tanggal : -",metode)
             elif (metode==None):
-                return flexMessageHasilCari("Tolong Masukan Tanggalnya kak",date,"Metode : -")
+                return flexMessageHasilCari("Tolong Masukan Metodenya kak",date,"Metode : -")
             
             #proses
             metodeList = metode.split(" : ")
