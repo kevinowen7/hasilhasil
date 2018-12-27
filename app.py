@@ -567,6 +567,13 @@ def makeWebhookResult(req):
         hasil = flexMessageCari(date,"Dosen : "+result)
         return hasil
         
+    #untuk input metode ruangan
+    if req.get("result").get("action") == "inputRuangan":
+        result = req.get("result").get("resolvedQuery")
+        database = db.reference()
+        hasil = database.child("dataJSON/lantai1").get()
+        return hasil
+        
     
     #untuk input tanggal
     if req.get("result").get("action") == "inputTanggal":
