@@ -612,8 +612,7 @@ def makeWebhookResult(req):
             
     
     #untuk input tanggal
-    if req.get("result").get("action") == "inputTanggal":
-           
+    if req.get("result").get("action") == "inputTanggal": 
         try:
             result = req.get("result").get("resolvedQuery")
 
