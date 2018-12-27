@@ -610,6 +610,44 @@ def makeWebhookResult(req):
             }
             
     
+    #untuk input lantai
+    if req.get("result").get("action") == "inputLantai": 
+        try:
+            result = req.get("result").get("resolvedQuery")
+            if result=="-SETL":
+                return
+            else:
+                lantai = result.split(" ")[1]
+                if ((int(lantai)<=5) and (int(lantai)>=1)):
+                    #push to firebase
+                    userp.update({
+                        "name" : profile.display_name,
+                        "searchD" : "Lantai : "+str(int(lantai))
+                    })
+                    date = userp.child("searchDateR").get()
+                    #jika datenya blom ada
+                    if date==None:
+                        date="-"
+                    hasil = flexMessageCari(date,"Lantai : "+str(int(lantai)))
+                    return hasil
+                else:
+                    return {
+                        "speech": "Maaf kak , masukan lantai antara 1 sampai 5",
+                        "displayText": "Maaf kak , masukan lantai antara 1 sampai 5",
+                        #"data": {},
+                        #"contextOut": [],
+                        "source": "Maaf kak , masukan lantai antara 1 sampai 5"
+                    }
+        except Exception as res:
+            return  {
+                "speech": "Maaf kak format lantai yang di input salah :(",
+                "displayText": "Maaf kak format lantai yang di input salah :(",
+                #"data": {},
+                #"contextOut": [],
+                "source": "Maaf kak format lantai yang di input salah :("
+            }
+        
+        
     #untuk input tanggal
     if req.get("result").get("action") == "inputTanggal": 
         try:
