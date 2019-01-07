@@ -37,7 +37,7 @@ from linebot.models import (
 # firebase
 cred = credentials.Certificate("./serviceAccountKey.json")
 firebase_admin.initialize_app(cred,{
-    'databaseURL' : 'https://ithbtest.firebaseio.com'
+    'databaseURL' : 'https://minabot-aceess.firebaseio.com/'
 })
 
 line_bot_api = LineBotApi('tRo0KibnDeYJgRVUj01Nnh0+MSCTUhbyZo0HgSwtfRZzGt5Gh0kZUUuiDJkOswWWWsQulRJylBl3seFXcWr10Zu2SJldz8Qxd5sdBxxEQa2k374wJdd1vcNQVrGOusGnFErAt4SPvq4FhZLUdN1vEgdB04t89/1O/w1cDnyilFU=')
