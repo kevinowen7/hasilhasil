@@ -1425,44 +1425,8 @@ def makeWebhookResult(req):
     #falback
     if req.get("result").get("action") == "falback":
         return {
-            "speech": """
-pastikan formatnya bener kak
-
-kalo mau cek roster ruangan masukin tanggal nya dan opsinya
-
-opsinya:
-1. lantai (L)
-2. dosen (D)
-3. ruangan (R)
-
-contoh:
-12/9/2018 R 005
-12/9/2018 R aula
-13/9/2018 L 3
-14/9/2018 L 1
-15/9/2018 D Ventje
-16/9//2018 D mac
-
-sekiann""",
-            "displayText": """
-pastikan formatnya bener kak
-
-kalo mau cek roster ruangan masukin tanggal nya dan opsinya
-
-opsinya:
-1. lantai (L)
-2. dosen (D)
-3. ruangan (R)
-
-contoh:
-12/9/2018 R 005
-12/9/2018 R aula
-13/9/2018 L 3
-14/9/2018 L 1
-15/9/2018 D Ventje
-16/9//2018 D mac
-
-sekiann""",
+            "speech": "Maaf kak Mina belum terlalu mengerti , mohon gunakan fitur menu yang sudah tersedia dulu",
+            "displayText": "Maaf kak Mina belum terlalu mengerti , mohon gunakan fitur menu yang sudah tersedia dulu",
             #"data": {},
             #"contextOut": [],
             "source": "line"
