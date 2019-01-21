@@ -534,7 +534,7 @@ def flexMessageHasil(r):
           "payload": {
              "line": {
                 "type": "flex",
-                "altText": "Hasil Pencarian Rster Ruangan",
+                "altText": "Hasil Pencarian Roster Ruangan",
                 "contents": {
                  "type": "bubble",
                   "body": {
