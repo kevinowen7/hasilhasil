@@ -1431,6 +1431,7 @@ def makeWebhookResult(req):
             #jika tidak ada hasil
             if hasil==None:
                 return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") tidak ada jadwal")
+            return flexMessageHasil(str(hari))
             try:
                 matkul = userp.child("matkul").get()
                 matkul1 = matkul.split("\n")
@@ -1450,6 +1451,8 @@ def makeWebhookResult(req):
                         print("    ")
                         print(len(hasillist))
                         lt=lt+1
+                        
+                        
                 if hasillist==[]:
                     return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
                 else:
