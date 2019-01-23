@@ -1416,7 +1416,7 @@ def makeWebhookResult(req):
             while x<int(selisih_today_monday)-1:
                 w.append(str(today + datetime.timedelta(days=x)).split(" ")[0])
                 x=x+1
-
+            return flexMessageHasil("jadwalku")
             #cek hari
             cekHari = namaHari[int(hariKe)]
             dateAkhir = w[int(hariKe)]
