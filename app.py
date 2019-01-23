@@ -1431,38 +1431,34 @@ def makeWebhookResult(req):
             #jika tidak ada hasil
             if hasil==None:
                 return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") tidak ada jadwal")
-            try:
-                matkul = userp.child("matkul").get()
-                matkul1 = matkul.split("\n")
-                for i in matkul1:
-                    lt=1
-                    while (lt<=len(hasil)):
-                        x=1
-                        while(x<len(hasil["lantai:"+str(lt)])):
-                            return flexMessageHasil("aa ada jadwal")
-                            if (hasil["lantai:"+str(lt)][x]["Mata Kuliah"]).lower() == i.lower():
-                                if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
-                                    hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
-                                else:
-                                    hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+            matkul = userp.child("matkul").get()
+            matkul1 = matkul.split("\n")
+            for i in matkul1:
+                lt=1
+                while (lt<=len(hasil)):
+                    x=1
+                    while(x<len(hasil["lantai:"+str(lt)])):
+                        if (hasil["lantai:"+str(lt)][x]["Mata Kuliah"]).lower() == i.lower():
+                            if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
+                                hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+                            else:
+                                hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
 
-                            x=x+1
-                        print("    ")
-                        print("    ")
-                        print(len(hasillist))
-                        lt=lt+1
-                          
-                if hasillist==[]:
-                    return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
-                else:
-                    name = userp.child("name").get()
-                    r=""
-                    for i in hasillist:
-                        r=r+i
-                    hasillist=[]
-                    return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") : " +"\n"+"\n"+r)
-            except Exception as res:
-                return flexMessageHasil("Format jadwalku yang anda masukan salah")
+                        x=x+1
+                    print("    ")
+                    print("    ")
+                    print(len(hasillist))
+                    lt=lt+1
+
+            if hasillist==[]:
+                return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
+            else:
+                name = userp.child("name").get()
+                r=""
+                for i in hasillist:
+                    r=r+i
+                hasillist=[]
+                return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") : " +"\n"+"\n"+r)
         else:
             return flexMessageHasil("Format hari jadwalku yang anda masukan harus di antara 1 - 6")
         
