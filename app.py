@@ -1398,7 +1398,7 @@ def makeWebhookResult(req):
             today = datetime.datetime.now()+ timedelta(hours=7)
             selisih_today_monday = str(datetime.timedelta(days=-today.weekday(), weeks=1)).split(" ")[0]
             next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
-
+            return flexMessageHasil(str(today))
             todayS = str(today).split(" ")[0]
             # today
             today_hari = int(todayS.split("-")[2])
