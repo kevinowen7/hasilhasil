@@ -1451,14 +1451,14 @@ def makeWebhookResult(req):
                 lt=lt+1
 
         if hasillist==[]:
-            return flexMessageHasil("hari "++" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
+            return flexMessageHasil("hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
         else:
             name = val["name"]
             r=""
             for i in hasillist:
                 r=r+i
             hasillist=[]
-            return flexMessageHasil(r)
+            return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") : " +"\n"+"\n"+r)
     
     if req.get("result").get("action") == "add":
         matkul = userp.child("matkul").get()
