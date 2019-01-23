@@ -1428,36 +1428,39 @@ def makeWebhookResult(req):
             bulan = int(dateAkhir.split("-")[1])
             tahun = int(dateAkhir.split("-")[0])
             hasil = database.child(str(tahun)+"/"+str(bulan)+"/"+str(hari)).get()
-            matkul = userp.child("matkul").get()
-            matkul1 = matkul.split("\n")
-            for i in matkul1:
-                lt=1
-                while (lt<=len(hasil)):
-                    x=1
-                    while(x<len(hasil["lantai:"+str(lt)])):
-                        if (hasil["lantai:"+str(lt)][x]["Mata Kuliah"]).lower() == i.lower():
-                            if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
-                                hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
-                            else:
-                                hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+            try:
+                matkul = userp.child("matkul").get()
+                matkul1 = matkul.split("\n")
+                for i in matkul1:
+                    lt=1
+                    while (lt<=len(hasil)):
+                        x=1
+                        while(x<len(hasil["lantai:"+str(lt)])):
+                            if (hasil["lantai:"+str(lt)][x]["Mata Kuliah"]).lower() == i.lower():
+                                if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
+                                    hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+                                else:
+                                    hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
 
-                        x=x+1
-                    print("    ")
-                    print("    ")
-                    print(len(hasillist))
-                    lt=lt+1
-            return flexMessageHasil(hasillist[0])
-            if hasillist==[]:
-                return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
-            else:
-                name = userp.child("name").get()
-                r=""
-                for i in hasillist:
-                    r=r+i
-                hasillist=[]
-                return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") : " +"\n"+"\n"+r)
+                            x=x+1
+                        print("    ")
+                        print("    ")
+                        print(len(hasillist))
+                        lt=lt+1
+                return flexMessageHasil(len(hasillist))
+                if hasillist==[]:
+                    return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
+                else:
+                    name = userp.child("name").get()
+                    r=""
+                    for i in hasillist:
+                        r=r+i
+                    hasillist=[]
+                    return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") : " +"\n"+"\n"+r)
+            except Exception as res:
+                return flexMessageHasil("Hari format jadwalku yang anda masukan salah")
         else:
-            return flexMessageHasil("Hari format jadwalku yang anda masukan salah")
+            return flexMessageHasil("Hari format jadwalku yang anda masukan harus antara 1 - 6")
         
     # menambah matkul    
     if req.get("result").get("action") == "add":
