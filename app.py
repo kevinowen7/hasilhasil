@@ -1417,8 +1417,8 @@ def makeWebhookResult(req):
                 x=x+1
 
             #cek hari
-            cekHari = namaHari[int(hariKe-1)]
-            dateAkhir = w[int(hariKe-1)]
+            cekHari = namaHari[int(hariKe)-1]
+            dateAkhir = w[int(hariKe)-1]
 
 
             #proses
