@@ -1390,76 +1390,78 @@ def makeWebhookResult(req):
     if req.get("result").get("action") == "jadwalku":
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
-        hariKe = result.split("-JDWLKU")[1]
-        #next monday
-        namaHari=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"]
-        w=[]
-        today = datetime.datetime.now()+ timedelta(hours=7)
-        selisih_today_monday = str(datetime.timedelta(days=-today.weekday(), weeks=1)).split(" ")[0]
-        next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
+        hariKe = result.split(" ")[1]
+        if ((int(hariKe)<6) and (int(hariKe)>0)):
+            #next monday
+            namaHari=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"]
+            w=[]
+            today = datetime.datetime.now()+ timedelta(hours=7)
+            selisih_today_monday = str(datetime.timedelta(days=-today.weekday(), weeks=1)).split(" ")[0]
+            next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
 
-        todayS = str(today).split(" ")[0]
-        # today
-        today_hari = int(todayS.split("-")[2])
-        today_bulan = int(todayS.split("-")[1])
-        today_tahun = int(todayS.split("-")[0])
-        selisih = 6-int(selisih_today_monday)
+            todayS = str(today).split(" ")[0]
+            # today
+            today_hari = int(todayS.split("-")[2])
+            today_bulan = int(todayS.split("-")[1])
+            today_tahun = int(todayS.split("-")[0])
+            selisih = 6-int(selisih_today_monday)
 
-        x=0
-        #monday ke selisih_today_monday
-        while x<=int(selisih):
-            w.append(str(next_monday + datetime.timedelta(days=x)).split(" ")[0])
-            x=x+1
-        #today ke monday
-        x=0
-        while x<int(selisih_today_monday)-1:
-            w.append(str(today + datetime.timedelta(days=x)).split(" ")[0])
-            x=x+1
+            x=0
+            #monday ke selisih_today_monday
+            while x<=int(selisih):
+                w.append(str(next_monday + datetime.timedelta(days=x)).split(" ")[0])
+                x=x+1
+            #today ke monday
+            x=0
+            while x<int(selisih_today_monday)-1:
+                w.append(str(today + datetime.timedelta(days=x)).split(" ")[0])
+                x=x+1
 
-        #cek hari
-        cekHari = namaHari[int(hariKe)]
-        dateAkhir = w[int(hariKe)]
-        dateAkhir_hari = int(dateAkhir.split("-")[2])
-        dateAkhir_bulan = int(dateAkhir.split("-")[1])
-        dateAkhir_tahun = int(dateAkhir.split("-")[0])
-        
-        #proses
-        x=1
-        hasillist=[]
-        hari = int(dateAkhir.split("-")[2])
-        bulan = int(dateAkhir.split("-")[1])
-        tahun = int(dateAkhir.split("-")[0])
-        hasil = database.child(str(tahun)+"/"+str(bulan)+"/"+str(hari)).get()
-        matkul = userp.child("matkul").get()
-        matkul1 = matkul.split("\n")
-        
-        for i in matkul1:
-            lt=1
-            while (lt<=len(hasil)):
-                x=1
-                while(x<len(hasil["lantai:"+str(lt)])):
-                    if (hasil["lantai:"+str(lt)][x]["Mata Kuliah"]).lower() == i.lower():
-                        if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
-                            hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
-                        else:
-                            hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+            #cek hari
+            cekHari = namaHari[int(hariKe)]
+            dateAkhir = w[int(hariKe)]
+            dateAkhir_hari = int(dateAkhir.split("-")[2])
+            dateAkhir_bulan = int(dateAkhir.split("-")[1])
+            dateAkhir_tahun = int(dateAkhir.split("-")[0])
 
-                    x=x+1
-                print("    ")
-                print("    ")
-                print(len(hasillist))
-                lt=lt+1
-
-        if hasillist==[]:
-            return flexMessageHasil("hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
-        else:
-            name = val["name"]
-            r=""
-            for i in hasillist:
-                r=r+i
+            #proses
+            x=1
             hasillist=[]
-            return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") : " +"\n"+"\n"+r)
-    
+            hari = int(dateAkhir.split("-")[2])
+            bulan = int(dateAkhir.split("-")[1])
+            tahun = int(dateAkhir.split("-")[0])
+            hasil = database.child(str(tahun)+"/"+str(bulan)+"/"+str(hari)).get()
+            matkul = userp.child("matkul").get()
+            matkul1 = matkul.split("\n")
+
+            for i in matkul1:
+                lt=1
+                while (lt<=len(hasil)):
+                    x=1
+                    while(x<len(hasil["lantai:"+str(lt)])):
+                        if (hasil["lantai:"+str(lt)][x]["Mata Kuliah"]).lower() == i.lower():
+                            if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
+                                hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+                            else:
+                                hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+
+                        x=x+1
+                    print("    ")
+                    print("    ")
+                    print(len(hasillist))
+                    lt=lt+1
+
+            if hasillist==[]:
+                return flexMessageHasil("hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
+            else:
+                name = val["name"]
+                r=""
+                for i in hasillist:
+                    r=r+i
+                hasillist=[]
+                return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") : " +"\n"+"\n"+r)
+        else:
+            return flexMessageHasil("Hari format jadwalku yang anda masukan salah")
     if req.get("result").get("action") == "add":
         matkul = userp.child("matkul").get()
         if matkul == None:
