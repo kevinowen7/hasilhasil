@@ -1390,7 +1390,7 @@ def makeWebhookResult(req):
     if req.get("result").get("action") == "jadwalku":
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
-        hariKe = result.split(" ")[1]
+        hariKe = result.split("-")[1]
         if ((int(hariKe)<7) and (int(hariKe)>0)):
             #next monday
             namaHari=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"]
