@@ -1420,9 +1420,7 @@ def makeWebhookResult(req):
             #cek hari
             cekHari = namaHari[int(hariKe)]
             dateAkhir = w[int(hariKe)]
-            dateAkhir_hari = int(dateAkhir.split("-")[2])
-            dateAkhir_bulan = int(dateAkhir.split("-")[1])
-            dateAkhir_tahun = int(dateAkhir.split("-")[0])
+
 
             #proses
             x=1
@@ -1433,7 +1431,6 @@ def makeWebhookResult(req):
             hasil = database.child(str(tahun)+"/"+str(bulan)+"/"+str(hari)).get()
             matkul = userp.child("matkul").get()
             matkul1 = matkul.split("\n")
-            return flexMessageHasil("dd")
             for i in matkul1:
                 lt=1
                 while (lt<=len(hasil)):
@@ -1454,7 +1451,7 @@ def makeWebhookResult(req):
             if hasillist==[]:
                 return flexMessageHasil("hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
             else:
-                name = val["name"]
+                name = userp.child("name").get()
                 r=""
                 for i in hasillist:
                     r=r+i
