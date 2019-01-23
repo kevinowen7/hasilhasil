@@ -1391,25 +1391,48 @@ def makeWebhookResult(req):
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
         hariKe = result.split("-JDWLKU")[1]
-        #last monday
+        #next monday
+        namaHari=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"]
+        w=[]
         today = datetime.datetime.now()+ timedelta(hours=7)
-        last_monday = str(today - datetime.timedelta(days=today.weekday())).split(" ")[0]
-        last_monday_hari = int(last_monday.split("-")[2])
-        last_monday_bulan = int(last_monday.split("-")[1])
-        last_monday_tahun = int(last_monday.split("-")[0])
-        #hari yang dicari
-        finalHari = datetime.date(last_monday_tahun,last_monday_bulan,last_monday_hari)
-        finalHari = str(finalHari + datetime.timedelta(days=hariKe))
+        selisih_today_monday = str(datetime.timedelta(days=-today.weekday(), weeks=1)).split(" ")[0]
+        next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
+
+        todayS = str(today).split(" ")[0]
+        # today
+        today_hari = int(todayS.split("-")[2])
+        today_bulan = int(todayS.split("-")[1])
+        today_tahun = int(todayS.split("-")[0])
+        selisih = 6-int(selisih_today_monday)
+
+        x=0
+        #monday ke selisih_today_monday
+        while x<=int(selisih):
+            w.append(str(next_monday + datetime.timedelta(days=x)).split(" ")[0])
+            x=x+1
+        #today ke monday
+        x=0
+        while x<int(selisih_today_monday)-1:
+            w.append(str(today + datetime.timedelta(days=x)).split(" ")[0])
+            x=x+1
+
+        #cek hari
+        cekHari = namaHari[int(hariKe)]
+        dateAkhir = w[int(hariKe)]
+        dateAkhir_hari = int(dateAkhir.split("-")[2])
+        dateAkhir_bulan = int(dateAkhir.split("-")[1])
+        dateAkhir_tahun = int(dateAkhir.split("-")[0])
         
-        database = db.reference()
+        #proses
         x=1
         hasillist=[]
-        hari = int(finalHari.split("-")[2])
-        bulan = int(finalHari.split("-")[2])
-        tahun = int(finalHari.split("-")[2])
+        hari = int(dateAkhir.split("-")[2])
+        bulan = int(dateAkhir.split("-")[1])
+        tahun = int(dateAkhir.split("-")[0])
         hasil = database.child(str(tahun)+"/"+str(bulan)+"/"+str(hari)).get()
         matkul = userp.child("matkul").get()
         matkul1 = matkul.split("\n")
+        
         for i in matkul1:
             lt=1
             while (lt<=len(hasil)):
@@ -1428,7 +1451,7 @@ def makeWebhookResult(req):
                 lt=lt+1
 
         if hasillist==[]:
-            return flexMessageHasil("hari ini ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
+            return flexMessageHasil("hari "++" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
         else:
             name = val["name"]
             r=""
