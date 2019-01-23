@@ -1398,7 +1398,6 @@ def makeWebhookResult(req):
             today = datetime.datetime.now()+ timedelta(hours=7)
             selisih_today_monday = str(datetime.timedelta(days=-today.weekday(), weeks=1)).split(" ")[0]
             next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
-            return flexMessageHasil(str(today))
             todayS = str(today).split(" ")[0]
             # today
             today_hari = int(todayS.split("-")[2])
@@ -1459,6 +1458,8 @@ def makeWebhookResult(req):
                 return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") : " +"\n"+"\n"+r)
         else:
             return flexMessageHasil("Hari format jadwalku yang anda masukan salah")
+        
+    # menambah matkul    
     if req.get("result").get("action") == "add":
         matkul = userp.child("matkul").get()
         if matkul == None:
