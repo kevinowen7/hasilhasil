@@ -1439,6 +1439,7 @@ def makeWebhookResult(req):
                     while (lt<=len(hasil)):
                         x=1
                         while(x<len(hasil["lantai:"+str(lt)])):
+                            return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") tidak ada jadwal")  
                             if (hasil["lantai:"+str(lt)][x]["Mata Kuliah"]).lower() == i.lower():
                                 if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
                                     hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
@@ -1450,8 +1451,7 @@ def makeWebhookResult(req):
                         print("    ")
                         print(len(hasillist))
                         lt=lt+1
-                        
-                return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") tidak ada jadwal")    
+                          
                 if hasillist==[]:
                     return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
                 else:
