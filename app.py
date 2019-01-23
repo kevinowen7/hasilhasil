@@ -1447,7 +1447,7 @@ def makeWebhookResult(req):
                         print("    ")
                         print(len(hasillist))
                         lt=lt+1
-                return flexMessageHasil(len(hasillist))
+                return flexMessageHasil(str(len(hasillist)))
                 if hasillist==[]:
                     return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
                 else:
