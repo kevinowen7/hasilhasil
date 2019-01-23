@@ -1428,6 +1428,9 @@ def makeWebhookResult(req):
             bulan = int(dateAkhir.split("-")[1])
             tahun = int(dateAkhir.split("-")[0])
             hasil = database.child(str(tahun)+"/"+str(bulan)+"/"+str(hari)).get()
+            #jika tidak ada hasil
+            if hasil==None:
+                return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") tidak ada jadwal")
             try:
                 matkul = userp.child("matkul").get()
                 matkul1 = matkul.split("\n")
@@ -1458,9 +1461,9 @@ def makeWebhookResult(req):
                     hasillist=[]
                     return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") : " +"\n"+"\n"+r)
             except Exception as res:
-                return flexMessageHasil("Hari format jadwalku yang anda masukan salah")
+                return flexMessageHasil("Format jadwalku yang anda masukan salah")
         else:
-            return flexMessageHasil("Hari format jadwalku yang anda masukan harus antara 1 - 6")
+            return flexMessageHasil("Format hari jadwalku yang anda masukan harus di antara 1 - 6")
         
     # menambah matkul    
     if req.get("result").get("action") == "add":
