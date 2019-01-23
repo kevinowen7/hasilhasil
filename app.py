@@ -1391,7 +1391,7 @@ def makeWebhookResult(req):
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
         hariKe = result.split(" ")[1]
-        if ((int(hariKe)<6) and (int(hariKe)>0)):
+        if ((int(hariKe)<7) and (int(hariKe)>0)):
             #next monday
             namaHari=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"]
             w=[]
@@ -1418,8 +1418,8 @@ def makeWebhookResult(req):
                 x=x+1
 
             #cek hari
-            cekHari = namaHari[int(hariKe)]
-            dateAkhir = w[int(hariKe)]
+            cekHari = namaHari[int(hariKe-1)]
+            dateAkhir = w[int(hariKe-1)]
 
 
             #proses
