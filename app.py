@@ -899,22 +899,18 @@ def makeWebhookResult(req):
             #jika sudah memilih tanggal
             thn = int(date.split("/")[2])
             bln = int(date.split("/")[1])
-            tgl = int(date.split("/")[0])
             
-            #jika belum memilih hari
-            if tgl=="-":
+            try:
+                tgl = int(date.split("/")[0])
+            except Exception as res:   
+                #jika belum memilih hari
                 return flexMessageHari(str(bln),str(thn),"SETL",str(lt))
+            
             x=1
             hasillist=[]
             hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)+"/lantai:"+str(lt)).get()
             if hasil==None:
-                return {
-                    "speech": "lantai "+str(lt)+" tidak ada jadwal hari ini",
-                    "displayText": "lantai "+str(lt)+" tidak ada jadwal hari ini",
-                    #"data": {},
-                    #"contextOut": [],
-                    "source": "lantai "+str(lt)+" tidak ada jadwal hari ini"
-                }
+                return flexMessageHasil("lantai "+str(lt)+" tidak ada jadwal hari ini"+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
             while(x<len(hasil)):
                 print(hasil[x])
                 if hasil[x]["Nama Dosen"]==" ":
@@ -925,18 +921,12 @@ def makeWebhookResult(req):
                 x=x+1
             print(len(hasillist))
             if len(hasillist)==0:
-                return {
-                    "speech": "lantai "+str(lt)+" tidak ada jadwal hari ini",
-                    "displayText": "lantai "+str(lt)+" tidak ada jadwal hari ini",
-                    #"data": {},
-                    #"contextOut": [],
-                    "source": "lantai "+str(lt)+" tidak ada jadwal hari ini"
-                }
+                return flexMessageHasil("lantai "+str(lt)+" tidak ada jadwal hari ini"+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
             r=""
             for i in hasillist:
                 r=r+i
             #output    
-            return flexMessageHasil(r)
+            return flexMessageHasil("lantai "+str(lt)+" ada jadwal hari ini"+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n\n"+r)
             
             
     #untuk input tanggal
