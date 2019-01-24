@@ -964,16 +964,18 @@ def makeWebhookResult(req):
             try:
                 date = result.split(" ")[2]
             except Exception as res:
-                dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
-                tahun = dateNow.split("-")[0]
-                bulan = dateNow.split("-")[1]
+                tahun = int(date.split("/")[2])
+                bln = int(date.split("/")[1])
                 return flexMessageHari(bulan,tahun,"SETL",str(lt))
             
             #jika sudah memilih tanggal
             thn = int(date.split("/")[2])
             bln = int(date.split("/")[1])
             tgl = int(date.split("/")[0])
-
+            
+            #jika belum memilih hari
+            if tgl=="-":
+                return flexMessageHari(bln,thn,"SETL",str(lt))
             x=1
             hasillist=[]
             hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)+"/lantai:"+str(lt)).get()
