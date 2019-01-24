@@ -1438,6 +1438,7 @@ def makeWebhookResult(req):
                 while (lt<=len(hasil)):
                     x=1
                     # jika ltnya loncat langsung lt 2 dst
+                    return flexMessageHasil(str(hasil["lantai:"+str(lt)]))
                     if hasil["lantai:"+str(lt)]==None:
                         lt=lt+1
                     else:
