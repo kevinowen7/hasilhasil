@@ -1436,7 +1436,7 @@ def makeWebhookResult(req):
             matkul1 = matkul.split("\n")
             for i in matkul1:
                 lt=1
-                while (lt<=len(hasil)):
+                while (lt<=5):
                     x=1
                     try:
                         while(x<len(hasil["lantai:"+str(lt)])):
@@ -1456,7 +1456,7 @@ def makeWebhookResult(req):
                         lt=lt+1
                     
             if hasillist==[]:
-                return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
+                return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas")
             else:
                 name = userp.child("name").get()
                 r=""
