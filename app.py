@@ -911,9 +911,9 @@ def makeWebhookResult(req):
             dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
             tahun = dateNow.split("-")[0]
             bulan = dateNow.split("-")[1]
-            lantai = req.get("result").get("resolvedQuery")
+            lantai = req.get("result").get("resolvedQuery").split("-SETL")[1]
             if ((int(lantai)<=5) and (int(lantai)>=1)):
-                return flexMessageHari(bulan,tahun,"SETL",lantai)
+                return flexMessageHari(bulan,tahun,"SETL",str(lantai))
             else:
                 return flexMessageHasil("Maaf kak , masukan lantai antara 1 sampai 5")
         except Exception as res:
