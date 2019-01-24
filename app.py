@@ -903,7 +903,7 @@ def makeWebhookResult(req):
             
             #jika belum memilih hari
             if tgl=="-":
-                return flexMessageHari(bln,thn,"SETL",str(lt))
+                return flexMessageHari(str(bln),str(thn),"SETL",str(lt))
             x=1
             hasillist=[]
             hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)+"/lantai:"+str(lt)).get()
