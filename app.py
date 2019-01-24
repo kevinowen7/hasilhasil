@@ -911,7 +911,7 @@ def makeWebhookResult(req):
                                   "width": 1031,
                                   "height": 166
                                 },
-                                "text": "-SETL1"
+                                "text": "-SETL 1"
                               },
                               {
                                 "type": "message",
@@ -921,7 +921,7 @@ def makeWebhookResult(req):
                                   "width": 1040,
                                   "height": 160
                                 },
-                                "text": "-SETL2"
+                                "text": "-SETL 2"
                               },
                               {
                                 "type": "message",
@@ -931,7 +931,7 @@ def makeWebhookResult(req):
                                   "width": 1038,
                                   "height": 163
                                 },
-                                "text": "-SETL3"
+                                "text": "-SETL 3"
                               },
                               {
                                 "type": "message",
@@ -941,7 +941,7 @@ def makeWebhookResult(req):
                                   "width": 1035,
                                   "height": 160
                                 },
-                                "text": "-SETL4"
+                                "text": "-SETL 4"
                               },
                               {
                                 "type": "message",
@@ -951,7 +951,7 @@ def makeWebhookResult(req):
                                   "width": 1040,
                                   "height": 166
                                 },
-                                "text": "-SETL5"
+                                "text": "-SETL 5"
                               }
                             ]
                           }
