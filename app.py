@@ -1436,6 +1436,7 @@ def makeWebhookResult(req):
             for i in matkul1:
                 lt=1
                 while (lt<=len(hasil)):
+                    return flexMessageHasil("kamu tidak ada kelas :)")
                     x=1
                     while(x<len(hasil["lantai:"+str(lt)])):
                         if (hasil["lantai:"+str(lt)][x]["Mata Kuliah"]).lower() == i.lower():
