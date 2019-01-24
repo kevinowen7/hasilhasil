@@ -857,9 +857,9 @@ def makeWebhookResult(req):
         result = req.get("result").get("resolvedQuery")
 
         dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
-        thn = dateNow.split("-")[0]
-        bln = dateNow.split("-")[1]
-        tgl = dateNow.split("-")[2]
+        thn = int(dateNow.split("-")[0])
+        bln = int(dateNow.split("-")[1])
+        tgl = int(dateNow.split("-")[2])
 
         hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
         if hasil==None:
