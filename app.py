@@ -901,117 +901,23 @@ def makeWebhookResult(req):
         dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
         tahun = dateNow.split("-")[0]
         bulan = dateNow.split("-")[1]
-        return flexMessageHari(bulan,tahun,"R",result)
+        return flexMessageHari(bulan,tahun,"SETR",result)
             
             
     
     #untuk input lantai
     if req.get("result").get("action") == "inputLantai": 
         try:
-            result = req.get("result").get("resolvedQuery")
-            if result=="-SETL":
-                #return flex message pilih lantai
-                return 	{
-                  "speech": "",
-                  "messages": [
-                    {
-                      "type": 4,
-                      "payload": {
-                            "line" : {
-                              "type": "imagemap",
-                              "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_lantai%2FPilih%20Lantai.png?alt=media&_ignore=",
-                              "altText": "Pilih Lantai",
-                              "baseSize": {
-                                "width": 1040,
-                                "height": 1040
-                              },
-                              "actions": [
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 2,
-                                    "y": 219,
-                                    "width": 1031,
-                                    "height": 166
-                                  },
-                                  "text": "-SETL 1"
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 0,
-                                    "y": 390,
-                                    "width": 1040,
-                                    "height": 160
-                                  },
-                                  "text": "-SETL 2"
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 2,
-                                    "y": 550,
-                                    "width": 1038,
-                                    "height": 163
-                                  },
-                                  "text": "-SETL 3"
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 0,
-                                    "y": 714,
-                                    "width": 1035,
-                                    "height": 160
-                                  },
-                                  "text": "-SETL 4"
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 0,
-                                    "y": 874,
-                                    "width": 1040,
-                                    "height": 166
-                                  },
-                                  "text": "-SETL 5"
-                                }
-                              ]
-                            }
-                        }
-                    }
-                ]
-            }	
+            dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
+            tahun = dateNow.split("-")[0]
+            bulan = dateNow.split("-")[1]
+            lantai = req.get("result").get("resolvedQuery")
+            if ((int(lantai)<=5) and (int(lantai)>=1)):
+                return flexMessageHari(bulan,tahun,"SETL",lantai)
             else:
-                lantai = result.split(" ")[1]
-                if ((int(lantai)<=5) and (int(lantai)>=1)):
-                    #push to firebase
-                    userp.update({
-                        "name" : profile.display_name,
-                        "searchD" : "Lantai : "+str(int(lantai))
-                    })
-                    date = userp.child("searchDateR").get()
-                    #jika datenya blom ada
-                    if date==None:
-                        date="-"
-                    hasil = flexMessageCari(date,"Lantai : "+str(int(lantai)))
-                    return hasil
-                else:
-                    return {
-                        "speech": "Maaf kak , masukan lantai antara 1 sampai 5",
-                        "displayText": "Maaf kak , masukan lantai antara 1 sampai 5",
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": "Maaf kak , masukan lantai antara 1 sampai 5"
-                    }
+                return flexMessageHasil("Maaf kak , masukan lantai antara 1 sampai 5")
         except Exception as res:
-            return  {
-                "speech": "Maaf kak format lantai yang di input salah :(",
-                "displayText": "Maaf kak format lantai yang di input salah :(",
-                #"data": {},
-                #"contextOut": [],
-                "source": "Maaf kak format lantai yang di input salah :("
-            }
+            return flexMessageHasil("Maaf kak format lantai yang di input salah :(")
         
         
     #untuk input tanggal
