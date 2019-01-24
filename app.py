@@ -797,49 +797,7 @@ def makeWebhookResult(req):
             if metodeK == "Dosen":
                 dosen = metode.split("Dosen : ")[1]
                 
-                thn = int(date.split("/")[2])
-                bln = int(date.split("/")[1])
-                tgl = int(date.split("/")[0])
-
-                database = db.reference()
-                hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
-                if hasil==None:
-                    return {
-                        "speech": dosen+" tidak ada jadwal hari ini",
-                        "displayText": dosen+" tidak ada jadwal hari ini",
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": dosen+" tidak ada jadwal hari ini"
-                    }
-                lt=1
-                hasillist=[]
-                while(lt<len(hasil)+1):
-                    x=1
-                    try:
-                        while(x<len(hasil["lantai:"+str(lt)])):
-                            if(dosen.lower() in hasil["lantai:"+str(lt)][x]["Nama Dosen"].lower()) or (dosen.lower() in hasil["lantai:"+str(lt)][x]["Mata Kuliah"].lower()):
-                                if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
-                                    hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
-                                else:
-                                    hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
-                            print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
-                            x=x+1
-                        lt=lt+1
-                    except Exception as res:
-                        lt=lt+1
-                if len(hasillist)==0:
-                    return {
-                        "speech": dosen+" tidak ada jadwal hari ini",
-                        "displayText": dosen+" tidak ada jadwal hari ini",
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": dosen+" tidak ada jadwal hari ini"
-                    }
-                r=""
-                for i in hasillist:
-                    r=r+i
-                #output    
-                return flexMessageHasil(r)
+                
             
             #jika di cari berdasarkan lantai
             if metodeK=="Lantai":
@@ -899,9 +857,48 @@ def makeWebhookResult(req):
         result = req.get("result").get("resolvedQuery")
 
         dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
-        tahun = dateNow.split("-")[0]
-        bulan = dateNow.split("-")[1]
-        return flexMessageHari(bulan,tahun,"D",result)
+        thn = dateNow.split("-")[0]
+        bln = dateNow.split("-")[1]
+        tgl = dateNow.split("-")[2]
+
+        hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
+        if hasil==None:
+            return {
+                "speech": dosen+" tidak ada jadwal hari ini",
+                "displayText": dosen+" tidak ada jadwal hari ini",
+                #"data": {},
+                #"contextOut": [],
+                "source": dosen+" tidak ada jadwal hari ini"
+            }
+        lt=1
+        hasillist=[]
+        while(lt<len(hasil)+1):
+            x=1
+            try:
+                while(x<len(hasil["lantai:"+str(lt)])):
+                    if(dosen.lower() in hasil["lantai:"+str(lt)][x]["Nama Dosen"].lower()) or (dosen.lower() in hasil["lantai:"+str(lt)][x]["Mata Kuliah"].lower()):
+                        if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
+                            hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
+                        else:
+                            hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+                    print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
+                    x=x+1
+                lt=lt+1
+            except Exception as res:
+                lt=lt+1
+        if len(hasillist)==0:
+            return {
+                "speech": dosen+" tidak ada jadwal hari ini",
+                "displayText": dosen+" tidak ada jadwal hari ini",
+                #"data": {},
+                #"contextOut": [],
+                "source": dosen+" tidak ada jadwal hari ini"
+            }
+        r=""
+        for i in hasillist:
+            r=r+i
+        #output    
+        return flexMessageHasil(r)
         
     #untuk input metode ruangan
     if req.get("result").get("action") == "inputRuangan": 
