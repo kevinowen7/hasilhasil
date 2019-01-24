@@ -903,8 +903,11 @@ def makeWebhookResult(req):
             try:
                 tgl = int(date.split("/")[0])
             except Exception as res:   
-                #jika belum memilih hari
-                return flexMessageHari(str(bln),str(thn),"SETL",str(lt))
+                #jika belum memilih hari dan validasi
+                if (bln>0) and (bln<13):
+                    return flexMessageHari(str(bln),str(thn),"SETL",str(lt))
+                else:
+                    return flexMessageHari("Format tanggal yang dimasukan salah kak")
             
             x=1
             hasillist=[]
