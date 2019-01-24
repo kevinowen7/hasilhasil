@@ -1460,9 +1460,11 @@ def makeWebhookResult(req):
             if hasil==None:
                 return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") tidak ada jadwal")
             matkul = userp.child("matkul").get()
+            #name
+            name = userp.child("name").get()
             #jika tidak ada matkul yang terdaftar
             if matkul==None:
-                return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") tidak ada jadwal")
+                return flexMessageHasil("Maaf kak "+str(name)+" anda belum mendaftarkan Mata kuliah, silahkan daftarkan mata kuliah anda")
             matkul1 = matkul.split("\n")
             for i in matkul1:
                 lt=1
