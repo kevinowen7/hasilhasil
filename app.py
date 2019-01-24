@@ -854,7 +854,7 @@ def makeWebhookResult(req):
         
     #untuk input metode dosen
     if req.get("result").get("action") == "inputDosen":
-        result = req.get("result").get("resolvedQuery")
+        dosen = req.get("result").get("resolvedQuery")
 
         dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
         thn = int(dateNow.split("-")[0])
