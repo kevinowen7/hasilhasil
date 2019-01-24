@@ -913,7 +913,7 @@ def makeWebhookResult(req):
             hasillist=[]
             hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)+"/lantai:"+str(lt)).get()
             if hasil==None:
-                return flexMessageHasil("lantai "+str(lt)+" tidak ada jadwal hari ini"+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
+                return flexMessageHasil("lantai "+str(lt)+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
             while(x<len(hasil)):
                 print(hasil[x])
                 if hasil[x]["Nama Dosen"]==" ":
@@ -924,12 +924,12 @@ def makeWebhookResult(req):
                 x=x+1
             print(len(hasillist))
             if len(hasillist)==0:
-                return flexMessageHasil("lantai "+str(lt)+" tidak ada jadwal hari ini"+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
+                return flexMessageHasil("lantai "+str(lt)+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
             r=""
             for i in hasillist:
                 r=r+i
             #output    
-            return flexMessageHasil("lantai "+str(lt)+" ada jadwal hari ini"+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n\n"+r)
+            return flexMessageHasil("lantai "+str(lt)+" ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n\n"+r)
             
             
     #untuk input tanggal
