@@ -61,7 +61,7 @@ def webhook():
     
     return r
 
-def flexMessageHari(bulan,tahun):
+def flexMessageHari(bulan,tahun,tipeCari,cari):
     return {
         "speech": "",
         "messages": [
@@ -85,7 +85,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 110,
                         "height": 97
                       },
-                      "text": "-H "+"01/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 01/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -95,7 +95,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 108,
                         "height": 97
                       },
-                      "text": "-H "+"02/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 02/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -105,7 +105,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 111,
                         "height": 115
                       },
-                      "text": "-H "+"03/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 03/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -115,7 +115,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 110,
                         "height": 115
                       },
-                      "text": "-H "+"04/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 04/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -125,7 +125,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 112,
                         "height": 115
                       },
-                      "text": "-H "+"05/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 05/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -135,7 +135,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 121,
                         "height": 110
                       },
-                      "text": "-H "+"06/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 06/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -145,7 +145,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 119,
                         "height": 120
                       },
-                      "text": "-H "+"07/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 07/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -155,7 +155,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 115,
                         "height": 96
                       },
-                      "text": "-H "+"08/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 08/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -165,7 +165,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 108,
                         "height": 105
                       },
-                      "text": "-H "+"09/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 09/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -175,7 +175,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 115,
                         "height": 103
                       },
-                      "text": "-H "+"10/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 10/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -185,7 +185,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 108,
                         "height": 96
                       },
-                      "text": "-H "+"11/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 11/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -195,7 +195,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 114,
                         "height": 102
                       },
-                      "text": "-H "+"12/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 12/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -205,7 +205,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 125,
                         "height": 101
                       },
-                      "text": "-H "+"13/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 13/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -215,7 +215,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 117,
                         "height": 103
                       },
-                      "text": "-H "+"14/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 14/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -225,7 +225,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 114,
                         "height": 101
                       },
-                      "text": "-H "+"15/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 15/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -235,7 +235,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 113,
                         "height": 105
                       },
-                      "text": "-H "+"16/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 16/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -245,7 +245,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 122,
                         "height": 97
                       },
-                      "text": "-H "+"17/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 17/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -255,7 +255,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 108,
                         "height": 105
                       },
-                      "text": "-H "+"18/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 18/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -265,7 +265,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 115,
                         "height": 101
                       },
-                      "text": "-H "+"19/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 19/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -275,7 +275,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 123,
                         "height": 105
                       },
-                      "text": "-H "+"20/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 20/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -285,7 +285,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 123,
                         "height": 103
                       },
-                      "text": "-H "+"21/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 21/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -295,7 +295,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 126,
                         "height": 104
                       },
-                      "text": "-H "+"22/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 22/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -305,7 +305,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 120,
                         "height": 103
                       },
-                      "text": "-H "+"23/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 23/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -315,7 +315,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 118,
                         "height": 108
                       },
-                      "text": "-H "+"24/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 24/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -325,7 +325,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 110,
                         "height": 95
                       },
-                      "text": "-H "+"25/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 25/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -335,7 +335,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 108,
                         "height": 100
                       },
-                      "text": "-H "+"26/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 26/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -345,7 +345,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 124,
                         "height": 96
                       },
-                      "text": "-H "+"27/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 27/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -355,7 +355,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 118,
                         "height": 108
                       },
-                      "text": "-H "+"28/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 28/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -365,7 +365,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 120,
                         "height": 98
                       },
-                      "text": "-H "+"29/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 29/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -375,7 +375,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 121,
                         "height": 101
                       },
-                      "text": "-H "+"30/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 30/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -385,7 +385,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 120,
                         "height": 101
                       },
-                      "text": "-H "+"31/"+bulan+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" 31/"+bulan+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -395,7 +395,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 137,
                         "height": 149
                       },
-                      "text": "-H "+"-/"+str(int(bulan)-1)+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" -/"+str(int(bulan)-1)+"/"+tahun
                     },
                     {
                       "type": "message",
@@ -405,7 +405,7 @@ def flexMessageHari(bulan,tahun):
                         "width": 121,
                         "height": 147
                       },
-                      "text": "-H "+"-/"+str(int(bulan)+1)+"/"+tahun
+                      "text": "-"+tipeCari+" "+cari+" -/"+str(int(bulan)+1)+"/"+tahun
                     }
                   ]
                 }
@@ -897,133 +897,21 @@ def makeWebhookResult(req):
     #untuk input metode dosen
     if req.get("result").get("action") == "inputDosen":
         result = req.get("result").get("resolvedQuery")
-        #push to firebase
-        userp.update({
-            "name" : profile.display_name,
-            "searchD" : "Dosen : "+result
-        })
-        date = userp.child("searchDateR").get()
-        #jika datenya blom ada
-        if date==None:
-            date="-"
-        hasil = flexMessageCari(date,"Dosen : "+result)
-        return hasil
+
+        dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
+        tahun = dateNow.split("-")[0]
+        bulan = dateNow.split("-")[1]
+        return flexMessageHari(bulan,tahun,"D",result)
         
     #untuk input metode ruangan
     if req.get("result").get("action") == "inputRuangan": 
-        try:
-            result = req.get("result").get("resolvedQuery").split("-SETR ")[1]
-            lantai = result.split("/")[0]
-            ruang = result.split("/")[1]
-            #jika belum memilih lantai
-            if lantai=="-":
-                #return flex message pilih lantai
-                return 	{
-                  "speech": "",
-                  "messages": [
-                    {
-                      "type": 4,
-                      "payload": {
-                            "line" : {
-                              "type": "imagemap",
-                              "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_lantai%2FPilih%20Lantai.png?alt=media&_ignore=",
-                              "altText": "Pilih Lantai",
-                              "baseSize": {
-                                "width": 1040,
-                                "height": 1040
-                              },
-                              "actions": [
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 2,
-                                    "y": 219,
-                                    "width": 1031,
-                                    "height": 166
-                                  },
-                                  "text": "-SETR 1/-"
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 0,
-                                    "y": 390,
-                                    "width": 1040,
-                                    "height": 160
-                                  },
-                                  "text": "-SETR 2/-"
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 2,
-                                    "y": 550,
-                                    "width": 1038,
-                                    "height": 163
-                                  },
-                                  "text": "-SETR 3/-"
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 0,
-                                    "y": 714,
-                                    "width": 1035,
-                                    "height": 160
-                                  },
-                                  "text": "-SETR 4/-"
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 0,
-                                    "y": 874,
-                                    "width": 1040,
-                                    "height": 166
-                                  },
-                                  "text": "-SETR 5/-"
-                                }
-                              ]
-                            }
-                        }
-                    }
-                ]
-            }	
-            #jika belum memilih ruangan
-            if ruang=="-":  
-                #validasi lantai
-                if ((int(lantai)<=5) and (int(lantai)>=1)):  
-                    database = db.reference()
-                    hasil = database.child("dataJSON/lantai"+lantai).get()
-                    return hasil
-                else:
-                    return {
-                        "speech": "Maaf kak , masukan lantai antara 1 sampai 5",
-                        "displayText": "Maaf kak , masukan lantai antara 1 sampai 5",
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": "Maaf kak , masukan lantai antara 1 sampai 5"
-                    }
-            else:
-                #push to firebase
-                userp.update({
-                    "name" : profile.display_name,
-                    "searchD" : "Ruangan : "+ruang
-                })
-                date = userp.child("searchDateR").get()
-                #jika datenya blom ada
-                if date==None:
-                    date="-"
-                hasil = flexMessageCari(date,"Ruangan : "+ruang)
-                return hasil
-        except Exception as res:
-            return  {
-                "speech": "Maaf kak format tanggal yang di input salah :(",
-                "displayText": "Maaf kak format tanggal yang di input salah :(",
-                #"data": {},
-                #"contextOut": [],
-                "source": "Maaf kak format tanggal yang di input salah :("
-            }
+        result = req.get("result").get("resolvedQuery")
+
+        dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
+        tahun = dateNow.split("-")[0]
+        bulan = dateNow.split("-")[1]
+        return flexMessageHari(bulan,tahun,"R",result)
+            
             
     
     #untuk input lantai
@@ -1141,13 +1029,13 @@ def makeWebhookResult(req):
             result = req.get("result").get("resolvedQuery")
             # jika diminta roster besok
             if result.split("-H ")[1].lower()=="besok":
-                dateNow = str(datetime.datetime.now()+ timedelta(days=1,hours=7,seconds=60)).split(" ")[0]
+                dateNow = str(datetime.datetime.now()+ timedelta(days=1,hours=7)).split(" ")[0]
                 tahun = dateNow.split("-")[0]
                 bulan = dateNow.split("-")[1]
                 hari = dateNow.split("-")[2]
             # jika diminta roster hari ini
             elif result.split("-H ")[1].lower()=="hari ini":
-                dateNow = str(datetime.datetime.now()+ timedelta(hours=7,seconds=60)).split(" ")[0]
+                dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
                 tahun = dateNow.split("-")[0]
                 bulan = dateNow.split("-")[1]
                 hari = dateNow.split("-")[2]
