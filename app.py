@@ -1434,7 +1434,7 @@ def makeWebhookResult(req):
             matkul = userp.child("matkul").get()
             matkul1 = matkul.split("\n")
             for i in matkul1:
-                lt=1
+                lt=2
                 while (lt<=len(hasil)):
                     x=1
                     # jika ltnya loncat langsung lt 2 dst
