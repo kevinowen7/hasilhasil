@@ -1432,6 +1432,7 @@ def makeWebhookResult(req):
             if hasil==None:
                 return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") tidak ada jadwal")
             matkul = userp.child("matkul").get()
+            flexMessageHasil(str(matkul))
             matkul1 = matkul.split("\n")
             for i in matkul1:
                 lt=1
