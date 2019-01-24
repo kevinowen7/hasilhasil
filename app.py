@@ -880,9 +880,96 @@ def makeWebhookResult(req):
         result = req.get("result").get("resolvedQuery")
         #jika lantai yang akan di proses
         if result.split(" ")[0]=="-SETL":
-            lt = result.split(" ")[1]
+            #jika belum memilih lantai
+            try:
+                lt = result.split(" ")[1]
+                if ((int(lt)<=5) and (int(lt)>=1)):
+                    print("masuk")
+                else:
+                    return flexMessageHasil("Maaf kak , masukan lantai antara 1 sampai 5")
+            except Exception as res:
+                return {
+                    "speech": "",
+                   "messages": [
+                   {
+                      "type": 4,
+                      "payload": {
+                          "line": {
+                            "type": "imagemap",
+                            "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_lantai%2FPilih%20Lantai.png?alt=media&_ignore=",
+                            "altText": "Pilih Lantai",
+                            "baseSize": {
+                              "width": 1040,
+                              "height": 1040
+                            },
+                            "actions": [
+                              {
+                                "type": "message",
+                                "area": {
+                                  "x": 2,
+                                  "y": 219,
+                                  "width": 1031,
+                                  "height": 166
+                                },
+                                "text": "-SETL1"
+                              },
+                              {
+                                "type": "message",
+                                "area": {
+                                  "x": 0,
+                                  "y": 390,
+                                  "width": 1040,
+                                  "height": 160
+                                },
+                                "text": "-SETL2"
+                              },
+                              {
+                                "type": "message",
+                                "area": {
+                                  "x": 2,
+                                  "y": 550,
+                                  "width": 1038,
+                                  "height": 163
+                                },
+                                "text": "-SETL3"
+                              },
+                              {
+                                "type": "message",
+                                "area": {
+                                  "x": 0,
+                                  "y": 714,
+                                  "width": 1035,
+                                  "height": 160
+                                },
+                                "text": "-SETL4"
+                              },
+                              {
+                                "type": "message",
+                                "area": {
+                                  "x": 0,
+                                  "y": 874,
+                                  "width": 1040,
+                                  "height": 166
+                                },
+                                "text": "-SETL5"
+                              }
+                            ]
+                          }
+                        }
+                   }
+                  ]
+                }
             
-            date = result.split(" ")[2]
+            #jika belum memilih tanggal
+            try:
+                date = result.split(" ")[2]
+            except Exception as res:
+                dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
+                tahun = dateNow.split("-")[0]
+                bulan = dateNow.split("-")[1]
+                return flexMessageHari(bulan,tahun,"SETL",str(lt))
+            
+            #jika sudah memilih tanggal
             thn = int(date.split("/")[2])
             bln = int(date.split("/")[1])
             tgl = int(date.split("/")[0])
