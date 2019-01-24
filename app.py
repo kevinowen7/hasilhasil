@@ -887,18 +887,12 @@ def makeWebhookResult(req):
             except Exception as res:
                 lt=lt+1
         if len(hasillist)==0:
-            return {
-                "speech": dosen+" tidak ada jadwal hari ini",
-                "displayText": dosen+" tidak ada jadwal hari ini",
-                #"data": {},
-                #"contextOut": [],
-                "source": dosen+" tidak ada jadwal hari ini"
-            }
+            return flexMessageHasil(dosen+" ada tidak jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
         r=""
         for i in hasillist:
             r=r+i
         #output    
-        return flexMessageHasil(r)
+        return flexMessageHasil(dosen+" ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n"+r)
         
     #untuk input metode ruangan
     if req.get("result").get("action") == "inputRuangan": 
