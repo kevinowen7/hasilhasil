@@ -457,6 +457,20 @@ def flexMessageCari(date,metode):
                       },
                       {
                         "type": "image",
+                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fjadwal_menu.png?alt=media&_ignore=",
+                        "margin": "none",
+                        "align": "start",
+                        "gravity": "top",
+                        "size": "sm",
+                        "aspectRatio": "2:1",
+                        "action": {
+                          "type": "message",
+                          "label": "jadwalku",
+                          "text": "jadwalku"
+                        }
+                      },
+                      {
+                        "type": "image",
                         "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_tanggal.png?alt=media&_ignore=",
                         "margin": "none",
                         "align": "center",
