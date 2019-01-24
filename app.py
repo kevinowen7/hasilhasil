@@ -455,8 +455,8 @@ def flexMessageCari(date,metode):
                         "aspectRatio": "2:1",
                         "action": {
                           "type": "message",
-                          "label": "jadwalku",
-                          "text": "jadwalku"
+                          "label": "menu jadwalku",
+                          "text": "menu jadwalku"
                         }
                       },
                       {
