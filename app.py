@@ -1434,14 +1434,10 @@ def makeWebhookResult(req):
             matkul = userp.child("matkul").get()
             matkul1 = matkul.split("\n")
             for i in matkul1:
-                lt=2
+                lt=1
                 while (lt<=len(hasil)):
                     x=1
-                    # jika ltnya loncat langsung lt 2 dst
-                    return flexMessageHasil(str(hasil["lantai:"+str(lt)]))
-                    if hasil["lantai:"+str(lt)]==None:
-                        lt=lt+1
-                    else:
+                    try:
                         while(x<len(hasil["lantai:"+str(lt)])):
                             if (hasil["lantai:"+str(lt)][x]["Mata Kuliah"]).lower() == i.lower():
                                 if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
@@ -1454,7 +1450,10 @@ def makeWebhookResult(req):
                         print("    ")
                         print(len(hasillist))
                         lt=lt+1
-
+                    # jika ltnya loncat langsung lt 2 dst
+                    except Exception as res:
+                        lt=lt+1
+                    
             if hasillist==[]:
                 return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") kamu tidak ada kelas :)")
             else:
