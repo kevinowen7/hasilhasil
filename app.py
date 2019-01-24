@@ -1422,6 +1422,7 @@ def makeWebhookResult(req):
         if ((int(hariKe)<7) and (int(hariKe)>0)):
             #next monday
             namaHari=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"]
+            hariKe = namaHari.index(hariKe)
             w=[]
             today = datetime.datetime.now()+ timedelta(hours=7)
             selisih_today_monday = str(datetime.timedelta(days=-today.weekday(), weeks=1)).split(" ")[0]
@@ -1445,8 +1446,8 @@ def makeWebhookResult(req):
                 x=x+1
 
             #cek hari
-            cekHari = namaHari[int(hariKe)-1]
-            dateAkhir = w[int(hariKe)-1]
+            cekHari = namaHari[int(hariKe)]
+            dateAkhir = w[int(hariKe)]
 
 
             #proses
