@@ -878,7 +878,7 @@ def makeWebhookResult(req):
             except Exception as res:   
                 #jika belum memilih hari dan validasi
                 if (bln>0) and (bln<13):
-                    return flexMessageHari(bulan,tahun,"SETR",str(lt)+"/"+str(ruang))
+                    return flexMessageHari(str(bln),str(thn),"SETR",str(lt)+"/"+str(ruang))
                 else:
                     return flexMessageHari("Format tanggal yang dimasukan salah kak")
             
