@@ -752,46 +752,7 @@ def makeWebhookResult(req):
                 tgl = int(date.split("/")[0])
 
                 database = db.reference()
-                hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
-                if hasil==None:
-                    return {
-                        "speech": "Ruangan "+ruang+" tidak ada jadwal hari ini",
-                        "displayText": "Ruangan "+ruang+" tidak ada jadwal hari ini",
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": "Ruangan "+ruang+" tidak ada jadwal hari ini"
-                    }
-
-                lt=1
-                hasillist=[]
-                while(lt<len(hasil)+1):
-                    x=1
-                    try:
-                        while(x<len(hasil["lantai:"+str(lt)])):
-                            if(ruang.lower() in hasil["lantai:"+str(lt)][x]["Ruang"].lower()):
-                                if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
-                                    hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
-                                else:
-                                    hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
-                            print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
-                            x=x+1
-                        lt=lt+1
-                    except Exception as res:
-                        lt=lt+1
-
-                if len(hasillist)==0:
-                    return {
-                        "speech": "Ruangan "+ruang+" tidak ada jadwal hari ini",
-                        "displayText": "Ruangan "+ruang+" tidak ada jadwal hari ini",
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": "Ruangan "+ruang+" tidak ada jadwal hari ini"
-                    }
-                r=""
-                for i in hasillist:
-                    r=r+i
-                #output    
-                return flexMessageHasil(r)
+                
             
             #jika dicari berdarkan nama dosen
             if metodeK == "Dosen":
@@ -878,14 +839,89 @@ def makeWebhookResult(req):
     #untuk proses roster dari lantai dan ruangan
     if req.get("result").get("action") == "lantairuangan":
         result = req.get("result").get("resolvedQuery")
+        #jika ruangan yang akan di proses
+        if result.split(" ")[0]=="-SETR":
+            ruang = result.split(" ")[1].split("/")[1]
+            lt = result.split(" ")[1].split("/")[0]
+            try:
+                if ((int(lt)<=5) and (int(lt)>=1)):
+                    print("masuk")
+                else:
+                    #jika lantai yang di masukan salah
+                    return flexMessageHasil("Maaf kak , masukan lantai antara 1 sampai 5")
+            except Exception as res:
+                return flexMessageHasil("Maaf kak , Format lantai yang dimasukan salah")
+            
+            #jika belum memilih ruangan
+            if (ruangan=="-"):
+               hasil = database.child("dataJSON/lantai"+str(lt)).get()
+               return hasil
+            
+            #jika belum memilih tanggal
+            try:
+                date = result.split(" ")[2]
+            except Exception as res:
+                dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
+                tahun = dateNow.split("-")[0]
+                bulan = dateNow.split("-")[1]
+                return flexMessageHari(bulan,tahun,"SETR",str(lt)+"/"+str(ruang))
+            
+            #jika sudah memilih tanggal
+            try:
+                thn = int(date.split("/")[2])
+                bln = int(date.split("/")[1])
+            except Exception as res: 
+                return flexMessageHari("Format tanggal yang dimasukan salah kak")
+            
+            try:
+                tgl = int(date.split("/")[0])
+            except Exception as res:   
+                #jika belum memilih hari dan validasi
+                if (bln>0) and (bln<13):
+                    return flexMessageHari(bulan,tahun,"SETR",str(lt)+"/"+str(ruang))
+                else:
+                    return flexMessageHari("Format tanggal yang dimasukan salah kak")
+            
+            hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
+            if hasil==None:
+                return flexMessageHasil("Ruangan "+str(ruang)+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
+
+            lt=1
+            hasillist=[]
+            while(lt<len(hasil)+1):
+                x=1
+                try:
+                    while(x<len(hasil["lantai:"+str(lt)])):
+                        if(ruang.lower() in hasil["lantai:"+str(lt)][x]["Ruang"].lower()):
+                            if hasil["lantai:"+str(lt)][x]["Nama Dosen"]==" ":
+                                hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")                
+                            else:
+                                hasillist.append("Jam: "+hasil["lantai:"+str(lt)][x]["Jam"]+"\n"+"Mata Kuliah: "+hasil["lantai:"+str(lt)][x]["Mata Kuliah"]+"\n"+"Nama Dosen: "+hasil["lantai:"+str(lt)][x]["Nama Dosen"]+"\n"+"Ruangan: "+hasil["lantai:"+str(lt)][x]["Ruang"]+"\n"+"\n"+"\n")
+                        print(hasil["lantai:"+str(lt)][x]["Nama Dosen"])
+                        x=x+1
+                    lt=lt+1
+                except Exception as res:
+                    lt=lt+1
+
+            if len(hasillist)==0:
+                return flexMessageHasil("Ruangan "+str(ruang)+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
+            r=""
+            for i in hasillist:
+                r=r+i
+            #output    
+            return flexMessageHasil("Ruangan "+str(ruang)+" ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n\n"+r)
+            
         #jika lantai yang akan di proses
         if result.split(" ")[0]=="-SETL":
             lt = result.split(" ")[1]
-            if ((int(lt)<=5) and (int(lt)>=1)):
-                print("masuk")
-            else:
-                #jika lantai yang di masukan salah
-                return flexMessageHasil("Maaf kak , masukan lantai antara 1 sampai 5")
+            try:
+                if ((int(lt)<=5) and (int(lt)>=1)):
+                    print("masuk")
+                else:
+                    #jika lantai yang di masukan salah
+                    return flexMessageHasil("Maaf kak , masukan lantai antara 1 sampai 5")
+            except Exception as res:
+                return flexMessageHasil("Maaf kak , Format lantai yang dimasukan salah")
             
             #jika belum memilih tanggal
             try:
@@ -897,8 +933,11 @@ def makeWebhookResult(req):
                 return flexMessageHari(bulan,tahun,"SETL",str(lt))
             
             #jika sudah memilih tanggal
-            thn = int(date.split("/")[2])
-            bln = int(date.split("/")[1])
+            try:
+                thn = int(date.split("/")[2])
+                bln = int(date.split("/")[1])
+            except Exception as res: 
+                return flexMessageHari("Format tanggal yang dimasukan salah kak")
             
             try:
                 tgl = int(date.split("/")[0])
