@@ -851,9 +851,9 @@ def makeWebhookResult(req):
                     return flexMessageHasil("Maaf kak , masukan lantai antara 1 sampai 5")
             except Exception as res:
                 return flexMessageHasil("Maaf kak , Format lantai yang dimasukan salah")
-            return flexMessageHari(str(ruang))
+
             #jika belum memilih ruangan
-            if (ruangan=="-"):
+            if (ruang=="-"):
                hasil = database.child("dataJSON/lantai"+str(lt)).get()
                return hasil
             
