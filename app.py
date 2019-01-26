@@ -653,7 +653,7 @@ def makeWebhookResult(req):
             hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
             if hasil==None:
                 return flexMessageHasil("Ruangan "+str(ruang)+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
-            ruang = ruang.replace("_"," ")
+
             lt=1
             hasillist=[]
             while(lt<len(hasil)+1):
