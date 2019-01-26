@@ -433,8 +433,8 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
                 "height": 95
             },
             "text": "-"+tipeCari+" "+cari+" 29/"+bulan+"/"+tahun
-            },
-            {
+            })
+        data["messages"][0]["payload"]["line"]["actions"].append({
             "type": "message",
             "area": {
                 "x": 624,
@@ -443,8 +443,8 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
                 "height": 100
             },
             "text": "-"+tipeCari+" "+cari+" 30/"+bulan+"/"+tahun
-            },
-            {
+            })
+        data["messages"][0]["payload"]["line"]["actions"].append({                                                        
             "type": "message",
             "area": {
                 "x": 748,
@@ -465,8 +465,8 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
                 "height": 95
             },
             "text": "-"+tipeCari+" "+cari+" 29/"+bulan+"/"+tahun
-            },
-            {
+            })
+        data["messages"][0]["payload"]["line"]["actions"].append({
             "type": "message",
             "area": {
                 "x": 624,
