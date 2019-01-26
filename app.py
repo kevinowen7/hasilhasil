@@ -66,7 +66,7 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
     if (bulan=="2"):
         if int(tahun)%4==0:
             t="29"
-    url = "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/calender%2F_"+t+"_.png?alt=media&_ignore="
+    url = "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/calender%2F_"+str(int(t))+"_.png?alt=media&_ignore="
     data = {
         "speech": "",
         "messages": [
@@ -75,7 +75,7 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
             "payload": {
               "line": {
                 "type": "imagemap",
-                "baseUrl": str(url),
+                "baseUrl": url,
                 "altText": "Pilih Tanggal",
                 "baseSize": {
                     "width": 1040,
