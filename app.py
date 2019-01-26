@@ -554,7 +554,7 @@ def makeWebhookResult(req):
         #untuk proses roster dari lantai dan ruangan
         hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
         if hasil==None:
-            return flexMessageHasil(dosen+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
+            return flexMessageHasil(dosen+" tidak ada jadwal ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
         lt=1
         hasillist=[]
         while(lt<len(hasil)+1):
@@ -572,12 +572,12 @@ def makeWebhookResult(req):
             except Exception as res:
                 lt=lt+1
         if len(hasillist)==0:
-            return flexMessageHasil(dosen+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
+            return flexMessageHasil(dosen+" tidak ada jadwal ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
         r=""
         for i in hasillist:
             r=r+i
         #output    
-        return flexMessageHasil(dosen+" ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n\n"+r)
+        return flexMessageHasil(dosen+" ada jadwal ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n\n"+r)
         
             
             
@@ -644,7 +644,7 @@ def makeWebhookResult(req):
             
             hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
             if hasil==None:
-                return flexMessageHasil("Ruangan "+str(ruang)+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
+                return flexMessageHasil("Ruangan "+str(ruang)+" tidak ada jadwal ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
             ruang = ruang.replace("_"," ")
             lt=1
             hasillist=[]
@@ -664,12 +664,12 @@ def makeWebhookResult(req):
                     lt=lt+1
 
             if len(hasillist)==0:
-                return flexMessageHasil("Ruangan "+str(ruang)+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
+                return flexMessageHasil("Ruangan "+str(ruang)+" tidak ada jadwal ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
             r=""
             for i in hasillist:
                 r=r+i
             #output    
-            return flexMessageHasil("Ruangan "+str(ruang)+" ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n\n"+r)
+            return flexMessageHasil("Ruangan "+str(ruang)+" ada jadwal ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n\n"+r)
             
         #jika lantai yang akan di proses
         if result.split(" ")[0]=="-SETL":
@@ -712,7 +712,7 @@ def makeWebhookResult(req):
             hasillist=[]
             hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)+"/lantai:"+str(lt)).get()
             if hasil==None:
-                return flexMessageHasil("lantai "+str(lt)+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
+                return flexMessageHasil("lantai "+str(lt)+" tidak ada jadwal ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
             while(x<len(hasil)):
                 print(hasil[x])
                 if hasil[x]["Nama Dosen"]==" ":
@@ -723,12 +723,12 @@ def makeWebhookResult(req):
                 x=x+1
             print(len(hasillist))
             if len(hasillist)==0:
-                return flexMessageHasil("lantai "+str(lt)+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
+                return flexMessageHasil("lantai "+str(lt)+" tidak ada jadwal ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
             r=""
             for i in hasillist:
                 r=r+i
             #output    
-            return flexMessageHasil("lantai "+str(lt)+" ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n\n"+r)
+            return flexMessageHasil("lantai "+str(lt)+" ada jadwal ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n\n"+r)
             
 ############################################################### JADWALKU ##########            
     if req.get("result").get("action") == "jadwalku":
