@@ -64,6 +64,26 @@ def webhook():
 def flexMessageHari(bulan,tahun,tipeCari,cari):
     bulan=str(int(bulan))
     tahun=str(int(tahun))
+    
+    #hari ini
+    dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
+    tahunNow = dateNow.split("-")[0]
+    bulanNow = dateNow.split("-")[1]
+    hariNow = dateNow.split("-")[2]
+    
+    # next date
+    nextDate = str(datetime.date(int(tahun),int(bulan),int(hari))+ timedelta(days=1)).split("-")
+    tahunNext = nextDate[0]
+    bulanNext = nextDate[1]
+    hariNext = nextDate[2]
+    
+    # prev date
+    prevDate = str(datetime.date(int(tahun),int(bulan),int(hari))- timedelta(days=1)).split("-")
+    tahunPrev = prevDate[0]
+    bulanPrev = prevDate[1]
+    hariPrev = prevDate[2]
+    ##
+    
     t = bulan
     if (bulan=="2"):
         if int(tahun)%4==0:
@@ -92,7 +112,7 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
                         "width": 193,
                         "height": 168
                     },
-                    "text": "-"+tipeCari+" "+cari+" -/"+str(int(bulan)-1)+"/"+tahun
+                    "text": "-"+tipeCari+" "+cari+" -/"+bulanPrev+"/"+tahunPrev
                     },
                     {
                     "type": "message",
@@ -112,7 +132,7 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
                         "width": 191,
                         "height": 174
                     },
-                    "text": "-"+tipeCari+" "+cari+" -/"+str(int(bulan)+1)+"/"+tahun
+                    "text": "-"+tipeCari+" "+cari+" -/"+bulanNext+"/"+tahunNext
                     },
                     {
                     "type": "message",
@@ -402,7 +422,7 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
                         "width": 988,
                         "height": 175
                     },
-                    "text": "Hari ini"
+                    "text": "-"+tipeCari+" "+cari+" "+hariNow+"/"+tahunNow+"/"+bulanNow
                     }
                 ]
                 }
@@ -481,131 +501,6 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
             })
     return data
 
-def flexMessageCari(date,metode):
-    #from cari
-    return {
-      "speech": "",
-      "messages": [
-        {
-          "type": 4,
-          "payload": {
-              "line": {
-                "type": "flex",
-                "altText": "Cari Roster Ruangan",
-                "contents": {
-                  "type": "bubble",
-                  "direction": "ltr",
-                  "hero": {
-                    "type": "image",
-                    "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Froster_judul.png?alt=media&_ignore=",
-                    "align": "center",
-                    "size": "5xl",
-                    "aspectRatio": "2:1"
-                  },
-                  "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "spacing": "md",
-                    "contents": [
-                      {
-                        "type": "separator",
-                        "margin": "none",
-                        "color": "#994848"
-                      },
-                      {
-                        "type": "image",
-                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fjadwal_menu.png?alt=media&_ignore=",
-                        "margin": "none",
-                        "align": "start",
-                        "gravity": "top",
-                        "size": "md",
-                        "aspectRatio": "2:1",
-                        "action": {
-                          "type": "message",
-                          "label": "menu jadwalku",
-                          "text": "menu jadwalku"
-                        }
-                      },
-                      {
-                        "type": "text",
-                        "text": "Tanggal : "+date,
-                        "margin": "lg",
-                        "size": "lg",
-                        "align": "center",
-                        "gravity": "bottom",
-                        "weight": "bold",
-                        "color": "#191970"
-                      },
-                      {
-                        "type": "image",
-                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_tanggal.png?alt=media&_ignore=",
-                        "margin": "none",
-                        "align": "center",
-                        "gravity": "top",
-                        "size": "xxl",
-                        "aspectRatio": "2:1",
-                        "action": {
-                          "type": "message",
-                          "label": "pilih tanggal",
-                          "text": "pilih tanggal"
-                        }
-                      },
-                      {
-                        "type": "text",
-                        "text": metode,
-                        "margin": "lg",
-                        "size": "lg",
-                        "align": "center",
-                        "gravity": "bottom",
-                        "weight": "bold",
-                        "color": "#191970"
-                      },
-                      {
-                        "type": "image",
-                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_metode_pencarian.png?alt=media&_ignore=",
-                        "margin": "none",
-                        "align": "center",
-                        "gravity": "bottom",
-                        "size": "xxl",
-                        "aspectRatio": "2:1",
-                        "backgroundColor": "#A1E5E4",
-                        "action": {
-                          "type": "message",
-                          "label": "pilih metode pencari",
-                          "text": "pilih metode pencarian"
-                        }
-                      },
-                      {
-                        "type": "image",
-                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fcari.png?alt=media&_ignore=",
-                        "margin": "xxl",
-                        "align": "end",
-                        "size": "lg",
-                        "aspectRatio": "16:9",
-                        "action": {
-                          "type": "message",
-                          "label": "cari",
-                          "text": "cari roster"
-                        }
-                      }
-                    ]
-                  },
-                  "styles": {
-                    "hero": {
-                      "backgroundColor": "#A1E5E4"
-                    },
-                    "body": {
-                      "backgroundColor": "#A1E5E4"
-                    }
-                  }
-                }
-              }
-            }
-
-        }
-      ]
-    }
-
 def flexMessageHasil(r):
     return {
         "speech": "",
@@ -636,151 +531,6 @@ def flexMessageHasil(r):
      ]
     }
 
-def flexMessageHasilCari(r,date,metode):
-    return {
-        "speech": "",
-       "messages": [
-       {
-          "type": 4,
-          "payload": {
-              "line": {
-                "type": "flex",
-                "altText": "Cari Roster Ruangan",
-                "contents": {
-                  "type": "bubble",
-                  "direction": "ltr",
-                  "hero": {
-                    "type": "image",
-                    "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Froster_judul.png?alt=media&_ignore=",
-                    "align": "center",
-                    "size": "5xl",
-                    "aspectRatio": "2:1"
-                  },
-                  "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "spacing": "md",
-                    "contents": [
-                      {
-                        "type": "separator",
-                        "margin": "none",
-                        "color": "#994848"
-                      },
-                      {
-                        "type": "image",
-                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fjadwal_menu.png?alt=media&_ignore=",
-                        "margin": "none",
-                        "align": "start",
-                        "gravity": "top",
-                        "size": "md",
-                        "aspectRatio": "2:1",
-                        "action": {
-                          "type": "message",
-                          "label": "jadwalku",
-                          "text": "jadwalku"
-                        }
-                      },
-                      {
-                        "type": "text",
-                        "text": date,
-                        "margin": "lg",
-                        "size": "lg",
-                        "align": "center",
-                        "gravity": "bottom",
-                        "weight": "bold",
-                        "color": "#191970"
-                      },
-                      {
-                        "type": "image",
-                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_tanggal.png?alt=media&_ignore=",
-                        "margin": "none",
-                        "align": "center",
-                        "gravity": "top",
-                        "size": "xxl",
-                        "aspectRatio": "2:1",
-                        "action": {
-                          "type": "message",
-                          "label": "pilih tanggal",
-                          "text": "pilih tanggal"
-                        }
-                      },
-                      {
-                        "type": "text",
-                        "text": metode,
-                        "margin": "lg",
-                        "size": "lg",
-                        "align": "center",
-                        "gravity": "bottom",
-                        "weight": "bold",
-                        "color": "#191970"
-                      },
-                      {
-                        "type": "image",
-                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fpilih_metode_pencarian.png?alt=media&_ignore=",
-                        "margin": "none",
-                        "align": "center",
-                        "gravity": "bottom",
-                        "size": "xxl",
-                        "aspectRatio": "2:1",
-                        "backgroundColor": "#8CE4EE",
-                        "action": {
-                          "type": "message",
-                          "label": "pilih metode pencari",
-                          "text": "pilih metode pencarian"
-                        }
-                      },
-                      {
-                        "type": "image",
-                        "url": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/cari_roster_ruangan%2Fcari.png?alt=media&_ignore=",
-                        "margin": "xxl",
-                        "align": "end",
-                        "size": "lg",
-                        "aspectRatio": "16:9",
-                        "action": {
-                          "type": "message",
-                          "label": "cari",
-                          "text": "cari roster"
-                        }
-                      }
-                    ]
-                  },
-                  "styles": {
-                    "hero": {
-                      "backgroundColor": "#a1e6e4"
-                    },
-                    "body": {
-                      "backgroundColor": "#a1e6e4"
-                    }
-                  }
-                }
-              }
-            }
-         },
-         {
-          "type": 4,
-          "payload": {
-             "line": {
-                "type": "flex",
-                "altText": "Hasil Pencarian Rster Ruangan",
-                "contents": {
-                 "type": "bubble",
-                  "body": {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": r,
-                        "wrap": True
-                      }
-                    ]
-                  }
-                 }
-             }
-          }
-       }
-      ]
-    }
 
 def makeWebhookResult(req):  
     #push user id to firebase
@@ -792,55 +542,6 @@ def makeWebhookResult(req):
         "name" : profile.display_name
     })
     
-    #untuk menu cari roster
-    if req.get("result").get("action") == "menuCariRoster":
-        result = req.get("result").get("resolvedQuery")
-        if result.lower()=="cari roster":
-            metode = userp.child("searchD").get()
-            date = userp.child("searchDateR").get()
-            
-            #jika belum memilih tanggal dan metode pencarian
-            if (date==None and metode==None):
-                return flexMessageHasilCari("Tolong Masukan Tanggal dan Metodenya kak","Tanggal : -","Metode : -")
-            elif (date==None):
-                return flexMessageHasilCari("Tolong Masukan Tanggalnya kak","Tanggal : -",metode)
-            elif (metode==None):
-                return flexMessageHasilCari("Tolong Masukan Metodenya kak",date,"Metode : -")
-            
-            #proses
-            metodeList = metode.split(" : ")
-            metodeK = metodeList[0]
-            #jika dicari berdasarkan ruangan
-            if metodeK == "Ruangan":
-                ruang = metode.split("Ruangan : ")[1]
-                
-                thn = int(date.split("/")[2])
-                bln = int(date.split("/")[1])
-                tgl = int(date.split("/")[0])
-
-                database = db.reference()
-                
-            
-            #jika dicari berdarkan nama dosen
-            if metodeK == "Dosen":
-                dosen = metode.split("Dosen : ")[1]
-                
-                
-            
-            #jika di cari berdasarkan lantai
-            if metodeK=="Lantai":
-                lt = metode.split("Lantai : ")[1]
-
-        else:
-            date = userp.child("searchDateR").get()
-            metode = userp.child("searchD").get()
-            #jika datenya blom ada
-            if date==None:
-                date="-"
-            if metode==None:
-                metode="Metode : -"
-            hasil = flexMessageCari(date,metode)
-            return hasil
         
     #untuk input metode dosen
     if req.get("result").get("action") == "inputDosen":
@@ -1037,286 +738,6 @@ def makeWebhookResult(req):
             #output    
             return flexMessageHasil("lantai "+str(lt)+" ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n\n"+r)
             
-            
-    #untuk input tanggal
-    if req.get("result").get("action") == "inputTanggal": 
-        try:
-            result = req.get("result").get("resolvedQuery")
-            # jika diminta roster besok
-            if result.split("-H ")[1].lower()=="besok":
-                dateNow = str(datetime.datetime.now()+ timedelta(days=1,hours=7)).split(" ")[0]
-                tahun = dateNow.split("-")[0]
-                bulan = dateNow.split("-")[1]
-                hari = dateNow.split("-")[2]
-            # jika diminta roster hari ini
-            elif result.split("-H ")[1].lower()=="hari ini":
-                dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
-                tahun = dateNow.split("-")[0]
-                bulan = dateNow.split("-")[1]
-                hari = dateNow.split("-")[2]
-            # jika diminta flex untuk input tanggal
-            else:
-                date = result.split(" ")[1].split("/")
-                tahun = date[2]
-                bulan = date[1]
-                hari = date[0]
-
-                #menampilkan flex message untuk pilih tahun
-                if tahun =="-":
-                    #from -H -/-/-
-                    return {
-                    "speech": "",
-                    "messages": [
-                      {
-                        "type": 4,
-                        "payload": {
-                          "line": {
-                            "type": "imagemap",
-                            "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_tanggal%2Fpilih_tahun.png?alt=media&_ignore=",
-                            "altText": "Pilih Tahun",
-                            "baseSize": {
-                              "width": 1040,
-                              "height": 1040
-                            },
-                            "actions": [
-                              {
-                                "type": "message",
-                                "area": {
-                                  "x": 290,
-                                  "y": 159,
-                                  "width": 461,
-                                  "height": 214
-                                },
-                                "text": "-H "+hari+"/"+bulan+"/2018"
-                              },
-                              {
-                                "type": "message",
-                                "area": {
-                                  "x": 292,
-                                  "y": 427,
-                                  "width": 459,
-                                  "height": 206
-                                },
-                                "text": "-H "+hari+"/"+bulan+"/2019"
-                              },
-                              {
-                                "type": "message",
-                                "area": {
-                                  "x": 292,
-                                  "y": 679,
-                                  "width": 459,
-                                  "height": 116
-                                },
-                                "text": "-H hari ini"
-                              },
-                              {
-                                "type": "message",
-                                "area": {
-                                  "x": 290,
-                                  "y": 812,
-                                  "width": 461,
-                                  "height": 100
-                                },
-                                "text": "-H besok"
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    ]
-                   }
-                #menampilkan flex message untuk pilih bulan
-                if bulan =="-":
-                    return {
-                    "speech": "",
-                    "messages": [
-                      {
-                        "type": 4,
-                        "payload": {
-                          "line": {
-                              "type": "imagemap",
-                              "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_tanggal%2Fpilih_bulan.jpg?alt=media&_ignore=",
-                              "altText": "Pilih Bulan",
-                              "baseSize": {
-                                "width": 1040,
-                                "height": 1040
-                              },
-                              "actions": [
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 15,
-                                    "y": 188,
-                                    "width": 326,
-                                    "height": 130
-                                  },
-                                  "text": "-H "+hari+"/01/"+tahun
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 361,
-                                    "y": 187,
-                                    "width": 318,
-                                    "height": 132
-                                  },
-                                  "text": "-H "+hari+"/02/"+tahun
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 704,
-                                    "y": 187,
-                                    "width": 317,
-                                    "height": 129
-                                  },
-                                  "text": "-H "+hari+"/03/"+tahun
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 17,
-                                    "y": 365,
-                                    "width": 316,
-                                    "height": 130
-                                  },
-                                  "text": "-H "+hari+"/04/"+tahun
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 360,
-                                    "y": 368,
-                                    "width": 320,
-                                    "height": 123
-                                  },
-                                  "text": "-H "+hari+"/05/"+tahun
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 704,
-                                    "y": 366,
-                                    "width": 319,
-                                    "height": 127
-                                  },
-                                  "text": "-H "+hari+"/06/"+tahun
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 19,
-                                    "y": 544,
-                                    "width": 319,
-                                    "height": 133
-                                  },
-                                  "text": "-H "+hari+"/07/"+tahun
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 361,
-                                    "y": 547,
-                                    "width": 318,
-                                    "height": 127
-                                  },
-                                  "text": "-H "+hari+"/08/"+tahun
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 702,
-                                    "y": 549,
-                                    "width": 321,
-                                    "height": 128
-                                  },
-                                  "text": "-H "+hari+"/09/"+tahun
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 25,
-                                    "y": 726,
-                                    "width": 314,
-                                    "height": 127
-                                  },
-                                  "text": "-H "+hari+"/10/"+tahun
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 363,
-                                    "y": 724,
-                                    "width": 317,
-                                    "height": 127
-                                  },
-                                  "text": "-H "+hari+"/11/"+tahun
-                                },
-                                {
-                                  "type": "message",
-                                  "area": {
-                                    "x": 707,
-                                    "y": 723,
-                                    "width": 314,
-                                    "height": 128
-                                  },
-                                  "text": "-H "+hari+"/12/"+tahun
-                                }
-                              ]
-                            }
-                        }
-                      }
-                    ]
-                   }
-
-                #menampilkan flex message untuk pilih hari
-                if hari=="-":
-                    if (int(bulan)<=12 and int(bulan)>=1):
-                        hasil = flexMessageHari(bulan,tahun)
-                        return hasil
-                    else:
-                        return  {
-                            "speech": "Maaf kak, format bulan yang anda masukan tidak ada",
-                            "displayText": "Maaf kak, format bulan yang anda masukan tidak ada",
-                            #"data": {},
-                            #"contextOut": [],
-                            "source": "Maaf kak, format bulan yang anda masukan tidak ada"
-                        }
-
-
-            #menambahakan data tanggal ke firebase
-            if ((hari!="-") and (bulan !="-") and (tahun !="-")):
-                #push to firebase
-                userp.update({
-                    "name" : profile.display_name,
-                    "searchDateR" : str(hari)+"/"+str(bulan)+"/"+str(tahun)
-                })
-                #validasi tanggal
-                if ((int(hari)<=31) and (int(hari)>=1) and (int(bulan)>=1) and (int(bulan)<=12)):
-                    date = str(hari)+"/"+str(bulan)+"/"+str(tahun)
-                    metode = userp.child("searchD").get()
-                    #jika metode blom ada
-                    if metode==None:
-                        metode="Metode : -"
-                    hasil = flexMessageCari(date,metode)
-                    return hasil
-                else:
-                    return  {
-                        "speech": "Maaf kak format tanggal yang di input salah",
-                        "displayText": "Maaf kak format tanggal yang di input salah",
-                        #"data": {},
-                        #"contextOut": [],
-                        "source": "Maaf kak format tanggal yang di input salah"
-                    }
-                    
-        except Exception as res:
-            return  {
-                "speech": "Maaf kak format tanggal yang di input salah :(",
-                "displayText": "Maaf kak format tanggal yang di input salah :(",
-                #"data": {},
-                #"contextOut": [],
-                "source": "Maaf kak format tanggal yang di input salah :("
-            }        
 ############################################################### JADWALKU ##########            
     if req.get("result").get("action") == "jadwalku":
         result0 = req.get("result")
