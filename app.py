@@ -72,13 +72,13 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
     hariNow = dateNow.split("-")[2]
     
     # next date
-    nextDate = str(datetime.date(int(tahun),int(bulan),int(1))+ timedelta(days=1)).split("-")
+    nextDate = str(datetime.date(int(tahun),int(bulan),int(1))+ timedelta(months=1)).split("-")
     tahunNext = nextDate[0]
     bulanNext = nextDate[1]
     hariNext = nextDate[2]
     
     # prev date
-    prevDate = str(datetime.date(int(tahun),int(bulan),int(1))- timedelta(days=1)).split("-")
+    prevDate = str(datetime.date(int(tahun),int(bulan),int(1))- timedelta(months=1)).split("-")
     tahunPrev = prevDate[0]
     bulanPrev = prevDate[1]
     hariPrev = prevDate[2]
@@ -422,7 +422,7 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
                         "width": 988,
                         "height": 175
                     },
-                    "text": "-"+tipeCari+" "+cari+" "+hariNow+"/"+tahunNow+"/"+bulanNow
+                    "text": "-"+tipeCari+" "+cari+" "+hariNow+"/"+bulanNow+"/"+tahunNow
                     }
                 ]
                 }
@@ -610,6 +610,7 @@ def makeWebhookResult(req):
         #jika ruangan yang akan di proses
         if result.split(" ")[0]=="-SETR":
             ruang = result.split(" ")[1].split("/")[1]
+            ruang = ruang.replace("_"," ")
             lt = result.split(" ")[1].split("/")[0]
             try:
                 if ((int(lt)<=5) and (int(lt)>=1)):
