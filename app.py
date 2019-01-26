@@ -62,357 +62,421 @@ def webhook():
     return r
 
 def flexMessageHari(bulan,tahun,tipeCari,cari):
-    return {
+    x=bulan
+    if (bulan=="2"):
+        if int(tahun)%4==0:
+            x="29"
+    data = {
         "speech": "",
         "messages": [
           {
             "type": 4,
             "payload": {
               "line": {
-                  "type": "imagemap",
-                  "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/pilih_tanggal%2F12.png?alt=media&_ignore=",
-                  "altText": "Pilih Tanggal",
-                  "baseSize": {
+                "type": "imagemap",
+                "baseUrl": "https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/calender%2F"+x+".png?alt=media&_ignore=",
+                "altText": "Pilih Tanggal",
+                "baseSize": {
                     "width": 1040,
-                    "height": 1040
-                  },
-                  "actions": [
+                    "height": 940
+                },
+                "actions": [
                     {
-                      "type": "message",
-                      "area": {
-                        "x": 898,
-                        "y": 192,
-                        "width": 110,
-                        "height": 97
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 01/"+bulan+"/"+tahun
+                    "type": "message",
+                    "area": {
+                        "x": 31,
+                        "y": 26,
+                        "width": 193,
+                        "height": 168
+                    },
+                    "text": "-"+tipeCari+" "+cari+" -/"+str(int(bulan)-1)+"/"+tahun
                     },
                     {
-                      "type": "message",
-                      "area": {
-                        "x": 37,
-                        "y": 285,
-                        "width": 108,
-                        "height": 97
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 02/"+bulan+"/"+tahun
+                    "type": "message",
+                    "area": {
+                        "x": 251,
+                        "y": 20,
+                        "width": 532,
+                        "height": 178
+                    },
+                    "text": "bulan"
                     },
                     {
-                      "type": "message",
-                      "area": {
-                        "x": 181,
-                        "y": 275,
-                        "width": 111,
-                        "height": 115
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 03/"+bulan+"/"+tahun
+                    "type": "message",
+                    "area": {
+                        "x": 816,
+                        "y": 20,
+                        "width": 191,
+                        "height": 174
+                    },
+                    "text": "-"+tipeCari+" "+cari+" -/"+str(int(bulan)+1)+"/"+tahun
                     },
                     {
-                      "type": "message",
-                      "area": {
-                        "x": 329,
-                        "y": 275,
-                        "width": 110,
-                        "height": 115
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 04/"+bulan+"/"+tahun
+                    "type": "message",
+                    "area": {
+                        "x": 47,
+                        "y": 263,
+                        "width": 106,
+                        "height": 92
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 01/"+bulan+"/"+tahun
                     },
                     {
-                      "type": "message",
-                      "area": {
-                        "x": 469,
-                        "y": 272,
-                        "width": 112,
-                        "height": 115
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 05/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 613,
-                        "y": 277,
-                        "width": 121,
-                        "height": 110
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 06/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 750,
-                        "y": 267,
-                        "width": 119,
-                        "height": 120
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 07/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 890,
-                        "y": 289,
-                        "width": 115,
-                        "height": 96
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 08/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 37,
-                        "y": 385,
-                        "width": 108,
-                        "height": 105
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 09/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 177,
-                        "y": 393,
-                        "width": 115,
-                        "height": 103
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 10/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 328,
-                        "y": 397,
-                        "width": 108,
-                        "height": 96
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 11/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 468,
-                        "y": 393,
+                    "type": "message",
+                    "area": {
+                        "x": 155,
+                        "y": 263,
                         "width": 114,
-                        "height": 102
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 12/"+bulan+"/"+tahun
+                        "height": 94
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 02/"+bulan+"/"+tahun
                     },
                     {
-                      "type": "message",
-                      "area": {
-                        "x": 609,
-                        "y": 392,
-                        "width": 125,
-                        "height": 101
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 13/"+bulan+"/"+tahun
+                    "type": "message",
+                    "area": {
+                        "x": 269,
+                        "y": 265,
+                        "width": 108,
+                        "height": 92
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 03/"+bulan+"/"+tahun
                     },
                     {
-                      "type": "message",
-                      "area": {
-                        "x": 751,
-                        "y": 392,
+                    "type": "message",
+                    "area": {
+                        "x": 377,
+                        "y": 261,
                         "width": 117,
-                        "height": 103
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 14/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 891,
-                        "y": 392,
-                        "width": 114,
-                        "height": 101
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 15/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 34,
-                        "y": 493,
-                        "width": 113,
-                        "height": 105
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 16/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 172,
-                        "y": 501,
-                        "width": 122,
-                        "height": 97
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 17/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 328,
-                        "y": 496,
-                        "width": 108,
-                        "height": 105
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 18/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 466,
-                        "y": 498,
-                        "width": 115,
-                        "height": 101
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 19/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 611,
-                        "y": 496,
-                        "width": 123,
-                        "height": 105
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 20/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 748,
-                        "y": 500,
-                        "width": 123,
-                        "height": 103
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 21/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 890,
-                        "y": 500,
-                        "width": 126,
-                        "height": 104
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 22/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 32,
-                        "y": 601,
-                        "width": 120,
-                        "height": 103
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 23/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 174,
-                        "y": 603,
-                        "width": 118,
-                        "height": 108
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 24/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 322,
-                        "y": 609,
-                        "width": 110,
-                        "height": 95
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 25/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 466,
-                        "y": 609,
-                        "width": 108,
-                        "height": 100
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 26/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 609,
-                        "y": 611,
-                        "width": 124,
-                        "height": 96
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 27/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 753,
-                        "y": 606,
-                        "width": 118,
-                        "height": 108
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 28/"+bulan+"/"+tahun
-                    },
-                    {
-                      "type": "message",
-                      "area": {
-                        "x": 895,
-                        "y": 616,
-                        "width": 120,
                         "height": 98
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 29/"+bulan+"/"+tahun
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 04/"+bulan+"/"+tahun
                     },
                     {
-                      "type": "message",
-                      "area": {
-                        "x": 29,
-                        "y": 711,
+                    "type": "message",
+                    "area": {
+                        "x": 494,
+                        "y": 257,
+                        "width": 132,
+                        "height": 100
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 05/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 626,
+                        "y": 259,
+                        "width": 114,
+                        "height": 100
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 06/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 740,
+                        "y": 255,
                         "width": 121,
-                        "height": 101
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 30/"+bulan+"/"+tahun
+                        "height": 104
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 07/"+bulan+"/"+tahun
                     },
                     {
-                      "type": "message",
-                      "area": {
-                        "x": 174,
-                        "y": 718,
-                        "width": 120,
-                        "height": 101
-                      },
-                      "text": "-"+tipeCari+" "+cari+" 31/"+bulan+"/"+tahun
+                    "type": "message",
+                    "area": {
+                        "x": 861,
+                        "y": 261,
+                        "width": 132,
+                        "height": 102
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 08/"+bulan+"/"+tahun
                     },
                     {
-                      "type": "message",
-                      "area": {
-                        "x": 203,
-                        "y": 839,
-                        "width": 137,
-                        "height": 149
-                      },
-                      "text": "-"+tipeCari+" "+cari+" -/"+str(int(bulan)-1)+"/"+tahun
+                    "type": "message",
+                    "area": {
+                        "x": 55,
+                        "y": 357,
+                        "width": 94,
+                        "height": 96
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 09/"+bulan+"/"+tahun
                     },
                     {
-                      "type": "message",
-                      "area": {
-                        "x": 721,
-                        "y": 832,
-                        "width": 121,
-                        "height": 147
-                      },
-                      "text": "-"+tipeCari+" "+cari+" -/"+str(int(bulan)+1)+"/"+tahun
+                    "type": "message",
+                    "area": {
+                        "x": 153,
+                        "y": 357,
+                        "width": 116,
+                        "height": 100
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 10/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 269,
+                        "y": 357,
+                        "width": 108,
+                        "height": 102
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 11/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 377,
+                        "y": 359,
+                        "width": 110,
+                        "height": 102
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 12/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 487,
+                        "y": 359,
+                        "width": 123,
+                        "height": 102
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 13/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 610,
+                        "y": 359,
+                        "width": 122,
+                        "height": 102
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 14/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 732,
+                        "y": 359,
+                        "width": 126,
+                        "height": 100
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 15/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 858,
+                        "y": 363,
+                        "width": 135,
+                        "height": 96
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 16/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 55,
+                        "y": 457,
+                        "width": 100,
+                        "height": 94
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 17/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 163,
+                        "y": 459,
+                        "width": 108,
+                        "height": 87
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 18/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 279,
+                        "y": 459,
+                        "width": 98,
+                        "height": 88
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 19/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 377,
+                        "y": 461,
+                        "width": 117,
+                        "height": 90
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 20/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 494,
+                        "y": 463,
+                        "width": 126,
+                        "height": 86
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 21/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 620,
+                        "y": 461,
+                        "width": 122,
+                        "height": 84
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 22/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 742,
+                        "y": 459,
+                        "width": 123,
+                        "height": 86
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 23/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 865,
+                        "y": 459,
+                        "width": 128,
+                        "height": 89
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 24/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 57,
+                        "y": 551,
+                        "width": 106,
+                        "height": 91
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 25/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 167,
+                        "y": 549,
+                        "width": 106,
+                        "height": 97
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 26/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 273,
+                        "y": 549,
+                        "width": 104,
+                        "height": 97
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 27/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 377,
+                        "y": 551,
+                        "width": 123,
+                        "height": 95
+                    },
+                    "text": "-"+tipeCari+" "+cari+" 28/"+bulan+"/"+tahun
+                    },
+                    {
+                    "type": "message",
+                    "area": {
+                        "x": 26,
+                        "y": 734,
+                        "width": 988,
+                        "height": 175
+                    },
+                    "text": "Hari ini"
                     }
-                  ]
+                ]
                 }
             }
           }
         ]
     }
+    if (bulan=="2"):
+        if int(tahun)%4==0:
+            totalHari="29"
+            data["messages"][0]["payload"]["line"]["actions"].append({
+                "type": "message",
+                "area": {
+                    "x": 500,
+                    "y": 549,
+                    "width": 124,
+                    "height": 95
+                },
+                "text": "-"+tipeCari+" "+cari+" 29/"+bulan+"/"+tahun
+                })
+        else:
+            totalHari="28"
+    elif (bulan=="1") or (bulan=="3") or (bulan=="5") or (bulan=="7") or (bulan=="8") or (bulan=="10") or (bulan=="12"):
+        totalHari="31"
+        data["messages"][0]["payload"]["line"]["actions"].append({
+            "type": "message",
+            "area": {
+                "x": 500,
+                "y": 549,
+                "width": 124,
+                "height": 95
+            },
+            "text": "-"+tipeCari+" "+cari+" 29/"+bulan+"/"+tahun
+            },
+            {
+            "type": "message",
+            "area": {
+                "x": 624,
+                "y": 546,
+                "width": 124,
+                "height": 100
+            },
+            "text": "-"+tipeCari+" "+cari+" 30/"+bulan+"/"+tahun
+            },
+            {
+            "type": "message",
+            "area": {
+                "x": 748,
+                "y": 547,
+                "width": 117,
+                "height": 99
+            },
+            "text": "-"+tipeCari+" "+cari+" 31/"+bulan+"/"+tahun
+            })
+    else:
+        totalHari="30"  
+        data["messages"][0]["payload"]["line"]["actions"].append({
+            "type": "message",
+            "area": {
+                "x": 500,
+                "y": 549,
+                "width": 124,
+                "height": 95
+            },
+            "text": "-"+tipeCari+" "+cari+" 29/"+bulan+"/"+tahun
+            },
+            {
+            "type": "message",
+            "area": {
+                "x": 624,
+                "y": 546,
+                "width": 124,
+                "height": 100
+            },
+            "text": "-"+tipeCari+" "+cari+" 30/"+bulan+"/"+tahun
+            })
+    return data
 
 def flexMessageCari(date,metode):
     #from cari
