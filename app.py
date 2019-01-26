@@ -610,7 +610,6 @@ def makeWebhookResult(req):
         #jika ruangan yang akan di proses
         if result.split(" ")[0]=="-SETR":
             ruang = result.split(" ")[1].split("/")[1]
-            ruang = ruang.replace("_"," ")
             lt = result.split(" ")[1].split("/")[0]
             try:
                 if ((int(lt)<=5) and (int(lt)>=1)):
@@ -654,7 +653,7 @@ def makeWebhookResult(req):
             hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
             if hasil==None:
                 return flexMessageHasil("Ruangan "+str(ruang)+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
-
+            ruang = ruang.replace("_"," ")
             lt=1
             hasillist=[]
             while(lt<len(hasil)+1):
