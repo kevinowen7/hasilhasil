@@ -62,6 +62,7 @@ def webhook():
     return r
 
 def flexMessageHari(bulan,tahun,tipeCari,cari):
+    return flexMessageHasil("ABC")
     bulan=str(int(bulan))
     tahun=str(int(tahun))
     
@@ -620,7 +621,6 @@ def makeWebhookResult(req):
             #jika belum memilih tanggal
             try:
                 date = result.split(" ")[2]
-                return flexMessageHasil(date)
             except Exception as res:
                 dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
                 tahun = int(dateNow.split("-")[0])
