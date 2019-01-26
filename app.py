@@ -62,11 +62,11 @@ def webhook():
     return r
 
 def flexMessageHari(bulan,tahun,tipeCari,cari):
-    x=bulan
+    t=bulan
     if (bulan=="2"):
         if int(tahun)%4==0:
-            x="29"
-    url = 'https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/calender%2F_'+x+'_.png?alt=media&_ignore='
+            t="29"
+    url = 'https://firebasestorage.googleapis.com/v0/b/minabot-aceess.appspot.com/o/calender%2F_'+str(t)+'_.png?alt=media&_ignore='
     data = {
         "speech": "",
         "messages": [
