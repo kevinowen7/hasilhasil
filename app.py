@@ -929,14 +929,14 @@ def makeWebhookResult(req):
                 dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
                 tahun = dateNow.split("-")[0]
                 bulan = dateNow.split("-")[1]
-                return flexMessageHari(bulan,tahun,"SETR",str(lt)+"/"+str(ruang))
+                return flexMessageHari(str(bulan),str(tahun),"SETR",str(lt)+"/"+str(ruang))
             
             #jika sudah memilih tanggal
             try:
                 thn = int(date.split("/")[2])
                 bln = int(date.split("/")[1])
             except Exception as res: 
-                return flexMessageHari("Format tanggal yang dimasukan salah kak")
+                return flexMessageHasil("Format tanggal yang dimasukan salah kak")
             
             try:
                 tgl = int(date.split("/")[0])
@@ -945,7 +945,7 @@ def makeWebhookResult(req):
                 if (bln>0) and (bln<13):
                     return flexMessageHari(str(bln),str(thn),"SETR",str(lt)+"/"+str(ruang))
                 else:
-                    return flexMessageHari("Format tanggal yang dimasukan salah kak")
+                    return flexMessageHasil("Format tanggal yang dimasukan salah kak")
             
             hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
             if hasil==None:
