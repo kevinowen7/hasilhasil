@@ -75,7 +75,7 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
             "payload": {
               "line": {
                 "type": "imagemap",
-                "baseUrl": url,
+                "baseUrl": str(url),
                 "altText": "Pilih Tanggal",
                 "baseSize": {
                     "width": 1040,
