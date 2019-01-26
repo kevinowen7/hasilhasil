@@ -579,14 +579,6 @@ def makeWebhookResult(req):
         #output    
         return flexMessageHasil(dosen+" ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+") \n\n"+r)
         
-    #untuk input metode ruangan
-    if req.get("result").get("action") == "inputRuangan": 
-        result = req.get("result").get("resolvedQuery")
-
-        dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
-        tahun = dateNow.split("-")[0]
-        bulan = dateNow.split("-")[1]
-        return flexMessageHari(bulan,tahun,"SETR",result)
             
             
     
@@ -630,8 +622,8 @@ def makeWebhookResult(req):
                 date = result.split(" ")[2]
             except Exception as res:
                 dateNow = str(datetime.datetime.now()+ timedelta(hours=7)).split(" ")[0]
-                tahun = dateNow.split("-")[0]
-                bulan = dateNow.split("-")[1]
+                tahun = int(dateNow.split("-")[0])
+                bulan = int(dateNow.split("-")[1])
                 return flexMessageHari(str(bulan),str(tahun),"SETR",str(lt)+"/"+str(ruang))
             
             #jika sudah memilih tanggal
