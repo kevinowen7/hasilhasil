@@ -72,13 +72,13 @@ def flexMessageHari(bulan,tahun,tipeCari,cari):
     hariNow = dateNow.split("-")[2]
     
     # next date
-    nextDate = str(datetime.date(int(tahun),int(bulan),int(1))+ timedelta(days=1)).split("-")
+    nextDate = str(datetime.date(int(tahun),int(bulan),int(15))+ timedelta(days=30)).split("-")
     tahunNext = nextDate[0]
     bulanNext = nextDate[1]
     hariNext = nextDate[2]
     
     # prev date
-    prevDate = str(datetime.date(int(tahun),int(bulan),int(1))- timedelta(days=1)).split("-")
+    prevDate = str(datetime.date(int(tahun),int(bulan),int(15))- timedelta(days=30)).split("-")
     tahunPrev = prevDate[0]
     bulanPrev = prevDate[1]
     hariPrev = prevDate[2]
@@ -645,7 +645,7 @@ def makeWebhookResult(req):
             hasil = database.child(str(thn)+"/"+str(bln)+"/"+str(tgl)).get()
             if hasil==None:
                 return flexMessageHasil("Ruangan "+str(ruang)+" tidak ada jadwal hari ini ("+str(tgl)+"/"+str(bln)+"/"+str(thn)+")")
-
+            ruang = ruang.replace("_"," ")
             lt=1
             hasillist=[]
             while(lt<len(hasil)+1):
