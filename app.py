@@ -748,7 +748,7 @@ def makeWebhookResult(req):
             bulan = int(dateNow.split("-")[1])
             hari = int(dateNow.split("-")[2])
             hasil = database.child(str(tahun)+"/"+str(bulan)+"/"+str(hari)).get()
-            cekHari = "Ini"
+            cekHari = "ini"
             
         elif ((int(hariKe)<7) and (int(hariKe)>0)):
             #next monday
@@ -793,7 +793,7 @@ def makeWebhookResult(req):
         #return value
         #jika tidak ada hasil
         if hasil==None:
-            return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") tidak ada jadwal")
+            return flexMessageHasil("Kak "+str(name)+" hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") tidak ada jadwal")
         matkul = userp.child("matkul").get()
         #name
         name = userp.child("name").get()
