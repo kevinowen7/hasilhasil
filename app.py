@@ -848,9 +848,9 @@ def makeWebhookResult(req):
         if ((len(result1) != 6) or (result1[2] != "-")):
             return flexMessageHasil("Maaf kak mungkin kode kuliah yang anda masukan salah :((") 
         else:
-            listmatkul = (str(matkul).upper()).split("\n")
+            listmatkul = (str(matkul)).split("\n")
             try:
-                indexSama = listmatkul.index(result.upper())
+                indexSama = listmatkul.index(result)
                 return flexMessageHasil("Maaf kak mungkin kode kuliah yang anda masukan sudah terdaftar :((") 
             except Exception as res:
                 matkul=matkul+result+"\n"
