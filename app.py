@@ -852,7 +852,7 @@ def makeWebhookResult(req):
                 "name" : profile.display_name,
                 "matkul" : matkul
             })
-        return flexMessageHasil("Sukses menambahkan "+result+"\n\nMata Kuliah kak "+name+" saat Ini : \n"+matkul)    
+        return flexMessageHasil("Sukses menambahkan "+result+"\n\nMata Kuliah kak "+name+" saat ini : \n"+matkul)    
 
     
     # show matkul    
@@ -862,7 +862,7 @@ def makeWebhookResult(req):
         if matkul == None:
             return flexMessageHasil("Maaf kak "+str(name)+" anda belum mendaftarkan Mata kuliah, silahkan daftarkan mata kuliah anda dengan fitur 'Jadwalku -> Tambah Mata Kuliah'")
         else:
-            return flexMessageHasil("Mata Kuliah kak "+name+" saat Ini : \n"+matkul)   
+            return flexMessageHasil("Mata Kuliah kak "+name+" saat ini : \n"+matkul)   
     
     
     # menghapus matkul    
@@ -874,7 +874,7 @@ def makeWebhookResult(req):
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
         if result=="-matkul":
-            return flexMessageHasil("Silahkan Masukan Kode Mata Kuliah yang mau dihapus \n(Contoh: KU-102)\n\nMata Kuliah kak "+name+" Saat ini : \n"+matkul);   
+            return flexMessageHasil("Silahkan Masukan Kode Mata Kuliah yang mau dihapus \n(Contoh: KU-102)\n\nMata Kuliah kak "+name+" saat ini : \n"+matkul);   
         #validasi
         result1=list(result)
             
@@ -895,7 +895,7 @@ def makeWebhookResult(req):
                 })
             except Exception as res:
                 return flexMessageHasil("Maaf kak "+name+" tidak sedang mengambil matkul "+result) 
-        return flexMessageHasil("Sukses menghapus "+result+"\n\n Mata Kuliah kak "+name+" Saat Ini : \n"+matkulAkhir)
+        return flexMessageHasil("Sukses menghapus "+result+"\n\n Mata Kuliah kak "+name+" saat ini : \n"+matkulAkhir)
        
             
     
