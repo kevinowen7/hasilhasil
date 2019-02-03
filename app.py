@@ -791,15 +791,15 @@ def makeWebhookResult(req):
             return flexMessageHasil("Format hari jadwalku yang anda masukan harus di antara 1 - 6")
         
         #return value
+        #name
+        name = userp.child("name").get()
         #jika tidak ada hasil
         if hasil==None:
             return flexMessageHasil("Kak "+str(name)+" hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") tidak ada jadwal")
         matkul = userp.child("matkul").get()
-        #name
-        name = userp.child("name").get()
         #jika tidak ada matkul yang terdaftar
         if matkul==None:
-            return flexMessageHasil("Maaf kak "+str(name)+" anda belum mendaftarkan Mata kuliah, silahkan daftarkan mata kuliah anda")
+            return flexMessageHasil("Maaf kak "+str(name)+" anda belum mendaftarkan Mata kuliah, silahkan daftarkan mata kuliah anda dengan fitur 'Jadwalku -> Tambah Mata Kuliah'")
         matkul1 = matkul.split("\n")
         for i in matkul1:
             lt=1
@@ -823,7 +823,7 @@ def makeWebhookResult(req):
                     lt=lt+1
 
         if hasillist==[]:
-            return flexMessageHasil("Hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") \n"+str(name)+" tidak ada kelas")
+            return flexMessageHasil("Kak "+str(name)+" hari "+str(cekHari)+" ("+str(hari)+"/"+str(bulan)+"/"+str(tahun)+") tidak ada jadwal")
         else:
             name = userp.child("name").get()
             r=""
@@ -834,6 +834,7 @@ def makeWebhookResult(req):
 
     # menambah matkul    
     if req.get("result").get("action") == "add":
+        name = userp.child("name").get()
         matkul = userp.child("matkul").get()
         if matkul == None:
             matkul = ""
@@ -843,13 +844,7 @@ def makeWebhookResult(req):
         result1=list(result)
 
         if ((len(result1) != 6) or (result1[2] != "-")):
-            return  {
-                "speech": "Maaf kak mungkin kode kuliah yang anda masukan salah :((",
-                "displayText": "Maaf kak mungkin kode kuliah yang anda masukan salah :((",
-                #"data": {},
-                #"contextOut": [],
-                "source": "Maaf kak mungkin kode kuliah yang anda masukan salah :(("
-            }
+            return flexMessageHasil("Maaf kak mungkin kode kuliah yang anda masukan salah :((") 
         else:
             matkul=matkul+result+"\n"
             #push to firebase
@@ -857,14 +852,19 @@ def makeWebhookResult(req):
                 "name" : profile.display_name,
                 "matkul" : matkul
             })
+        return flexMessageHasil("Sukses menambahkan "+result+"\n\n Mata Kuliah kak "+name+" Saat Ini : \n"+matkul)    
+
+    
+    # menambah matkul    
+    if req.get("result").get("action") == "show":
+        matkul = userp.child("matkul").get()
+        name = userp.child("name").get()
+        if matkul == None:
+            return flexMessageHasil("Maaf kak "+str(name)+" anda belum mendaftarkan Mata kuliah, silahkan daftarkan mata kuliah anda dengan fitur 'Jadwalku -> Tambah Mata Kuliah'")
+        else:
+            return flexMessageHasil("Mata Kuliah kak "+name+" Saat Ini : \n"+matkul)   
             
-        return {
-            "speech": "Sukses menambahkan "+result,
-            "displayText": "Sukses menambahkan "+result,
-            #"data": {},
-            #"contextOut": [],
-            "source": "Sukses menambahkan "+result
-        }
+       
             
     
     #falback
