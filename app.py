@@ -840,7 +840,7 @@ def makeWebhookResult(req):
             matkul = ""
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
-         if result=="+matkul":
+        if result=="+matkul":
             return flexMessageHasil("Mata Kuliah kak "+name+" saat ini : \n"+matkul+"\nSilahkan Masukan Kode Mata Kuliah yang mau ditambahkan \n(Contoh: KU-102)");   
         #validasi
         result1=list(result)
@@ -848,9 +848,9 @@ def makeWebhookResult(req):
         if ((len(result1) != 6) or (result1[2] != "-")):
             return flexMessageHasil("Maaf kak mungkin kode kuliah yang anda masukan salah :((") 
         else:
-            listmatkul = (str(matkul)).split("\n")
+            listmatkul = (str(matkul.upper())).split("\n")
             try:
-                indexSama = listmatkul.index(result)
+                indexSama = listmatkul.index(result.upper())
                 return flexMessageHasil("Maaf kak mungkin kode kuliah yang anda masukan sudah terdaftar :((") 
             except Exception as res:
                 matkul=matkul+result+"\n"
