@@ -750,7 +750,7 @@ def makeWebhookResult(req):
             hasil = database.child(str(tahun)+"/"+str(bulan)+"/"+str(hari)).get()
             cekHari = "Ini"
             
-        if ((int(hariKe)<7) and (int(hariKe)>0)):
+        elif ((int(hariKe)<7) and (int(hariKe)>0)):
             #next monday
             namaHari=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"]
             w=[]
