@@ -880,9 +880,9 @@ def makeWebhookResult(req):
         if ((len(result1) != 6) or (result1[2] != "-")):
             return flexMessageHasil("Maaf kak mungkin kode kuliah yang anda masukan salah :((") 
         else:
-            listmatkul = (matkul).split("\n")
+            listmatkul = (str(matkul).upper()).split("\n")
             try:
-                indexDel = listmatkul.index(result)
+                indexDel = listmatkul.index(result.upper())
                 listmatkul.pop(indexDel)
                 matkulAkhir=""
                 for i in listmatkul:
