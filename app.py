@@ -852,7 +852,7 @@ def makeWebhookResult(req):
                 "name" : profile.display_name,
                 "matkul" : matkul
             })
-        return flexMessageHasil("Sukses menambahkan "+result+"\n\n Mata Kuliah kak "+name+" Saat Ini : \n"+matkul)    
+        return flexMessageHasil("Sukses menambahkan "+result+"\n\nMata Kuliah kak "+name+" saat Ini : \n"+matkul)    
 
     
     # show matkul    
@@ -862,7 +862,7 @@ def makeWebhookResult(req):
         if matkul == None:
             return flexMessageHasil("Maaf kak "+str(name)+" anda belum mendaftarkan Mata kuliah, silahkan daftarkan mata kuliah anda dengan fitur 'Jadwalku -> Tambah Mata Kuliah'")
         else:
-            return flexMessageHasil("Mata Kuliah kak "+name+" Saat Ini : \n"+matkul)   
+            return flexMessageHasil("Mata Kuliah kak "+name+" saat Ini : \n"+matkul)   
     
     
     # menghapus matkul    
@@ -873,18 +873,21 @@ def makeWebhookResult(req):
             matkul = ""
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
+        if result=="-matkul":
+            return flexMessageHasil("Silahkan Masukan Kode Mata Kuliah yang mau dihapus \n(Contoh: KU-102)\n\nMata Kuliah kak "+name+" Saat ini : \n"+matkul);   
         #validasi
         result1=list(result)
-
+            
         if ((len(result1) != 6) or (result1[2] != "-")):
             return flexMessageHasil("Maaf kak mungkin kode kuliah yang anda masukan salah :((") 
         else:
-            listmatkul = matkul.split("\n")
+            listmatkul = (matkul.upper()).split("\N")
             try:
-                matkulDel = listmatkul.index(result)
+                indexDel = listmatkul.index(result.upper())
+                listmatkul.pop(indexDel)
                 matkulAkhir=""
                 for i in listmatkul:
-                    matkulAkhir = i + matkulAkhir
+                    matkulAkhir = matkulAkhir+i+"\n"
                 #push to firebase
                 userp.update({
                     "name" : profile.display_name,
