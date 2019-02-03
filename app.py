@@ -865,38 +865,7 @@ def makeWebhookResult(req):
             return flexMessageHasil("Mata Kuliah kak "+name+" saat ini : \n"+matkul)   
     
     
-    # menghapus matkul    
-    if req.get("result").get("action") == "remove":
-        name = userp.child("name").get()
-        matkul = userp.child("matkul").get()
-        if matkul == None:
-            matkul = ""
-        result0 = req.get("result")
-        result = result0.get("resolvedQuery")
-        if result=="-matkul":
-            return flexMessageHasil("Silahkan Masukan Kode Mata Kuliah yang mau dihapus \n(Contoh: KU-102)\n\nMata Kuliah kak "+name+" saat ini : \n"+matkul);   
-        #validasi
-        result1=list(result)
-            
-        if ((len(result1) != 6) or (result1[2] != "-")):
-            return flexMessageHasil("Maaf kak mungkin kode kuliah yang anda masukan salah :((") 
-        else:
-            listmatkul = (matkul.upper()).split("\N")
-            try:
-                indexDel = listmatkul.index(result.upper())
-                listmatkul.pop(indexDel)
-                matkulAkhir=""
-                for i in listmatkul:
-                    matkulAkhir = matkulAkhir+i+"\n"
-                #push to firebase
-                userp.update({
-                    "name" : profile.display_name,
-                    "matkul" : matkulAkhir
-                })
-            except Exception as res:
-                return flexMessageHasil("Maaf kak "+name+" tidak sedang mengambil matkul "+result) 
-        return flexMessageHasil("Sukses menghapus "+result+"\n\n Mata Kuliah kak "+name+" saat ini : \n"+matkulAkhir)
-       
+    
             
     
     #falback
