@@ -840,18 +840,25 @@ def makeWebhookResult(req):
             matkul = ""
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
+         if result=="+matkul":
+            return flexMessageHasil("Mata Kuliah kak "+name+" saat ini : \n"+matkul+"\nSilahkan Masukan Kode Mata Kuliah yang mau ditambahkan \n(Contoh: KU-102)");   
         #validasi
         result1=list(result)
 
         if ((len(result1) != 6) or (result1[2] != "-")):
             return flexMessageHasil("Maaf kak mungkin kode kuliah yang anda masukan salah :((") 
         else:
-            matkul=matkul+result+"\n"
-            #push to firebase
-            userp.update({
-                "name" : profile.display_name,
-                "matkul" : matkul
-            })
+            listmatkul = (str(matkul).upper()).split("\n")
+            try:
+                indexSama = listmatkul.index(result.upper())
+                return flexMessageHasil("Maaf kak mungkin kode kuliah yang anda masukan sudah terdaftar :((") 
+            except Exception as res:
+                matkul=matkul+result+"\n"
+                #push to firebase
+                userp.update({
+                    "name" : profile.display_name,
+                    "matkul" : matkul
+                })
         return flexMessageHasil("Sukses menambahkan "+result+"\n\nMata Kuliah kak "+name+" saat ini : \n"+matkul)    
 
     
@@ -873,7 +880,7 @@ def makeWebhookResult(req):
         result0 = req.get("result")
         result = result0.get("resolvedQuery")
         if result=="-matkul":
-            return flexMessageHasil("Silahkan Masukan Kode Mata Kuliah yang mau dihapus \n(Contoh: KU-102)\n\nMata Kuliah kak "+name+" saat ini : \n"+matkul);   
+            return flexMessageHasil("Mata Kuliah kak "+name+" saat ini : \n"+matkul+"\nSilahkan Masukan Kode Mata Kuliah yang mau dihapus \n(Contoh: KU-102)");   
         #validasi
         result1=list(result)
             
