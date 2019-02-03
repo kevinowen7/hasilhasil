@@ -855,7 +855,7 @@ def makeWebhookResult(req):
         return flexMessageHasil("Sukses menambahkan "+result+"\n\n Mata Kuliah kak "+name+" Saat Ini : \n"+matkul)    
 
     
-    # menambah matkul    
+    # show matkul    
     if req.get("result").get("action") == "show":
         matkul = userp.child("matkul").get()
         name = userp.child("name").get()
@@ -863,7 +863,36 @@ def makeWebhookResult(req):
             return flexMessageHasil("Maaf kak "+str(name)+" anda belum mendaftarkan Mata kuliah, silahkan daftarkan mata kuliah anda dengan fitur 'Jadwalku -> Tambah Mata Kuliah'")
         else:
             return flexMessageHasil("Mata Kuliah kak "+name+" Saat Ini : \n"+matkul)   
-            
+    
+    
+    # menghapus matkul    
+    if req.get("result").get("action") == "remove":
+        name = userp.child("name").get()
+        matkul = userp.child("matkul").get()
+        if matkul == None:
+            matkul = ""
+        result0 = req.get("result")
+        result = result0.get("resolvedQuery")
+        #validasi
+        result1=list(result)
+
+        if ((len(result1) != 6) or (result1[2] != "-")):
+            return flexMessageHasil("Maaf kak mungkin kode kuliah yang anda masukan salah :((") 
+        else:
+            listmatkul = matkul.split("\n")
+            try:
+                matkulDel = listmatkul.index(result)
+                matkulAkhir=""
+                for i in listmatkul:
+                    matkulAkhir = i + matkulAkhir
+                #push to firebase
+                userp.update({
+                    "name" : profile.display_name,
+                    "matkul" : matkulAkhir
+                })
+            except Exception as res:
+                return flexMessageHasil("Maaf kak "+name+" tidak sedang mengambil matkul "+result) 
+        return flexMessageHasil("Sukses menghapus "+result+"\n\n Mata Kuliah kak "+name+" Saat Ini : \n"+matkulAkhir)
        
             
     
